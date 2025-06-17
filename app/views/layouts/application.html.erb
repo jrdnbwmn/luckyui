@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title><%= content_for(:title) || "Pear UI" %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= yield :head %>
+
+    <%# Enable PWA manifest for installable apps (make sure to enable in config/routes.rb too!) %>
+    <%#= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
+
+    <link rel="icon" href="/icon.png" type="image/png">
+    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/icon.png">
+
+    <%# Includes all stylesheet files in app/assets/stylesheets %>
+    <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+
+    <!-- tippyjs (for Sailboat UI stuff) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tippy.js/6.3.7/tippy.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://unpkg.com/@ryangjchandler/alpine-tooltip@1.2.0/dist/cdn.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+
+<body class="bg-white">
+
+    <!-- Header -->
+    <%= render 'shared/header' %>
+
+    <div class="mx-auto max-w-6xl px-4 lg:px-0 relative flex-1 overflow-hidden">
+
+        <!-- Sidebar -->
+        <%= render 'shared/sidebar' %>
+
+        <!-- Main content -->
+        <main class="relative min-h-screen max-w-[52rem] flex-1 pr-1 pt-30 lg:ml-[16rem] lg:mr-10 lg:pl-20 lg:pt-30">
+            <div class="mx-auto w-full min-w-0">
+                <%= yield %>
+            </div>
+        </main>
+
+    </div>
+</body>
+
+</html>

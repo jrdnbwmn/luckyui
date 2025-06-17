@@ -1,0 +1,30 @@
+<nav class="fixed bottom-0 right-auto top-0 z-20 hidden w-64 overflow-y-auto border-r pb-10 pt-16 lg:block border-gray-200">
+    <div class="relative overflow-hidden h-full py-6 pr-6 lg:py-8">
+        <div class="h-full w-full rounded-[inherit]">
+            <div class="relative">
+
+                <div class="mb-8">
+                    <h4 class="mb-2 w-full cursor-default"><span class="text-base font-semibold tracking-wide text-gray-800 md:text-sm">Getting Started</span></h4>
+                    <ul class="flex flex-col gap-1">
+                        <li><%= link_to root_path, class: "#{ current_page?(root_path) ? 'bg-gray-100 text-gray-900' : 'text-gray-600 hover:bg-gray-100 hover:text-gray-800' } relative relative mr-4 block rounded-md py-2 px-4 transition-all duration-150 md:text-sm" do %>Home<% end %></li>
+                        <!-- <div class="absolute top-1/2 left-2 h-4 w-0.5 -translate-y-1/2 rounded-full bg-gray-700"></div> -->
+                        <li><%= link_to about_path, class: "#{ current_page?(about_path) ? 'bg-gray-100 text-gray-900' : 'text-gray-600 hover:bg-gray-100 hover:text-gray-800' } relative relative mr-4 block rounded-md py-2 px-4 transition-all duration-150 md:text-sm" do %>About<% end %></li>
+                        <li><%= link_to services_path, class: "#{ current_page?(services_path) ? 'bg-gray-100 text-gray-900' : 'text-gray-600 hover:bg-gray-100 hover:text-gray-800' } relative relative mr-4 block rounded-md py-2 px-4 transition-all duration-150 md:text-sm" do %>Services<% end %></li>
+                        <li><%= link_to contact_path, class: "#{ current_page?(contact_path) ? 'bg-gray-100 text-gray-900' : 'text-gray-600 hover:bg-gray-100 hover:text-gray-800' } relative relative mr-4 block rounded-md py-2 px-4 transition-all duration-150 md:text-sm" do %>Contact<% end %></li>
+                    </ul>
+                </div>
+
+                <div class="mb-8">
+                    <h4 class="mb-2 w-full cursor-default"><span class="text-base font-semibold tracking-wide text-gray-800 md:text-sm">Sections</span></h4>
+                    <ul>
+                        <li><%= link_to components_tab_path, class: "#{ current_page?(components_tab_path) ? 'bg-gray-100 text-gray-900' : 'text-gray-600 hover:bg-gray-100 hover:text-gray-800' } relative mr-4 block rounded-md py-2 px-4 transition-all duration-150 md:text-sm" do %>Tab<% end %></li>
+                    </ul>
+                    <ul>
+                        <li><%= link_to components_button_path, class: "#{ current_page?(components_button_path) ? 'bg-gray-100 text-gray-900' : 'text-gray-600 hover:bg-gray-100 hover:text-gray-800' } relative mr-4 block rounded-md py-2 px-4 transition-all duration-150 md:text-sm" do %>Button<% end %></li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</nav>

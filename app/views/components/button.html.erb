@@ -1,0 +1,39 @@
+<div class="flex flex-col gap-4 mb-8">
+    <span>Sections</span>
+    <h1 class="text-4xl font-bold">Button</h1>
+    <p>Blah blah.</p>
+</div>
+
+<div class="space-y-6 mt-16">
+    <!-- Tab component to show preview/code -->
+    <div data-controller="tabs" data-tabs-active-index-value="0" data-tabs-active-tab-class-value="bg-white shadow-md text-gray-700" data-tabs-inactive-tab-class-value="text-gray-600">
+        <div class="overflow-hidden inline-block rounded-xl p-1.5 bg-gray-100">
+            <ul class="flex items-center gap-1.5 font-medium">
+                <li>
+                    <a href="#" data-action="click->tabs#selectTab" data-tabs-index-param="0" data-tabs-target="tab" class="inline-flex cursor-pointer items-center gap-2 rounded-lg px-3 py-2 hover:bg-white hover:shadow-md hover:text-gray-700 transition-all duration-200">
+                        Preview
+                    </a>
+                </li>
+                <li>
+                    <a href="#" data-action="click->tabs#selectTab" data-tabs-index-param="1" data-tabs-target="tab" class="inline-flex cursor-pointer items-center gap-2 rounded-lg px-3 py-2 hover:bg-white hover:shadow-md hover:text-gray-700 transition-all duration-200">
+                        Code
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="py-3">
+            <div data-tabs-target="panel">
+                <p>Preview tab content</p>
+            </div>
+            <div data-tabs-target="panel" hidden>
+                <p>Code tab content</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="space-y-6 mt-16">
+    <button type="button" class="inline-flex items-center justify-center rounded-lg px-3 py-2 tracking-wide text-white transition-colors duration-200 rounded-md bg-neutral-950 hover:bg-neutral-900 focus:ring-2 focus:ring-offset-2 focus:ring-neutral-900 focus:shadow-outline focus:outline-none">
+        Button
+    </button>
+</div>
