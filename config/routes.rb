@@ -14,9 +14,8 @@ Rails.application.routes.draw do
 
   # Pages routes
   root "pages#home"
-  get "about", to: "pages#about"
-  get "services", to: "pages#services"
-  get "contact", to: "pages#contact"
+  get "how-to-use", to: "pages#howtouse", as: :how_to_use
+  get "contribution", to: "pages#contribution"
   
   # Component documentation routes
   get "components/tab", to: "components#tab"

@@ -2,12 +2,9 @@ class PagesController < ApplicationController
   def home
   end
 
-  def about
+  def howtouse
   end
 
-  def services
-  end
-
-  def contact
+  def contribution
   end
 end
