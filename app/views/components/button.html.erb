@@ -1,32 +1,40 @@
-<div class="flex flex-col gap-4 mb-8">
-    <span>Sections</span>
-    <h1 class="text-4xl font-bold">Button</h1>
-    <p>Blah blah.</p>
+<div class="flex flex-col mb-8">
+    <span class="text-sm mb-2 text-gray-600">Controls</span>
+    <h1 class="text-4xl font-bold mb-4">Button</h1>
+    <p>Tabs organize and allow navigation between groups of content that are related and at the same level of hierarchy.</p>
 </div>
 
 <div class="space-y-6 mt-16">
     <!-- Tab component to show preview/code -->
-    <div data-controller="tabs" data-tabs-active-index-value="0" data-tabs-active-tab-class-value="bg-white shadow-md text-gray-700" data-tabs-inactive-tab-class-value="text-gray-600">
+    <div data-controller="tabs" data-tabs-active-index-value="0" data-tabs-active-tab-class-value="bg-white shadow-md" data-tabs-inactive-tab-class-value="">
         <div class="overflow-hidden inline-block rounded-xl p-1.5 bg-gray-100">
-            <ul class="flex items-center gap-1.5 font-medium">
+            <ul class="flex items-center gap-1.5 font-medium text-sm">
                 <li>
-                    <a href="#" data-action="click->tabs#selectTab" data-tabs-index-param="0" data-tabs-target="tab" class="inline-flex cursor-pointer items-center gap-2 rounded-lg px-3 py-2 hover:bg-white hover:shadow-md hover:text-gray-700 transition-all duration-200">
+                    <a href="#" data-action="click->tabs#selectTab" data-tabs-index-param="0" data-tabs-target="tab" class="inline-flex cursor-pointer items-center gap-2 rounded-lg px-4 py-2 hover:bg-white hover:shadow-md transition-all duration-200">
                         Preview
                     </a>
                 </li>
                 <li>
-                    <a href="#" data-action="click->tabs#selectTab" data-tabs-index-param="1" data-tabs-target="tab" class="inline-flex cursor-pointer items-center gap-2 rounded-lg px-3 py-2 hover:bg-white hover:shadow-md hover:text-gray-700 transition-all duration-200">
+                    <a href="#" data-action="click->tabs#selectTab" data-tabs-index-param="1" data-tabs-target="tab" class="inline-flex cursor-pointer items-center gap-2 rounded-lg px-4 py-2 hover:bg-white hover:shadow-md transition-all duration-200">
                         Code
+                    </a>
+                </li>
+                <li>
+                    <a href="#" data-action="click->tabs#selectTab" data-tabs-index-param="2" data-tabs-target="tab" class="inline-flex cursor-pointer items-center gap-2 rounded-lg px-4 py-2 hover:bg-white hover:shadow-md transition-all duration-200">
+                        Thing
                     </a>
                 </li>
             </ul>
         </div>
         <div class="py-3">
             <div data-tabs-target="panel">
-                <p>Preview tab content</p>
+                <div class="border border-gray-200 rounded-xl" style="height:200px"></div>
             </div>
             <div data-tabs-target="panel" hidden>
                 <p>Code tab content</p>
+            </div>
+            <div data-tabs-target="panel" hidden>
+                <p>Thing tab content</p>
             </div>
         </div>
     </div>
