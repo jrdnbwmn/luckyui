@@ -1,24 +1,24 @@
 <nav class="fixed bottom-0 right-auto top-0 z-20 hidden w-64 overflow-y-auto border-r pb-10 pt-16 lg:block border-gray-200">
     <div class="relative overflow-hidden h-full py-6 mdpy-8 text-gray-600">
-        <div class="h-full w-full rounded-[inherit]">
+        <div class="h-full w-full">
 
             <!-- Getting Started -->
             <div class="mb-6">
-                <h4 class="mb-2 w-full cursor-default text-gray-700"><span class="text-base font-bold lg:text-sm">Getting Started</span></h4>
+                <h4 class="mb-2 w-full cursor-default text-gray-700 font-bold lg:text-sm">Getting Started</h4>
                 <ul class="flex flex-col gap-1">
                     <li><%= link_to root_path, class: "#{ current_page?(root_path) ? 'bg-gray-100 text-gray-800' : 'hover:bg-gray-100' } relative mr-4 block rounded-md py-2 px-4 transition-all duration-150 lg:text-sm" do %>
-                        <% if current_page?(root_path)%><div class="absolute top-1/2 left-1.5 h-4 w-0.5 -translate-y-1/2 rounded-full bg-gray-700"></div><% end %>
+                        <% if current_page?(root_path)%><div class="absolute top-1/2 left-1.5 h-4 w-0.5 -translate-y-1/2 rounded-full bg-gray-800"></div><% end %>
                         Introduction
                         <% end %>
                     </li>
                     <!-- <div class="absolute top-1/2 left-1.5 h-4 w-0.5 -translate-y-1/2 rounded-full bg-gray-700"></div> -->
                     <li><%= link_to how_to_use_path, class: "#{ current_page?(how_to_use_path) ? 'bg-gray-100 text-gray-800' : 'hover:bg-gray-100' } relative mr-4 block rounded-md py-2 px-4 transition-all duration-150 lg:text-sm" do %>
-                        <% if current_page?(how_to_use_path)%><div class="absolute top-1/2 left-1.5 h-4 w-0.5 -translate-y-1/2 rounded-full bg-gray-700"></div><% end %>
+                        <% if current_page?(how_to_use_path)%><div class="absolute top-1/2 left-1.5 h-4 w-0.5 -translate-y-1/2 rounded-full bg-gray-800"></div><% end %>
                         How to use
                         <% end %>
                     </li>
                     <li><%= link_to contribution_path, class: "#{ current_page?(contribution_path) ? 'bg-gray-100 text-gray-800' : ' hover:bg-gray-100' } relative mr-4 block rounded-md py-2 px-4 transition-all duration-150 lg:text-sm" do %>
-                        <% if current_page?(contribution_path)%><div class="absolute top-1/2 left-1.5 h-4 w-0.5 -translate-y-1/2 rounded-full bg-gray-700"></div><% end %>
+                        <% if current_page?(contribution_path)%><div class="absolute top-1/2 left-1.5 h-4 w-0.5 -translate-y-1/2 rounded-full bg-gray-800"></div><% end %>
                         Contribution
                         <% end %>
                     </li>
@@ -27,15 +27,15 @@
 
             <!-- Sections -->
             <div class="mb-6">
-                <h4 class="mb-2 w-full cursor-default text-gray-700"><span class="text-base font-bold lg:text-sm">Sections</span></h4>
+                <h4 class="mb-2 w-full cursor-default text-gray-700 font-bold lg:text-sm">Sections</h4>
                 <ul class="flex flex-col gap-1">
                     <li><%= link_to components_tab_path, class: "#{ current_page?(components_tab_path) ? 'bg-gray-100 text-gray-800' : 'hover:bg-gray-100' } relative mr-4 block rounded-md py-2 px-4 transition-all duration-150 lg:text-sm" do %>
-                        <% if current_page?(components_tab_path)%><div class="absolute top-1/2 left-1.5 h-4 w-0.5 -translate-y-1/2 rounded-full bg-gray-700"></div><% end %>
+                        <% if current_page?(components_tab_path)%><div class="absolute top-1/2 left-1.5 h-4 w-0.5 -translate-y-1/2 rounded-full bg-gray-800"></div><% end %>
                         Tab
                         <% end %>
                     </li>
                     <li><%= link_to components_button_path, class: "#{ current_page?(components_button_path) ? 'bg-gray-100 text-gray-800' : 'hover:bg-gray-100' } relative mr-4 block rounded-md py-2 px-4 transition-all duration-150 lg:text-sm" do %>
-                        <% if current_page?(components_button_path) %><div class="absolute top-1/2 left-1.5 h-4 w-0.5 -translate-y-1/2 rounded-full bg-gray-700"></div><% end %>
+                        <% if current_page?(components_button_path) %><div class="absolute top-1/2 left-1.5 h-4 w-0.5 -translate-y-1/2 rounded-full bg-gray-800"></div><% end %>
                         Button
                         <% end %>
                     </li>
