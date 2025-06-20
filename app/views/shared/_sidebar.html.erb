@@ -1,44 +1,23 @@
-<nav class="fixed bottom-0 right-auto top-0 z-20 hidden w-64 overflow-y-auto border-r pb-10 pt-16 lg:block border-gray-200">
-    <div class="relative overflow-hidden h-full py-6 mdpy-8 text-gray-600">
+<nav class="fixed bottom-0 right-auto top-0 z-20 hidden w-60 overflow-y-auto border-r pb-10 pt-22 lg:block border-zinc-200">
+    <div class="relative overflow-hidden h-full py-6 mdpy-8 text-zinc-500 text-sm">
         <div class="h-full w-full">
 
             <!-- Getting Started -->
-            <div class="mb-6">
-                <h4 class="mb-2 w-full cursor-default text-gray-700 font-bold lg:text-sm">Getting Started</h4>
-                <ul class="flex flex-col gap-1">
-                    <li><%= link_to root_path, class: "#{ current_page?(root_path) ? 'bg-gray-100 text-gray-800' : 'hover:bg-gray-100' } relative mr-4 block rounded-md py-2 px-4 transition-all duration-150 lg:text-sm" do %>
-                        <% if current_page?(root_path)%><div class="absolute top-1/2 left-1.5 h-4 w-0.5 -translate-y-1/2 rounded-full bg-gray-800"></div><% end %>
-                        Introduction
-                        <% end %>
-                    </li>
-                    <!-- <div class="absolute top-1/2 left-1.5 h-4 w-0.5 -translate-y-1/2 rounded-full bg-gray-700"></div> -->
-                    <li><%= link_to how_to_use_path, class: "#{ current_page?(how_to_use_path) ? 'bg-gray-100 text-gray-800' : 'hover:bg-gray-100' } relative mr-4 block rounded-md py-2 px-4 transition-all duration-150 lg:text-sm" do %>
-                        <% if current_page?(how_to_use_path)%><div class="absolute top-1/2 left-1.5 h-4 w-0.5 -translate-y-1/2 rounded-full bg-gray-800"></div><% end %>
-                        How to use
-                        <% end %>
-                    </li>
-                    <li><%= link_to contribution_path, class: "#{ current_page?(contribution_path) ? 'bg-gray-100 text-gray-800' : ' hover:bg-gray-100' } relative mr-4 block rounded-md py-2 px-4 transition-all duration-150 lg:text-sm" do %>
-                        <% if current_page?(contribution_path)%><div class="absolute top-1/2 left-1.5 h-4 w-0.5 -translate-y-1/2 rounded-full bg-gray-800"></div><% end %>
-                        Contribution
-                        <% end %>
-                    </li>
+            <div class="flex flex-col gap-3 mb-7 text-sm">
+                <h3 class="text-zinc-500">Getting Started</h3>
+                <ul class="text-zinc-500 flex flex-col gap-2 border-l-2 border-zinc-200 *:hover:text-zinc-800" role="list">
+                    <li class="-ml-[2px] flex gap-2"><%= link_to root_path, class: "#{ current_page?(root_path) ? 'font-semibold text-zinc-800 border-zinc-800' : '' } block border-l-2 border-transparent pl-5 text-base/8 aria-[current]:border-zinc-800 aria-[current]:font-semibold aria-[current]:text-zinc-800 sm:pl-4 sm:text-sm/6" do %>Installation<% end %></li>
+                    <li class="-ml-[2px] flex gap-2"><%= link_to how_to_use_path, class: "#{ current_page?(how_to_use_path) ? 'font-semibold text-zinc-800 border-zinc-800' : '' } block border-l-2 border-transparent pl-5 text-base/8 aria-[current]:border-zinc-800 aria-[current]:font-semibold aria-[current]:text-zinc-800 sm:pl-4 sm:text-sm/6" do %>How to Use<% end %></li>
+                    <li class="-ml-[2px] flex gap-2"><%= link_to contribution_path, class: "#{ current_page?(contribution_path) ? 'font-semibold text-zinc-800 border-zinc-800' : '' } block border-l-2 border-transparent pl-5 text-base/8 aria-[current]:border-zinc-800 aria-[current]:font-semibold aria-[current]:text-zinc-800 sm:pl-4 sm:text-sm/6" do %>Contribution<% end %></li>
                 </ul>
             </div>
 
             <!-- Sections -->
-            <div class="mb-6">
-                <h4 class="mb-2 w-full cursor-default text-gray-700 font-bold lg:text-sm">Sections</h4>
-                <ul class="flex flex-col gap-1">
-                    <li><%= link_to components_tab_path, class: "#{ current_page?(components_tab_path) ? 'bg-gray-100 text-gray-800' : 'hover:bg-gray-100' } relative mr-4 block rounded-md py-2 px-4 transition-all duration-150 lg:text-sm" do %>
-                        <% if current_page?(components_tab_path)%><div class="absolute top-1/2 left-1.5 h-4 w-0.5 -translate-y-1/2 rounded-full bg-gray-800"></div><% end %>
-                        Tab
-                        <% end %>
-                    </li>
-                    <li><%= link_to components_button_path, class: "#{ current_page?(components_button_path) ? 'bg-gray-100 text-gray-800' : 'hover:bg-gray-100' } relative mr-4 block rounded-md py-2 px-4 transition-all duration-150 lg:text-sm" do %>
-                        <% if current_page?(components_button_path) %><div class="absolute top-1/2 left-1.5 h-4 w-0.5 -translate-y-1/2 rounded-full bg-gray-800"></div><% end %>
-                        Button
-                        <% end %>
-                    </li>
+            <div class="flex flex-col gap-3 mb-7 text-sm">
+                <h3 class="text-zinc-500">Sections</h3>
+                <ul class="text-zinc-500 flex flex-col gap-2 border-l-2 border-zinc-200 *:hover:text-zinc-800" role="list">
+                    <li class="-ml-[2px] flex gap-2"><%= link_to components_tab_path, class: "#{ current_page?(components_tab_path) ? 'font-semibold text-zinc-800 border-zinc-800' : '' } block border-l-2 border-transparent pl-5 text-base/8 aria-[current]:border-zinc-800 aria-[current]:font-semibold aria-[current]:text-zinc-800 sm:pl-4 sm:text-sm/6" do %>Tab<% end %></li>
+                    <li class="-ml-[2px] flex gap-2"><%= link_to components_button_path, class: "#{ current_page?(components_button_path) ? 'font-semibold text-zinc-800 border-zinc-800' : '' } block border-l-2 border-transparent pl-5 text-base/8 aria-[current]:border-zinc-800 aria-[current]:font-semibold aria-[current]:text-zinc-800 sm:pl-4 sm:text-sm/6" do %>Button<% end %></li>
                 </ul>
             </div>
 

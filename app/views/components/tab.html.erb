@@ -1,5 +1,5 @@
 <div class="flex flex-col mb-8">
-    <span class="text-sm mb-2 text-gray-600">Sections</span>
+    <span class="text-sm mb-2 text-zinc-500">Sections</span>
     <h1 class="text-4xl font-bold mb-4">Tabs</h1>
     <p>Tabs organize and allow navigation between groups of content that are related and at the same level of hierarchy.</p>
 </div>
@@ -7,20 +7,20 @@
 <div class="space-y-6 mt-16">
     <!-- Tab component to show preview/code -->
     <div data-controller="tabs" data-tabs-active-index-value="0" data-tabs-active-tab-class-value="bg-white shadow-md" data-tabs-inactive-tab-class-value="">
-        <div class="overflow-hidden inline-block rounded-xl p-1.5 bg-gray-100">
+        <div class="overflow-hidden inline-block rounded-xl p-1.5 bg-zinc-100">
             <ul class="flex items-center gap-1.5 font-medium text-sm">
                 <li>
-                    <a href="#" data-action="click->tabs#selectTab" data-tabs-index-param="0" data-tabs-target="tab" class="inline-flex cursor-pointer items-center gap-2 rounded-lg px-4 py-2 hover:bg-white hover:shadow-md transition-all duration-200">
+                    <a href="#" data-action="click->tabs#selectTab" data-tabs-index-param="0" data-tabs-target="tab" class="inline-flex cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 hover:bg-white hover:shadow-sm transition-all duration-200">
                         Preview
                     </a>
                 </li>
                 <li>
-                    <a href="#" data-action="click->tabs#selectTab" data-tabs-index-param="1" data-tabs-target="tab" class="inline-flex cursor-pointer items-center gap-2 rounded-lg px-4 py-2 hover:bg-white hover:shadow-md transition-all duration-200">
+                    <a href="#" data-action="click->tabs#selectTab" data-tabs-index-param="1" data-tabs-target="tab" class="inline-flex cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 hover:bg-white hover:shadow-sm transition-all duration-200">
                         Code
                     </a>
                 </li>
                 <li>
-                    <a href="#" data-action="click->tabs#selectTab" data-tabs-index-param="2" data-tabs-target="tab" class="inline-flex cursor-pointer items-center gap-2 rounded-lg px-4 py-2 hover:bg-white hover:shadow-md transition-all duration-200">
+                    <a href="#" data-action="click->tabs#selectTab" data-tabs-index-param="2" data-tabs-target="tab" class="inline-flex cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 hover:bg-white hover:shadow-sm transition-all duration-200">
                         Thing
                     </a>
                 </li>
@@ -28,7 +28,7 @@
         </div>
         <div class="py-3">
             <div data-tabs-target="panel">
-                <div class="border border-gray-200 rounded-xl" style="height:200px"></div>
+                <div class="border border-zinc-200 rounded-xl" style="height:200px"></div>
             </div>
             <div data-tabs-target="panel" hidden>
                 <p>Code tab content</p>
@@ -42,8 +42,8 @@
 
 <!-- New Underline Style Tabs -->
 <div class="space-y-6 mt-16">
-    <div data-controller="tabs" data-tabs-active-index-value="0" data-tabs-active-tab-class-value="relative text-blue-700 after:absolute after:left-0 after:bottom-0 after:h-0.5 after:w-full after:bg-blue-700" data-tabs-inactive-tab-class-value="text-gray-500">
-        <div class="border-b border-b-gray-100">
+    <div data-controller="tabs" data-tabs-active-index-value="0" data-tabs-active-tab-class-value="relative text-blue-700 after:absolute after:left-0 after:bottom-0 after:h-0.5 after:w-full after:bg-blue-700" data-tabs-inactive-tab-class-value="text-zinc-500">
+        <div class="border-b border-b-zinc-100">
             <ul class="-mb-px flex items-center gap-4 font-medium">
                 <li>
                     <a href="#" data-action="click->tabs#selectTab" data-tabs-index-param="0" data-tabs-target="tab" class="inline-flex cursor-pointer items-center gap-2 px-1 py-3 hover:text-blue-700">
@@ -67,7 +67,7 @@
                             <path fill-rule="evenodd" d="M10 2a6 6 0 00-6 6c0 1.887-.454 3.665-1.257 5.234a.75.75 0 00.515 1.076 32.91 32.91 0 003.256.508 3.5 3.5 0 006.972 0 32.903 32.903 0 003.256-.508.75.75 0 00.515-1.076A11.448 11.448 0 0116 8a6 6 0 00-6-6zM8.05 14.943a33.54 33.54 0 003.9 0 2 2 0 01-3.9 0z" clip-rule="evenodd" />
                         </svg>
                         Notifications
-                        <span class="rounded-full bg-gray-100 px-2 py-0.5 text-xs font-semibold text-gray-500"> 8 </span>
+                        <span class="rounded-full bg-zinc-100 px-2 py-0.5 text-xs font-semibold text-zinc-500"> 8 </span>
                     </a>
                 </li>
                 <li>
