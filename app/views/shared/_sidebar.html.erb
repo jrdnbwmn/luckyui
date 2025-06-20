@@ -1,26 +1,26 @@
-<nav class="fixed bottom-0 right-auto top-0 z-20 hidden w-60 overflow-y-auto border-r pb-10 pt-22 lg:block border-zinc-200">
-    <div class="relative overflow-hidden h-full py-6 mdpy-8 text-zinc-500 text-sm">
-        <div class="h-full w-full">
+    <nav data-nav-target="menu" class="menu fixed bottom-0 right-auto top-0 z-20 w-full hidden lg:w-60 overflow-y-auto border-r pb-10 pt-22 lg:block border-zinc-200 bg-white">
+        <div class="relative overflow-hidden h-full py-6 mdpy-8 text-zinc-500 text-sm">
+            <div class="h-full w-full">
 
-            <!-- Getting Started -->
-            <div class="flex flex-col gap-3 mb-7 text-sm">
-                <h3 class="text-zinc-500">Getting Started</h3>
-                <ul class="text-zinc-500 flex flex-col gap-2 border-l-2 border-zinc-200 *:hover:text-zinc-800" role="list">
-                    <li class="-ml-[2px] flex gap-2"><%= link_to root_path, class: "#{ current_page?(root_path) ? 'font-semibold text-zinc-800 border-zinc-800' : '' } block border-l-2 border-transparent pl-5 text-base/8 aria-[current]:border-zinc-800 aria-[current]:font-semibold aria-[current]:text-zinc-800 sm:pl-4 sm:text-sm/6" do %>Installation<% end %></li>
-                    <li class="-ml-[2px] flex gap-2"><%= link_to how_to_use_path, class: "#{ current_page?(how_to_use_path) ? 'font-semibold text-zinc-800 border-zinc-800' : '' } block border-l-2 border-transparent pl-5 text-base/8 aria-[current]:border-zinc-800 aria-[current]:font-semibold aria-[current]:text-zinc-800 sm:pl-4 sm:text-sm/6" do %>How to Use<% end %></li>
-                    <li class="-ml-[2px] flex gap-2"><%= link_to contribution_path, class: "#{ current_page?(contribution_path) ? 'font-semibold text-zinc-800 border-zinc-800' : '' } block border-l-2 border-transparent pl-5 text-base/8 aria-[current]:border-zinc-800 aria-[current]:font-semibold aria-[current]:text-zinc-800 sm:pl-4 sm:text-sm/6" do %>Contribution<% end %></li>
-                </ul>
+                <!-- Getting Started -->
+                <div class="flex flex-col gap-3 mb-7 text-sm">
+                    <h3 class="text-zinc-500">Getting Started</h3>
+                    <ul class="text-zinc-500 flex flex-col gap-2 border-l-2 border-zinc-200 *:hover:text-zinc-800" role="list">
+                        <li class="-ml-[2px] flex gap-2"><%= link_to root_path, class: "#{ current_page?(root_path) ? 'font-semibold text-zinc-800 border-zinc-800' : '' } block border-l-2 border-transparent pl-5 text-base/8 aria-[current]:border-zinc-800 aria-[current]:font-semibold aria-[current]:text-zinc-800 sm:pl-4 sm:text-sm/6" do %>Installation<% end %></li>
+                        <li class="-ml-[2px] flex gap-2"><%= link_to how_to_use_path, class: "#{ current_page?(how_to_use_path) ? 'font-semibold text-zinc-800 border-zinc-800' : '' } block border-l-2 border-transparent pl-5 text-base/8 aria-[current]:border-zinc-800 aria-[current]:font-semibold aria-[current]:text-zinc-800 sm:pl-4 sm:text-sm/6" do %>How to Use<% end %></li>
+                        <li class="-ml-[2px] flex gap-2"><%= link_to contribution_path, class: "#{ current_page?(contribution_path) ? 'font-semibold text-zinc-800 border-zinc-800' : '' } block border-l-2 border-transparent pl-5 text-base/8 aria-[current]:border-zinc-800 aria-[current]:font-semibold aria-[current]:text-zinc-800 sm:pl-4 sm:text-sm/6" do %>Contribution<% end %></li>
+                    </ul>
+                </div>
+
+                <!-- Sections -->
+                <div class="flex flex-col gap-3 mb-7 text-sm">
+                    <h3 class="text-zinc-500">Sections</h3>
+                    <ul class="text-zinc-500 flex flex-col gap-2 border-l-2 border-zinc-200 *:hover:text-zinc-800" role="list">
+                        <li class="-ml-[2px] flex gap-2"><%= link_to components_tab_path, class: "#{ current_page?(components_tab_path) ? 'font-semibold text-zinc-800 border-zinc-800' : '' } block border-l-2 border-transparent pl-5 text-base/8 aria-[current]:border-zinc-800 aria-[current]:font-semibold aria-[current]:text-zinc-800 sm:pl-4 sm:text-sm/6" do %>Tab<% end %></li>
+                        <li class="-ml-[2px] flex gap-2"><%= link_to components_button_path, class: "#{ current_page?(components_button_path) ? 'font-semibold text-zinc-800 border-zinc-800' : '' } block border-l-2 border-transparent pl-5 text-base/8 aria-[current]:border-zinc-800 aria-[current]:font-semibold aria-[current]:text-zinc-800 sm:pl-4 sm:text-sm/6" do %>Button<% end %></li>
+                    </ul>
+                </div>
+
             </div>
-
-            <!-- Sections -->
-            <div class="flex flex-col gap-3 mb-7 text-sm">
-                <h3 class="text-zinc-500">Sections</h3>
-                <ul class="text-zinc-500 flex flex-col gap-2 border-l-2 border-zinc-200 *:hover:text-zinc-800" role="list">
-                    <li class="-ml-[2px] flex gap-2"><%= link_to components_tab_path, class: "#{ current_page?(components_tab_path) ? 'font-semibold text-zinc-800 border-zinc-800' : '' } block border-l-2 border-transparent pl-5 text-base/8 aria-[current]:border-zinc-800 aria-[current]:font-semibold aria-[current]:text-zinc-800 sm:pl-4 sm:text-sm/6" do %>Tab<% end %></li>
-                    <li class="-ml-[2px] flex gap-2"><%= link_to components_button_path, class: "#{ current_page?(components_button_path) ? 'font-semibold text-zinc-800 border-zinc-800' : '' } block border-l-2 border-transparent pl-5 text-base/8 aria-[current]:border-zinc-800 aria-[current]:font-semibold aria-[current]:text-zinc-800 sm:pl-4 sm:text-sm/6" do %>Button<% end %></li>
-                </ul>
-            </div>
-
         </div>
-    </div>
-</nav>
+    </nav>
