@@ -1,10 +1,102 @@
-@import url('https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400..900;1,400..900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anonymous+Pro:ital,wght@0,400;0,700;1,400;1,700&family=Fragment+Mono:ital@0;1&family=Inconsolata:wght@200..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
 @import "tailwindcss";
 
 @theme {
   --font-sans: 'Inter', sans-serif;
+  --font-mono: 'Hack', monospace;
+}
+
+/* Highlight.js */
+pre code.hljs {
+  display: block;
+  overflow: auto;
+}
+
+code.hljs {
+
+}
+
+.hljs {
+
+}
+
+.hljs-subst {
+  color: #3F3F47;
+}
+
+.hljs-comment {
+  color: #71717B;
+}
+
+.hljs-attr,
+.hljs-doctag,
+.hljs-keyword,
+.hljs-meta .hljs-keyword,
+.hljs-section,
+.hljs-selector-tag {
+  color: #015CC5;
+}
+
+.hljs-attribute {
+  color: #E17100;
+}
+
+.hljs-name,
+.hljs-number,
+.hljs-quote,
+.hljs-selector-id,
+.hljs-template-tag,
+.hljs-type {
+  color: #D050A3;
+}
+
+.hljs-selector-class {
+  color: #187FD2;
+}
+
+.hljs-link,
+.hljs-regexp,
+.hljs-selector-attr,
+.hljs-string,
+.hljs-symbol,
+.hljs-template-variable,
+.hljs-variable {
+  color: #0EB0A9;
+}
+
+.hljs-meta,
+.hljs-selector-pseudo {
+  color: #187FD2;
+}
+
+.hljs-built_in,
+.hljs-literal,
+.hljs-title {
+  color: #D050A3;
+}
+
+.hljs-bullet,
+.hljs-code {
+  color: #71717B;
+}
+
+.hljs-meta .hljs-string {
+  color: #0EB0A9;
+}
+
+.hljs-deletion {
+  color: #EC0040;
+}
+
+.hljs-addition {
+  color: #0EB0A9;
+}
+
+.hljs-emphasis {
+  font-style: italic
+}
+
+.hljs-strong {
+  font-weight: 700
 }

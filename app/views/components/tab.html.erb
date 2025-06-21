@@ -1,99 +1,223 @@
-<div class="flex flex-col mb-8">
+<div class="flex flex-col mb-16">
     <span class="text-sm mb-2 text-zinc-500">Sections</span>
     <h1 class="text-4xl font-bold mb-4">Tabs</h1>
     <p>Tabs organize and allow navigation between groups of content that are related and at the same level of hierarchy.</p>
 </div>
 
-<div class="space-y-6 mt-16">
-    <!-- Tab component to show preview/code -->
-    <div data-controller="tabs" data-tabs-active-index-value="0" data-tabs-active-tab-class-value="bg-white shadow-md" data-tabs-inactive-tab-class-value="">
-        <div class="overflow-hidden inline-block rounded-xl p-1.5 bg-zinc-100">
-            <ul class="flex items-center gap-1.5 font-medium text-sm">
-                <li>
-                    <a href="#" data-action="click->tabs#selectTab" data-tabs-index-param="0" data-tabs-target="tab" class="inline-flex cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 hover:bg-white hover:shadow-sm transition-all duration-200">
-                        Preview
-                    </a>
-                </li>
-                <li>
-                    <a href="#" data-action="click->tabs#selectTab" data-tabs-index-param="1" data-tabs-target="tab" class="inline-flex cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 hover:bg-white hover:shadow-sm transition-all duration-200">
-                        Code
-                    </a>
-                </li>
-                <li>
-                    <a href="#" data-action="click->tabs#selectTab" data-tabs-index-param="2" data-tabs-target="tab" class="inline-flex cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 hover:bg-white hover:shadow-sm transition-all duration-200">
-                        Thing
-                    </a>
-                </li>
-            </ul>
-        </div>
-        <div class="py-3">
-            <div data-tabs-target="panel">
-                <div class="border border-zinc-200 rounded-xl" style="height:200px"></div>
-            </div>
-            <div data-tabs-target="panel" hidden>
-                <p>Code tab content</p>
-            </div>
-            <div data-tabs-target="panel" hidden>
-                <p>Thing tab content</p>
+<h3 class="text-xl font-semibold mb-3">Pills</h3>
+<div class="rounded-2xl border border-zinc-200 bg-white">
+    <!-- Preview section -->
+    <div class="px-6 py-16 overflow-x-auto">
+        <div class="m-auto max-w-full max-lg:min-w-fit lg:max-w-96  flex justify-center">
+            <div class="w-full flex justify-center gap-2">
+                <!-- Preview inside this div -->
+                <div>
+                    <div data-controller="tabs" data-tabs-active-index-value="0" data-tabs-active-tab-class-value="bg-white shadow-sm" data-tabs-inactive-tab-class-value="">
+                        <div class="overflow-hidden inline-block rounded-xl p-1.5 bg-zinc-100">
+                            <ul class="flex items-center gap-1.5 font-medium text-sm">
+                                <li>
+                                    <a href="#" data-action="click->tabs#selectTab" data-tabs-index-param="0" data-tabs-target="tab" class="inline-flex cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 hover:bg-white hover:shadow-sm transition-all duration-200">
+                                        Preview
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" data-action="click->tabs#selectTab" data-tabs-index-param="1" data-tabs-target="tab" class="inline-flex cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 hover:bg-white hover:shadow-sm transition-all duration-200">
+                                        Code
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="py-3">
+                            <div data-tabs-target="panel">
+                                <div>Preview content</div>
+                            </div>
+                            <div data-tabs-target="panel" hidden>
+                                <div>Code content</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+
+    <!-- Code section -->
+    <div class="relative rounded-b-2xl overflow-hidden flex max-h-80 bg-zinc-50 border-t border-zinc-200">
+
+        <div class="absolute top-0 right-0 pt-3 pr-3 z-1">
+
+            <!-- Needs a tooltip on hover and a confirmation when you click it -->
+            <button type="button" class="relative items-center font-medium justify-center gap-2 cursor-pointer whitespace-nowrap disabled:opacity-75 disabled:cursor-default disabled:pointer-events-none h-8 text-sm rounded-md w-8 inline-flex bg-white hover:bg-zinc-100 text-zinc-800 border border-zinc-200 hover:border-zinc-200 border-b-zinc-300/80 shadow-xs">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 0 0 2.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 0 0-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75 2.25 2.25 0 0 0-.1-.664m-5.8 0A2.251 2.251 0 0 1 13.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25ZM6.75 12h.008v.008H6.75V12Zm0 3h.008v.008H6.75V15Zm0 3h.008v.008H6.75V18Z" />
+                </svg>
+            </button>
+
+            <div popover="manual" class="relative py-2 px-2.5 rounded-md text-xs text-white font-medium bg-zinc-800 p-0 overflow-visible" data-flux-tooltip-content="" id="lofi-tooltip-145e57b3415b5" aria-hidden="true" role="tooltip">
+                Copy to clipboard
+            </div>
+        </div>
+
+        <div class="text-sm min-w-full max-h-full overflow-auto" style="scrollbar-width: thin;">
+            <div>
+                <!-- Insert code -->
+                <pre><code class="language-html p-6 leading-[1.7] bg-zinc-50 text-zinc-700 font-mono">&lt;div data-controller=&quot;tabs&quot; data-tabs-active-index-value=&quot;0&quot; data-tabs-active-tab-class-value=&quot;bg-white shadow-md&quot; data-tabs-inactive-tab-class-value=&quot;&quot;&gt;
+    &lt;div class=&quot;overflow-hidden inline-block rounded-xl p-1.5 bg-zinc-100&quot;&gt;
+        &lt;ul class=&quot;flex items-center gap-1.5 font-medium text-sm&quot;&gt;
+            &lt;li&gt;
+                &lt;a href=&quot;#&quot; data-action=&quot;click-&gt;tabs#selectTab&quot; data-tabs-index-param=&quot;0&quot; data-tabs-target=&quot;tab&quot; class=&quot;inline-flex cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 hover:bg-white hover:shadow-sm transition-all duration-200&quot;&gt;
+                    Preview
+                &lt;/a&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+                &lt;a href=&quot;#&quot; data-action=&quot;click-&gt;tabs#selectTab&quot; data-tabs-index-param=&quot;1&quot; data-tabs-target=&quot;tab&quot; class=&quot;inline-flex cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 hover:bg-white hover:shadow-sm transition-all duration-200&quot;&gt;
+                    Code
+                &lt;/a&gt;
+            &lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;py-3&quot;&gt;
+        &lt;div data-tabs-target=&quot;panel&quot;&gt;
+            &lt;div class=&quot;border border-zinc-200 rounded-xl&quot; style=&quot;height:200px&quot;&gt;&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div data-tabs-target=&quot;panel&quot; hidden&gt;
+            &lt;div class=&quot;rounded-xl&quot;&gt;
+                &lt;pre class=&quot;flex overflow-auto rounded-b-lg p-4 text-sm/6 sm:rounded-t-lg language-html bg-zinc-100&quot;&gt;
+                    &lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;
+                &lt;div&gt;stuff&lt;/div&gt;
+                    &lt;/code&gt;
+                &lt;/pre&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+            </div>
+        </div>
+
+    </div>
 </div>
 
-<!-- New Underline Style Tabs -->
-<div class="space-y-6 mt-16">
-    <div data-controller="tabs" data-tabs-active-index-value="0" data-tabs-active-tab-class-value="relative text-blue-700 after:absolute after:left-0 after:bottom-0 after:h-0.5 after:w-full after:bg-blue-700" data-tabs-inactive-tab-class-value="text-zinc-500">
-        <div class="border-b border-b-zinc-100">
-            <ul class="-mb-px flex items-center gap-4 font-medium">
-                <li>
-                    <a href="#" data-action="click->tabs#selectTab" data-tabs-index-param="0" data-tabs-target="tab" class="inline-flex cursor-pointer items-center gap-2 px-1 py-3 hover:text-blue-700">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-5 w-5">
-                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-5.5-2.5a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0zM10 12a5.99 5.99 0 00-4.793 2.39A6.483 6.483 0 0010 16.5a6.483 6.483 0 004.793-2.11A5.99 5.99 0 0010 12z" clip-rule="evenodd" />
-                        </svg>
-                        Profile
-                    </a>
-                </li>
-                <li>
-                    <a href="#" data-action="click->tabs#selectTab" data-tabs-index-param="1" data-tabs-target="tab" class="inline-flex cursor-pointer items-center gap-2 px-1 py-3 hover:text-blue-700">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-5 w-5">
-                            <path fill-rule="evenodd" d="M3.5 2A1.5 1.5 0 002 3.5V15a3 3 0 106 0V3.5A1.5 1.5 0 006.5 2h-3zm11.753 6.99L9.5 14.743V6.257l1.51-1.51a1.5 1.5 0 012.122 0l2.121 2.121a1.5 1.5 0 010 2.122zM8.364 18H16.5a1.5 1.5 0 001.5-1.5v-3a1.5 1.5 0 00-1.5-1.5h-2.136l-6 6zM5 16a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd" />
-                        </svg>
-                        Preferences
-                    </a>
-                </li>
-                <li>
-                    <a href="#" data-action="click->tabs#selectTab" data-tabs-index-param="2" data-tabs-target="tab" class="inline-flex cursor-pointer items-center gap-2 px-1 py-3 hover:text-blue-700">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-5 w-5">
-                            <path fill-rule="evenodd" d="M10 2a6 6 0 00-6 6c0 1.887-.454 3.665-1.257 5.234a.75.75 0 00.515 1.076 32.91 32.91 0 003.256.508 3.5 3.5 0 006.972 0 32.903 32.903 0 003.256-.508.75.75 0 00.515-1.076A11.448 11.448 0 0116 8a6 6 0 00-6-6zM8.05 14.943a33.54 33.54 0 003.9 0 2 2 0 01-3.9 0z" clip-rule="evenodd" />
-                        </svg>
-                        Notifications
-                        <span class="rounded-full bg-zinc-100 px-2 py-0.5 text-xs font-semibold text-zinc-500"> 8 </span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" data-action="click->tabs#selectTab" data-tabs-index-param="3" data-tabs-target="tab" class="inline-flex cursor-pointer items-center gap-2 px-1 py-3 hover:text-blue-700">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-5 w-5">
-                            <path fill-rule="evenodd" d="M4.25 2A2.25 2.25 0 002 4.25v2.5A2.25 2.25 0 004.25 9h2.5A2.25 2.25 0 009 6.75v-2.5A2.25 2.25 0 006.75 2h-2.5zm0 9A2.25 2.25 0 002 13.25v2.5A2.25 2.25 0 004.25 18h2.5A2.25 2.25 0 009 15.75v-2.5A2.25 2.25 0 006.75 11h-2.5zm9-9A2.25 2.25 0 0011 4.25v2.5A2.25 2.25 0 0013.25 9h2.5A2.25 2.25 0 0018 6.75v-2.5A2.25 2.25 0 0015.75 2h-2.5zm0 9A2.25 2.25 0 0011 13.25v2.5A2.25 2.25 0 0013.25 18h2.5A2.25 2.25 0 0018 15.75v-2.5A2.25 2.25 0 0015.75 11h-2.5z" clip-rule="evenodd" />
-                        </svg>
-                        Applications
-                    </a>
-                </li>
-                <li>
-                    <a href="#" data-action="click->tabs#selectTab" data-tabs-index-param="4" data-tabs-target="tab" class="inline-flex cursor-pointer items-center gap-2 px-1 py-3 hover:text-blue-700">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-5 w-5">
-                            <path fill-rule="evenodd" d="M10.362 1.093a.75.75 0 00-.724 0L2.523 5.018 10 9.143l7.477-4.125-7.115-3.925zM18 6.443l-7.25 4v8.25l6.862-3.786A.75.75 0 0018 14.25V6.443zm-8.75 12.25v-8.25l-7.25-4v7.807a.75.75 0 00.388.657l6.862 3.786z" clip-rule="evenodd" />
-                        </svg>
-                        API
-                    </a>
-                </li>
-            </ul>
+<h3 class="text-xl font-semibold mt-16 mb-3">Underline</h3>
+<div class="rounded-2xl border border-zinc-200 bg-white">
+    <!-- Preview section -->
+    <div class="px-6 py-16 overflow-x-auto">
+        <div class="m-auto max-w-full max-lg:min-w-fit lg:max-w-96  flex justify-center">
+            <div class="w-full flex justify-center gap-2">
+                <!-- Preview inside this div -->
+                <div>
+                    <div data-controller="tabs" data-tabs-active-index-value="0" data-tabs-active-tab-class-value="relative text-blue-700 after:absolute after:left-0 after:bottom-0 after:h-0.5 after:w-full after:bg-blue-700" data-tabs-inactive-tab-class-value="text-zinc-500">
+                        <div class="border-b border-b-zinc-100">
+                            <ul class="-mb-px flex items-center gap-4 font-medium">
+                                <li>
+                                    <a href="#" data-action="click->tabs#selectTab" data-tabs-index-param="0" data-tabs-target="tab" class="inline-flex cursor-pointer items-center gap-2 px-1 py-3 hover:text-blue-700">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-5 w-5">
+                                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-5.5-2.5a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0zM10 12a5.99 5.99 0 00-4.793 2.39A6.483 6.483 0 0010 16.5a6.483 6.483 0 004.793-2.11A5.99 5.99 0 0010 12z" clip-rule="evenodd" />
+                                        </svg>
+                                        Profile
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" data-action="click->tabs#selectTab" data-tabs-index-param="1" data-tabs-target="tab" class="inline-flex cursor-pointer items-center gap-2 px-1 py-3 hover:text-blue-700">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-5 w-5">
+                                            <path fill-rule="evenodd" d="M3.5 2A1.5 1.5 0 002 3.5V15a3 3 0 106 0V3.5A1.5 1.5 0 006.5 2h-3zm11.753 6.99L9.5 14.743V6.257l1.51-1.51a1.5 1.5 0 012.122 0l2.121 2.121a1.5 1.5 0 010 2.122zM8.364 18H16.5a1.5 1.5 0 001.5-1.5v-3a1.5 1.5 0 00-1.5-1.5h-2.136l-6 6zM5 16a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd" />
+                                        </svg>
+                                        Preferences
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" data-action="click->tabs#selectTab" data-tabs-index-param="2" data-tabs-target="tab" class="inline-flex cursor-pointer items-center gap-2 px-1 py-3 hover:text-blue-700">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-5 w-5">
+                                            <path fill-rule="evenodd" d="M10 2a6 6 0 00-6 6c0 1.887-.454 3.665-1.257 5.234a.75.75 0 00.515 1.076 32.91 32.91 0 003.256.508 3.5 3.5 0 006.972 0 32.903 32.903 0 003.256-.508.75.75 0 00.515-1.076A11.448 11.448 0 0116 8a6 6 0 00-6-6zM8.05 14.943a33.54 33.54 0 003.9 0 2 2 0 01-3.9 0z" clip-rule="evenodd" />
+                                        </svg>
+                                        Notifications
+                                        <span class="rounded-full bg-zinc-100 px-2 py-0.5 text-xs font-semibold text-zinc-500"> 8 </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" data-action="click->tabs#selectTab" data-tabs-index-param="3" data-tabs-target="tab" class="inline-flex cursor-pointer items-center gap-2 px-1 py-3 hover:text-blue-700">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-5 w-5">
+                                            <path fill-rule="evenodd" d="M4.25 2A2.25 2.25 0 002 4.25v2.5A2.25 2.25 0 004.25 9h2.5A2.25 2.25 0 009 6.75v-2.5A2.25 2.25 0 006.75 2h-2.5zm0 9A2.25 2.25 0 002 13.25v2.5A2.25 2.25 0 004.25 18h2.5A2.25 2.25 0 009 15.75v-2.5A2.25 2.25 0 006.75 11h-2.5zm9-9A2.25 2.25 0 0011 4.25v2.5A2.25 2.25 0 0013.25 9h2.5A2.25 2.25 0 0018 6.75v-2.5A2.25 2.25 0 0015.75 2h-2.5zm0 9A2.25 2.25 0 0011 13.25v2.5A2.25 2.25 0 0013.25 18h2.5A2.25 2.25 0 0018 15.75v-2.5A2.25 2.25 0 0015.75 11h-2.5z" clip-rule="evenodd" />
+                                        </svg>
+                                        Applications
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" data-action="click->tabs#selectTab" data-tabs-index-param="4" data-tabs-target="tab" class="inline-flex cursor-pointer items-center gap-2 px-1 py-3 hover:text-blue-700">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-5 w-5">
+                                            <path fill-rule="evenodd" d="M10.362 1.093a.75.75 0 00-.724 0L2.523 5.018 10 9.143l7.477-4.125-7.115-3.925zM18 6.443l-7.25 4v8.25l6.862-3.786A.75.75 0 0018 14.25V6.443zm-8.75 12.25v-8.25l-7.25-4v7.807a.75.75 0 00.388.657l6.862 3.786z" clip-rule="evenodd" />
+                                        </svg>
+                                        API
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="py-3">
+                            <div data-tabs-target="panel">Tab content 1</div>
+                            <div data-tabs-target="panel" hidden>Tab content 2</div>
+                            <div data-tabs-target="panel" hidden>Tab content 3</div>
+                            <div data-tabs-target="panel" hidden>Tab content 4</div>
+                            <div data-tabs-target="panel" hidden>Tab content 5</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="py-3">
-            <div data-tabs-target="panel">Tab content 1</div>
-            <div data-tabs-target="panel" hidden>Tab content 2</div>
-            <div data-tabs-target="panel" hidden>Tab content 3</div>
-            <div data-tabs-target="panel" hidden>Tab content 4</div>
-            <div data-tabs-target="panel" hidden>Tab content 5</div>
+    </div>
+
+    <!-- Code section -->
+    <div class="relative rounded-b-2xl overflow-hidden flex max-h-80 bg-zinc-50 border-t border-zinc-200">
+
+        <div class="absolute top-0 right-0 pt-3 pr-3 z-1">
+
+            <!-- Needs a tooltip on hover and a confirmation when you click it -->
+            <button type="button" class="relative items-center font-medium justify-center gap-2 cursor-pointer whitespace-nowrap disabled:opacity-75 disabled:cursor-default disabled:pointer-events-none h-8 text-sm rounded-md w-8 inline-flex bg-white hover:bg-zinc-100 text-zinc-800 border border-zinc-200 hover:border-zinc-200 border-b-zinc-300/80 shadow-xs">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 0 0 2.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 0 0-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75 2.25 2.25 0 0 0-.1-.664m-5.8 0A2.251 2.251 0 0 1 13.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25ZM6.75 12h.008v.008H6.75V12Zm0 3h.008v.008H6.75V15Zm0 3h.008v.008H6.75V18Z" />
+                </svg>
+            </button>
+
+            <div popover="manual" class="relative py-2 px-2.5 rounded-md text-xs text-white font-medium bg-zinc-800 p-0 overflow-visible" data-flux-tooltip-content="" id="lofi-tooltip-145e57b3415b5" aria-hidden="true" role="tooltip">
+                Copy to clipboard
+            </div>
         </div>
+
+        <div class="text-sm min-w-full max-h-full overflow-auto" style="scrollbar-width: thin;">
+            <div>
+                <!-- Insert code -->
+                <pre><code class="language-html p-6 leading-[1.7] bg-zinc-50 text-zinc-700 font-mono">&lt;div data-controller=&quot;tabs&quot; data-tabs-active-index-value=&quot;0&quot; data-tabs-active-tab-class-value=&quot;bg-white shadow-md&quot; data-tabs-inactive-tab-class-value=&quot;&quot;&gt;
+    &lt;div class=&quot;overflow-hidden inline-block rounded-xl p-1.5 bg-zinc-100&quot;&gt;
+        &lt;ul class=&quot;flex items-center gap-1.5 font-medium text-sm&quot;&gt;
+            &lt;li&gt;
+                &lt;a href=&quot;#&quot; data-action=&quot;click-&gt;tabs#selectTab&quot; data-tabs-index-param=&quot;0&quot; data-tabs-target=&quot;tab&quot; class=&quot;inline-flex cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 hover:bg-white hover:shadow-sm transition-all duration-200&quot;&gt;
+                    Preview
+                &lt;/a&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+                &lt;a href=&quot;#&quot; data-action=&quot;click-&gt;tabs#selectTab&quot; data-tabs-index-param=&quot;1&quot; data-tabs-target=&quot;tab&quot; class=&quot;inline-flex cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 hover:bg-white hover:shadow-sm transition-all duration-200&quot;&gt;
+                    Code
+                &lt;/a&gt;
+            &lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;py-3&quot;&gt;
+        &lt;div data-tabs-target=&quot;panel&quot;&gt;
+            &lt;div class=&quot;border border-zinc-200 rounded-xl&quot; style=&quot;height:200px&quot;&gt;&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div data-tabs-target=&quot;panel&quot; hidden&gt;
+            &lt;div class=&quot;rounded-xl&quot;&gt;
+                &lt;pre class=&quot;flex overflow-auto rounded-b-lg p-4 text-sm/6 sm:rounded-t-lg language-html bg-zinc-100&quot;&gt;
+                    &lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;
+                &lt;div&gt;stuff&lt;/div&gt;
+                    &lt;/code&gt;
+                &lt;/pre&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+            </div>
+        </div>
+
     </div>
 </div>
