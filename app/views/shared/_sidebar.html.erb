@@ -15,7 +15,7 @@
             <!-- Sections -->
             <div class="flex flex-col gap-3 mb-7">
                 <h3 class="text-zinc-500">Sections</h3>
-                <ul class="text-zinc-500 flex flex-col gap-2 border-l-2 border-zinc-200 *:hover:text-zinc-900" role="list">
+                <ul class="text-zinc-500 flex flex-col gap-2 border-l-2 border-zinc-200" role="list">
                     <li class="-ml-[2px] flex gap-2"><%= link_to components_tab_path, class: "#{ current_page?(components_tab_path) ? 'font-semibold text-zinc-900 border-zinc-800' : '' } block border-l-2 border-transparent pl-5 aria-[current]:border-zinc-800 aria-[current]:font-semibold aria-[current]:text-zinc-900 sm:pl-4 hover:text-zinc-900 pr-4" do %>Tab<% end %></li>
                     <li class="-ml-[2px] flex gap-2"><%= link_to components_button_path, class: "#{ current_page?(components_button_path) ? 'font-semibold text-zinc-900 border-zinc-800' : '' } block border-l-2 border-transparent pl-5 aria-[current]:border-zinc-800 aria-[current]:font-semibold aria-[current]:text-zinc-900 sm:pl-4 hover:text-zinc-900 pr-4" do %>Button<% end %></li>
                 </ul>
