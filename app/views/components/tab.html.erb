@@ -3,7 +3,7 @@
     <div class="flex flex-col">
         <span class="text-sm mb-2 text-zinc-500">Sections</span>
         <h1 class="text-4xl font-bold mb-4 text-zinc-900">Tabs</h1>
-        <p>Tabs organize and allow navigation between groups of content that are related and at the same level of hierarchy.</p>
+        <p>Tabs organize and allow navigation between groups of content that are related and at the same level of hierarchy. These tabs can be navigated with the keyboard using Left, Right, Home, and End.</p>
     </div>
 
     <section class="mt-16">
@@ -20,7 +20,7 @@
                         <div>
                             <div data-controller="tabs" data-tabs-active-index-value="0" data-tabs-active-tab-class-value="bg-white shadow-sm" data-tabs-inactive-tab-class-value="">
                                 <div class="overflow-hidden inline-block rounded-xl p-1.5 bg-zinc-100">
-                                    <ul class="flex items-center gap-1.5 font-medium text-sm">
+                                    <ul class="flex items-center gap-1.5 font-medium text-sm" data-action="keydown->tabs#onKeydown" role="tablist">
                                         <li>
                                             <a href="#" data-action="click->tabs#selectTab" data-tabs-index-param="0" data-tabs-target="tab" class="inline-flex cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 hover:bg-white hover:shadow-sm transition-all duration-200">
                                                 Preview
@@ -62,7 +62,7 @@
                         <!-- Insert code -->
                         <pre><code class="language-html p-6 leading-[1.7] bg-zinc-50 text-zinc-700 text-sm font-mono">&lt;div data-controller=&quot;tabs&quot; data-tabs-active-index-value=&quot;0&quot; data-tabs-active-tab-class-value=&quot;bg-white shadow-md&quot; data-tabs-inactive-tab-class-value=&quot;&quot;&gt;
     &lt;div class=&quot;overflow-hidden inline-block rounded-xl p-1.5 bg-zinc-100&quot;&gt;
-        &lt;ul class=&quot;flex items-center gap-1.5 font-medium text-sm&quot;&gt;
+        &lt;ul class=&quot;flex items-center gap-1.5 font-medium text-sm&quot; data-action=&quot;keydown-&gt;tabs#onKeydown&quot; role=&quot;tablist&quot;&gt;
             &lt;li&gt;
                 &lt;a href=&quot;#&quot; data-action=&quot;click-&gt;tabs#selectTab&quot; data-tabs-index-param=&quot;0&quot; data-tabs-target=&quot;tab&quot; class=&quot;inline-flex cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 hover:bg-white hover:shadow-sm transition-all duration-200&quot;&gt;
                     Preview
@@ -110,7 +110,7 @@
                         <div>
                             <div data-controller="tabs" data-tabs-active-index-value="0" data-tabs-active-tab-class-value="relative text-blue-700 after:absolute after:left-0 after:bottom-0 after:h-0.5 after:w-full after:bg-blue-700" data-tabs-inactive-tab-class-value="text-zinc-500">
                                 <div class="border-b border-b-zinc-200">
-                                    <ul class="-mb-px flex items-center gap-4 font-medium">
+                                    <ul class="-mb-px flex items-center gap-4 font-medium" data-action="keydown->tabs#onKeydown" role="tablist">
                                         <li>
                                             <a href="#" data-action="click->tabs#selectTab" data-tabs-index-param="0" data-tabs-target="tab" class="inline-flex cursor-pointer items-center gap-2 px-1 py-3 hover:text-blue-700">
                                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-5 w-5">
@@ -182,7 +182,7 @@
                         <!-- Insert code -->
                         <pre><code class="language-html p-6 leading-[1.7] bg-zinc-50 text-zinc-700 text-sm font-mono">&lt;div data-controller=&quot;tabs&quot; data-tabs-active-index-value=&quot;0&quot; data-tabs-active-tab-class-value=&quot;bg-white shadow-md&quot; data-tabs-inactive-tab-class-value=&quot;&quot;&gt;
             &lt;div class=&quot;overflow-hidden inline-block rounded-xl p-1.5 bg-zinc-100&quot;&gt;
-                &lt;ul class=&quot;flex items-center gap-1.5 font-medium text-sm&quot;&gt;
+                &lt;ul class=&quot;flex items-center gap-1.5 font-medium text-sm&quot; data-action=&quot;keydown-&gt;tabs#onKeydown&quot; role=&quot;tablist&quot;&gt;
                     &lt;li&gt;
                         &lt;a href=&quot;#&quot; data-action=&quot;click-&gt;tabs#selectTab&quot; data-tabs-index-param=&quot;0&quot; data-tabs-target=&quot;tab&quot; class=&quot;inline-flex cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 hover:bg-white hover:shadow-sm transition-all duration-200&quot;&gt;
                             Preview
@@ -219,6 +219,8 @@
     <section class="mt-16">
         <h3 class="text-xl font-semibold mb-3 text-zinc-900">Usage</h3>
         <p>Follow the installation instructions on the How to Use page.</p>
+        <p>The JS is inspired by the tabs in the <a href="https://github.com/excid3/tailwindcss-stimulus-components" class="">tailwindcss-stimulus-components</a> library.</p>
+        <p>https://github.com/excid3/tailwindcss-stimulus-components/blob/main/docs/tabs.md</p>
 
         <div class="mt-6">
             <div class="relative">
