@@ -20,4 +20,6 @@ Rails.application.routes.draw do
   # Component documentation routes
   get "components/tab", to: "components#tab"
   get "components/button", to: "components#button"
+  get "components/accordion", to: "components#accordion"
+  get "components/switch", to: "components#switch"
 end

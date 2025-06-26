@@ -4,4 +4,10 @@ class ComponentsController < ApplicationController
 
   def button
   end
+
+  def accordion
+  end
+
+  def switch
+  end
 end

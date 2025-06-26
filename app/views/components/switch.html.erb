@@ -1,0 +1,39 @@
+<% content_for :title, "Switch - Lucky  UI" %>
+
+<div class="flex flex-col mb-8">
+    <span class="text-sm mb-2 text-zinc-500">Forms</span>
+    <h1 class="text-4xl font-bold mb-4 text-zinc-900">Switch</h1>
+    <p>Tabs organize and allow navigation between groups of content that are related and at the same level of hierarchy.</p>
+</div>
+
+<div class="space-y-6 mt-16">
+    <div x-data="{ switchOn: false }" class="flex items-center justify-center gap-4">
+        <input
+            id="marketing_emails"
+            type="checkbox"
+            name="user[marketing_emails]"
+            value="1"
+            class="hidden"
+            :checked="switchOn"
+        >
+
+        <button
+            type="button"
+            role="switch"
+            :aria-checked="switchOn.toString()"
+            @click="switchOn = !switchOn"
+            :class="switchOn ? 'bg-zinc-800' : 'bg-zinc-200'"
+            class="cursor-pointer relative inline-flex h-6 w-10 items-center rounded-full outline-offset-2 transition"
+        >
+            <span
+                :class="switchOn ? 'translate-x-[19px]' : 'translate-x-[3px]'"
+                class="bg-white size-4.5 rounded-full transition shadow-md translate-x-[3px]"
+                aria-hidden="true"
+            ></span>
+        </button>
+
+        <label for="marketing_emails" class="text-sm select-none">
+            Marketing emails
+        </label>
+    </div>
+</div>
