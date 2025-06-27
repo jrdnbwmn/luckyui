@@ -13,4 +13,7 @@ class ComponentsController < ApplicationController
 
   def tooltip
   end
+
+  def dropdown
+  end
 end
