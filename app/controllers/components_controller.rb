@@ -16,4 +16,7 @@ class ComponentsController < ApplicationController
 
   def dropdown
   end
+
+  def icon
+  end
 end

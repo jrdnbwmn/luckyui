@@ -24,4 +24,5 @@ Rails.application.routes.draw do
   get "components/switch", to: "components#switch"
   get "components/tooltip", to: "components#tooltip"
   get "components/dropdown", to: "components#dropdown"
+  get "components/icon", to: "components#icon"
 end
