@@ -22,4 +22,5 @@ Rails.application.routes.draw do
   get "components/button", to: "components#button"
   get "components/accordion", to: "components#accordion"
   get "components/switch", to: "components#switch"
+  get "components/tooltip", to: "components#tooltip"
 end

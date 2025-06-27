@@ -10,4 +10,7 @@ class ComponentsController < ApplicationController
 
   def switch
   end
+
+  def tooltip
+  end
 end

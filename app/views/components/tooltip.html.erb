@@ -1,0 +1,46 @@
+<% content_for :title, "Tooltip - Lucky  UI" %>
+
+<div class="flex flex-col mb-8">
+    <span class="text-sm mb-2 text-zinc-500">Controls</span>
+    <h1 class="text-4xl font-bold mb-4 text-zinc-900">Tooltip</h1>
+    <p>Tabs organize and allow navigation between groups of content that are related and at the same level of hierarchy.</p>
+    <p>This uses tippy.js and @ryangjchandler/alpine-tooltip. i pulled all the css into my own css in application.css and used @apply stuff there. Default position is top.</p>
+</div>
+
+<div class="mt-16">
+    <div class="flex h-40 items-center justify-center space-x-5">
+        <div x-data="{ tooltip: 'This is a tooltip.' }">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-6 w-6 cursor-pointer text-secondary-500" x-tooltip="tooltip">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
+            </svg>
+        </div>
+    </div>
+</div>
+
+<div class="mt-16">
+    <div class="flex h-40 items-center justify-center space-x-5 text-zinc-800">
+        <span x-data="{ tooltip: 'This is a top tooltip.' }">
+            <div x-tooltip="tooltip" class="rounded-lg bg-zinc-100 px-4 py-2 text-sm cursor-default">Top</div>
+        </span>
+        <span x-data="{ tooltip: 'This is a right tooltip.' }">
+            <div x-tooltip.placement.right="tooltip" class="rounded-lg bg-zinc-100 px-4 py-2 text-sm cursor-default">Right</div>
+        </span>
+        <span x-data="{ tooltip: 'This is a bottom tooltip.' }">
+            <div x-tooltip.placement.bottom="tooltip" class="rounded-lg bg-zinc-100 px-4 py-2 text-sm cursor-default">Bottom</div>
+        </span>
+        <span x-data="{ tooltip: 'This is a left tooltip.' }">
+            <div x-tooltip.placement.left="tooltip" class="rounded-lg bg-zinc-100 px-4 py-2 text-sm cursor-default">Left</div>
+        </span>
+    </div>
+</div>
+
+<div class="mt-16">
+    <div class="flex h-40 items-center justify-center space-x-5">
+        <span x-data="{ tooltip: 'This is a hover tooltip.' }">
+            <button type="button" x-tooltip="tooltip" class="rounded-lg border border-gray-300 bg-white px-4 py-2 text-center text-sm font-medium text-gray-700 shadow-sm transition-all hover:bg-gray-100 focus:ring focus:ring-gray-100 disabled:cursor-not-allowed disabled:border-gray-100 disabled:bg-gray-50 disabled:text-gray-400">Tooltip hover</button>
+        </span>
+        <span x-data="{ tooltip: 'This is a click tooltip.' }">
+            <button type="button" x-tooltip.on.click="tooltip" class="rounded-lg border border-gray-300 bg-white px-4 py-2 text-center text-sm font-medium text-gray-700 shadow-sm transition-all hover:bg-gray-100 focus:ring focus:ring-gray-100 disabled:cursor-not-allowed disabled:border-gray-100 disabled:bg-gray-50 disabled:text-gray-400">Tooltip click</button>
+        </span>
+    </div>
+</div>
