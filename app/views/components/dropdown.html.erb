@@ -25,14 +25,12 @@
             }
             }" x-on:keydown.escape.prevent.stop="close($refs.button)" x-on:focusin.window="! $refs.panel.contains($event.target) && close()" x-id="['dropdown-button-right']" class="relative">
             <!-- Button -->
-            <button x-ref="button" x-on:click="toggle()" :aria-expanded="open" :aria-controls="$id('dropdown-button-right')" type="button" class="relative flex items-center whitespace-nowrap justify-center gap-2 py-2 rounded-lg shadow-sm bg-white hover:bg-zinc-50 text-zinc-800 border border-zinc-200 hover:border-zinc-200 px-4">
+            <button x-ref="button" x-on:click="toggle()" :aria-expanded="open" :aria-controls="$id('dropdown-button-right')" type="button" class="inline-flex items-center justify-center gap-2 text-zinc-800 bg-white border border-zinc-300 hover:bg-zinc-100 font-medium rounded-lg text-sm px-4 py-2 cursor-pointer focus:outline-none whitespace-nowrap disabled:cursor-default disabled:pointer-events-none disabled:opacity-75">
                 <span>Bottom Right</span>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="size-4">
-                    <path fill-rule="evenodd" d="M4.22 6.22a.75.75 0 0 1 1.06 0L8 8.94l2.72-2.72a.75.75 0 1 1 1.06 1.06l-3.25 3.25a.75.75 0 0 1-1.06 0L4.22 7.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
-                </svg>
+                <%= icon "chevron-down", stroke_width: 2, class: "size-4 -me-1" %>
             </button>
             <!-- Panel -->
-            <div x-ref="panel" x-show="open" x-transition.origin.top.right x-on:click.outside="close($refs.button)" :id="$id('dropdown-button-right')" x-cloak class="absolute right-0 min-w-48 rounded-lg shadow-sm mt-2 z-10 origin-top-right bg-white p-1.5 outline-none border border-zinc-200">
+            <div x-ref="panel" x-show="open" x-transition.origin.top.right x-on:click.outside="close($refs.button)" :id="$id('dropdown-button-right')" x-cloak class="absolute right-0 min-w-48 rounded-lg shadow-sm mt-2 z-10 origin-top-right bg-white p-1.5 outline-none border border-zinc-200 text-sm">
                 <a href="#new" class="px-2 lg:py-1.5 py-2 w-full flex items-center rounded-md transition-colors text-left text-zinc-800 hover:bg-zinc-50 focus-visible:bg-zinc-50 disabled:opacity-50 disabled:cursor-not-allowed">
                     New Task
                 </a>
