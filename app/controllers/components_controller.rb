@@ -19,4 +19,7 @@ class ComponentsController < ApplicationController
 
   def icon
   end
+
+  def input
+  end
 end
