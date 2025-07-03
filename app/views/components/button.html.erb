@@ -1,147 +1,154 @@
 <% content_for :title, "Button - Lucky  UI" %>
 
-<div class="flex flex-col mb-8">
+<div class="flex flex-col pb-16">
     <span class="text-sm mb-2 text-zinc-500">Controls</span>
     <h1 class="text-4xl font-bold mb-4 text-zinc-900">Button</h1>
-    <p>Tabs organize and allow navigation between groups of content that are related and at the same level of hierarchy.</p>
-    <p>Outline is default.</p>
+    <p>Outline button is default. Have to add tailwind safelist comment for colors in Rails.</p>
 </div>
 
-<div class="mt-16">
+<div class="pb-16">
+    <!-- Main visual styles -->
     <div class="flex flex-wrap items-center justify-center gap-3 mb-8">
-        <button type="button" class="inline-flex items-center justify-center gap-2 text-zinc-800 bg-white border border-zinc-300 hover:bg-zinc-100 font-medium rounded-lg text-sm px-4 py-2 cursor-pointer focus:outline-none whitespace-nowrap disabled:cursor-default disabled:pointer-events-none disabled:opacity-75 transition-all duration-100 focus:ring-2 focus:ring-zinc-100">Outline</button>
-        <button type="button" class="inline-flex items-center justify-center gap-2 text-zinc-50 bg-zinc-800 border border-transparent hover:bg-zinc-950 font-medium rounded-lg text-sm px-4 py-2 cursor-pointer focus:outline-none whitespace-nowrap disabled:cursor-default disabled:pointer-events-none disabled:opacity-75 transition-all duration-100 focus:ring-2 focus:ring-zinc-300">Solid</button>
-        <button type="button" class="inline-flex items-center justify-center gap-2 text-zinc-800 bg-white border border-transparent hover:bg-zinc-100 hover:border-zinc-100 font-medium rounded-lg text-sm px-4 py-2 cursor-pointer focus:outline-none whitespace-nowrap disabled:cursor-default disabled:pointer-events-none disabled:opacity-75 transition-all duration-100">Ghost</button>
+        <%= render(ButtonComponent.new) { "Outline" } %>
+        <%= render(ButtonComponent.new(variant: :solid)) { "Solid" } %>
+        <%= render(ButtonComponent.new(variant: :ghost)) { "Ghost" } %>
     </div>
+    <!-- Disabled examples -->
     <div class="flex flex-wrap items-center justify-center gap-3">
-        <button type="button" disabled class="inline-flex items-center justify-center gap-2 text-zinc-800 bg-white border border-zinc-300 hover:bg-zinc-100 font-medium rounded-lg text-sm px-4 py-2 cursor-pointer focus:outline-none whitespace-nowrap disabled:cursor-default disabled:pointer-events-none disabled:opacity-65">Outline</button>
-        <button type="button" disabled class="inline-flex items-center justify-center gap-2 text-zinc-50 bg-zinc-800 border border-transparent hover:bg-zinc-950 font-medium rounded-lg text-sm px-4 py-2 cursor-pointer focus:outline-none whitespace-nowrap disabled:cursor-default disabled:pointer-events-none disabled:opacity-65">Solid</button>
-        <button type="button" disabled class="inline-flex items-center justify-center gap-2 text-zinc-800 bg-white border border-transparent hover:bg-zinc-100 hover:border-zinc-100 font-medium rounded-lg text-sm px-4 py-2 cursor-pointer focus:outline-none whitespace-nowrap disabled:cursor-default disabled:pointer-events-none disabled:opacity-65">Ghost</button>
+        <%= render(ButtonComponent.new(disabled: true)) { "Outline" } %>
+        <%= render(ButtonComponent.new(variant: :solid, disabled: true)) { "Solid" } %>
+        <%= render(ButtonComponent.new(variant: :ghost, disabled: true)) { "Ghost" } %>
     </div>
 </div>
 
-<div class="mt-16">
-
+<div class="pb-16">
+    <!-- Solid color -->
     <div class="flex flex-wrap items-center justify-center gap-3 max-w-3xl">
-        <button type="button" class="inline-flex items-center justify-center gap-2 text-red-50 bg-red-600 border border-transparent hover:bg-red-700 font-medium rounded-lg text-sm px-4 py-2 cursor-pointer focus:outline-none whitespace-nowrap disabled:cursor-default disabled:pointer-events-none disabled:opacity-75">Red</button>
-        <button type="button" class="inline-flex items-center justify-center gap-2 text-orange-50 bg-orange-600 border border-transparent hover:bg-orange-700 font-medium rounded-lg text-sm px-4 py-2 cursor-pointer focus:outline-none whitespace-nowrap disabled:cursor-default disabled:pointer-events-none disabled:opacity-75">Orange</button>
-        <button type="button" class="inline-flex items-center justify-center gap-2 text-amber-950 bg-amber-400 border border-transparent hover:bg-amber-500 font-medium rounded-lg text-sm px-4 py-2 cursor-pointer focus:outline-none whitespace-nowrap disabled:cursor-default disabled:pointer-events-none disabled:opacity-75">Amber</button>
-        <button type="button" class="inline-flex items-center justify-center gap-2 text-yellow-950 bg-yellow-400 border border-transparent hover:bg-yellow-500 font-medium rounded-lg text-sm px-4 py-2 cursor-pointer focus:outline-none whitespace-nowrap disabled:cursor-default disabled:pointer-events-none disabled:opacity-75">Yellow</button>
-        <button type="button" class="inline-flex items-center justify-center gap-2 text-lime-950 bg-lime-400 border border-transparent hover:bg-lime-500 font-medium rounded-lg text-sm px-4 py-2 cursor-pointer focus:outline-none whitespace-nowrap disabled:cursor-default disabled:pointer-events-none disabled:opacity-75">Lime</button>
-        <button type="button" class="inline-flex items-center justify-center gap-2 text-green-50 bg-green-600 border border-transparent hover:bg-green-700 font-medium rounded-lg text-sm px-4 py-2 cursor-pointer focus:outline-none whitespace-nowrap disabled:cursor-default disabled:pointer-events-none disabled:opacity-75">Green</button>
-        <button type="button" class="inline-flex items-center justify-center gap-2 text-emerald-50 bg-emerald-600 border border-transparent hover:bg-emerald-700 font-medium rounded-lg text-sm px-4 py-2 cursor-pointer focus:outline-none whitespace-nowrap disabled:cursor-default disabled:pointer-events-none disabled:opacity-75">Emerald</button>
-        <button type="button" class="inline-flex items-center justify-center gap-2 text-teal-50 bg-teal-600 border border-transparent hover:bg-teal-700 font-medium rounded-lg text-sm px-4 py-2 cursor-pointer focus:outline-none whitespace-nowrap disabled:cursor-default disabled:pointer-events-none disabled:opacity-75">Teal</button>
-        <button type="button" class="inline-flex items-center justify-center gap-2 text-cyan-50 bg-cyan-600 border border-transparent hover:bg-cyan-700 font-medium rounded-lg text-sm px-4 py-2 cursor-pointer focus:outline-none whitespace-nowrap disabled:cursor-default disabled:pointer-events-none disabled:opacity-75">Cyan</button>
-        <button type="button" class="inline-flex items-center justify-center gap-2 text-sky-50 bg-sky-600 border border-transparent hover:bg-sky-700 font-medium rounded-lg text-sm px-4 py-2 cursor-pointer focus:outline-none whitespace-nowrap disabled:cursor-default disabled:pointer-events-none disabled:opacity-75">Sky</button>
-        <button type="button" class="inline-flex items-center justify-center gap-2 text-blue-50 bg-blue-600 border border-transparent hover:bg-blue-700 font-medium rounded-lg text-sm px-4 py-2 cursor-pointer focus:outline-none whitespace-nowrap disabled:cursor-default disabled:pointer-events-none disabled:opacity-75">Blue</button>
-        <button type="button" class="inline-flex items-center justify-center gap-2 text-indigo-50 bg-indigo-600 border border-transparent hover:bg-indigo-700 font-medium rounded-lg text-sm px-4 py-2 cursor-pointer focus:outline-none whitespace-nowrap disabled:cursor-default disabled:pointer-events-none disabled:opacity-75">Indigo</button>
-        <button type="button" class="inline-flex items-center justify-center gap-2 text-violet-50 bg-violet-600 border border-transparent hover:bg-violet-700 font-medium rounded-lg text-sm px-4 py-2 cursor-pointer focus:outline-none whitespace-nowrap disabled:cursor-default disabled:pointer-events-none disabled:opacity-75">Violet</button>
-        <button type="button" class="inline-flex items-center justify-center gap-2 text-purple-50 bg-purple-600 border border-transparent hover:bg-purple-700 font-medium rounded-lg text-sm px-4 py-2 cursor-pointer focus:outline-none whitespace-nowrap disabled:cursor-default disabled:pointer-events-none disabled:opacity-75">Purple</button>
-        <button type="button" class="inline-flex items-center justify-center gap-2 text-fuchsia-50 bg-fuchsia-600 border border-transparent hover:bg-fuchsia-700 font-medium rounded-lg text-sm px-4 py-2 cursor-pointer focus:outline-none whitespace-nowrap disabled:cursor-default disabled:pointer-events-none disabled:opacity-75">Fuchsia</button>
-        <button type="button" class="inline-flex items-center justify-center gap-2 text-pink-50 bg-pink-600 border border-transparent hover:bg-pink-700 font-medium rounded-lg text-sm px-4 py-2 cursor-pointer focus:outline-none whitespace-nowrap disabled:cursor-default disabled:pointer-events-none disabled:opacity-75">Pink</button>
-        <button type="button" class="inline-flex items-center justify-center gap-2 text-rose-50 bg-rose-600 border border-transparent hover:bg-rose-700 font-medium rounded-lg text-sm px-4 py-2 cursor-pointer focus:outline-none whitespace-nowrap disabled:cursor-default disabled:pointer-events-none disabled:opacity-75">Rose</button>
+        <%= render(ButtonComponent.new(variant: :color, color: :red, color_variant: :solid)) { "Red" } %>
+        <%= render(ButtonComponent.new(variant: :color, color: :orange, color_variant: :solid)) { "Orange" } %>
+        <%= render(ButtonComponent.new(variant: :color, color: :amber, color_variant: :solid)) { "Amber" } %>
+        <%= render(ButtonComponent.new(variant: :color, color: :yellow, color_variant: :solid)) { "Yellow" } %>
+        <%= render(ButtonComponent.new(variant: :color, color: :lime, color_variant: :solid)) { "Lime" } %>
+        <%= render(ButtonComponent.new(variant: :color, color: :green, color_variant: :solid)) { "Green" } %>
+        <%= render(ButtonComponent.new(variant: :color, color: :emerald, color_variant: :solid)) { "Emerald" } %>
+        <%= render(ButtonComponent.new(variant: :color, color: :teal, color_variant: :solid)) { "Teal" } %>
+        <%= render(ButtonComponent.new(variant: :color, color: :cyan, color_variant: :solid)) { "Cyan" } %>
+        <%= render(ButtonComponent.new(variant: :color, color: :sky, color_variant: :solid)) { "Sky" } %>
+        <%= render(ButtonComponent.new(variant: :color, color: :blue, color_variant: :solid)) { "Blue" } %>
+        <%= render(ButtonComponent.new(variant: :color, color: :indigo, color_variant: :solid)) { "Indigo" } %>
+        <%= render(ButtonComponent.new(variant: :color, color: :violet, color_variant: :solid)) { "Violet" } %>
+        <%= render(ButtonComponent.new(variant: :color, color: :purple, color_variant: :solid)) { "Purple" } %>
+        <%= render(ButtonComponent.new(variant: :color, color: :fuchsia, color_variant: :solid)) { "Fuchsia" } %>
+        <%= render(ButtonComponent.new(variant: :color, color: :pink, color_variant: :solid)) { "Pink" } %>
+        <%= render(ButtonComponent.new(variant: :color, color: :rose, color_variant: :solid)) { "Rose" } %>
     </div>
-
+    <!-- Soft color -->
     <div class="flex flex-wrap items-center justify-center gap-3 mt-6 max-w-3xl">
-        <button type="button" class="inline-flex items-center justify-center gap-2 text-red-800 bg-red-100 border border-transparent hover:bg-red-200 font-medium rounded-lg text-sm px-4 py-2 cursor-pointer focus:outline-none whitespace-nowrap disabled:cursor-default disabled:pointer-events-none disabled:opacity-75">Red</button>
-        <button type="button" class="inline-flex items-center justify-center gap-2 text-orange-800 bg-orange-100 border border-transparent hover:bg-orange-200 font-medium rounded-lg text-sm px-4 py-2 cursor-pointer focus:outline-none whitespace-nowrap disabled:cursor-default disabled:pointer-events-none disabled:opacity-75">Orange</button>
-        <button type="button" class="inline-flex items-center justify-center gap-2 text-amber-800 bg-amber-100 border border-transparent hover:bg-amber-200 font-medium rounded-lg text-sm px-4 py-2 cursor-pointer focus:outline-none whitespace-nowrap disabled:cursor-default disabled:pointer-events-none disabled:opacity-75">Amber</button>
-        <button type="button" class="inline-flex items-center justify-center gap-2 text-yellow-800 bg-yellow-100 border border-transparent hover:bg-yellow-200 font-medium rounded-lg text-sm px-4 py-2 cursor-pointer focus:outline-none whitespace-nowrap disabled:cursor-default disabled:pointer-events-none disabled:opacity-75">Yellow</button>
-        <button type="button" class="inline-flex items-center justify-center gap-2 text-lime-800 bg-lime-100 border border-transparent hover:bg-lime-200 font-medium rounded-lg text-sm px-4 py-2 cursor-pointer focus:outline-none whitespace-nowrap disabled:cursor-default disabled:pointer-events-none disabled:opacity-75">Lime</button>
-        <button type="button" class="inline-flex items-center justify-center gap-2 text-green-800 bg-green-100 border border-transparent hover:bg-green-200 font-medium rounded-lg text-sm px-4 py-2 cursor-pointer focus:outline-none whitespace-nowrap disabled:cursor-default disabled:pointer-events-none disabled:opacity-75">Green</button>
-        <button type="button" class="inline-flex items-center justify-center gap-2 text-emerald-800 bg-emerald-100 border border-transparent hover:bg-emerald-200 font-medium rounded-lg text-sm px-4 py-2 cursor-pointer focus:outline-none whitespace-nowrap disabled:cursor-default disabled:pointer-events-none disabled:opacity-75">Emerald</button>
-        <button type="button" class="inline-flex items-center justify-center gap-2 text-teal-800 bg-teal-100 border border-transparent hover:bg-teal-200 font-medium rounded-lg text-sm px-4 py-2 cursor-pointer focus:outline-none whitespace-nowrap disabled:cursor-default disabled:pointer-events-none disabled:opacity-75">Teal</button>
-        <button type="button" class="inline-flex items-center justify-center gap-2 text-cyan-800 bg-cyan-100 border border-transparent hover:bg-cyan-200 font-medium rounded-lg text-sm px-4 py-2 cursor-pointer focus:outline-none whitespace-nowrap disabled:cursor-default disabled:pointer-events-none disabled:opacity-75">Cyan</button>
-        <button type="button" class="inline-flex items-center justify-center gap-2 text-sky-800 bg-sky-100 border border-transparent hover:bg-sky-200 font-medium rounded-lg text-sm px-4 py-2 cursor-pointer focus:outline-none whitespace-nowrap disabled:cursor-default disabled:pointer-events-none disabled:opacity-75">Sky</button>
-        <button type="button" class="inline-flex items-center justify-center gap-2 text-blue-800 bg-blue-100 border border-transparent hover:bg-blue-200 font-medium rounded-lg text-sm px-4 py-2 cursor-pointer focus:outline-none whitespace-nowrap disabled:cursor-default disabled:pointer-events-none disabled:opacity-75">Blue</button>
-        <button type="button" class="inline-flex items-center justify-center gap-2 text-indigo-800 bg-indigo-100 border border-transparent hover:bg-indigo-200 font-medium rounded-lg text-sm px-4 py-2 cursor-pointer focus:outline-none whitespace-nowrap disabled:cursor-default disabled:pointer-events-none disabled:opacity-75">Indigo</button>
-        <button type="button" class="inline-flex items-center justify-center gap-2 text-violet-800 bg-violet-100 border border-transparent hover:bg-violet-200 font-medium rounded-lg text-sm px-4 py-2 cursor-pointer focus:outline-none whitespace-nowrap disabled:cursor-default disabled:pointer-events-none disabled:opacity-75">Violet</button>
-        <button type="button" class="inline-flex items-center justify-center gap-2 text-purple-800 bg-purple-100 border border-transparent hover:bg-purple-200 font-medium rounded-lg text-sm px-4 py-2 cursor-pointer focus:outline-none whitespace-nowrap disabled:cursor-default disabled:pointer-events-none disabled:opacity-75">Purple</button>
-        <button type="button" class="inline-flex items-center justify-center gap-2 text-fuchsia-800 bg-fuchsia-100 border border-transparent hover:bg-fuchsia-200 font-medium rounded-lg text-sm px-4 py-2 cursor-pointer focus:outline-none whitespace-nowrap disabled:cursor-default disabled:pointer-events-none disabled:opacity-75">Fuchsia</button>
-        <button type="button" class="inline-flex items-center justify-center gap-2 text-pink-800 bg-pink-100 border border-transparent hover:bg-pink-200 font-medium rounded-lg text-sm px-4 py-2 cursor-pointer focus:outline-none whitespace-nowrap disabled:cursor-default disabled:pointer-events-none disabled:opacity-75">Pink</button>
-        <button type="button" class="inline-flex items-center justify-center gap-2 text-rose-800 bg-rose-100 border border-transparent hover:bg-rose-200 font-medium rounded-lg text-sm px-4 py-2 cursor-pointer focus:outline-none whitespace-nowrap disabled:cursor-default disabled:pointer-events-none disabled:opacity-75">Rose</button>
+        <%= render(ButtonComponent.new(variant: :color, color: :red, color_variant: :soft)) { "Red" } %>
+        <%= render(ButtonComponent.new(variant: :color, color: :orange, color_variant: :soft)) { "Orange" } %>
+        <%= render(ButtonComponent.new(variant: :color, color: :amber, color_variant: :soft)) { "Amber" } %>
+        <%= render(ButtonComponent.new(variant: :color, color: :yellow, color_variant: :soft)) { "Yellow" } %>
+        <%= render(ButtonComponent.new(variant: :color, color: :lime, color_variant: :soft)) { "Lime" } %>
+        <%= render(ButtonComponent.new(variant: :color, color: :green, color_variant: :soft)) { "Green" } %>
+        <%= render(ButtonComponent.new(variant: :color, color: :emerald, color_variant: :soft)) { "Emerald" } %>
+        <%= render(ButtonComponent.new(variant: :color, color: :teal, color_variant: :soft)) { "Teal" } %>
+        <%= render(ButtonComponent.new(variant: :color, color: :cyan, color_variant: :soft)) { "Cyan" } %>
+        <%= render(ButtonComponent.new(variant: :color, color: :sky, color_variant: :soft)) { "Sky" } %>
+        <%= render(ButtonComponent.new(variant: :color, color: :blue, color_variant: :soft)) { "Blue" } %>
+        <%= render(ButtonComponent.new(variant: :color, color: :indigo, color_variant: :soft)) { "Indigo" } %>
+        <%= render(ButtonComponent.new(variant: :color, color: :violet, color_variant: :soft)) { "Violet" } %>
+        <%= render(ButtonComponent.new(variant: :color, color: :purple, color_variant: :soft)) { "Purple" } %>
+        <%= render(ButtonComponent.new(variant: :color, color: :fuchsia, color_variant: :soft)) { "Fuchsia" } %>
+        <%= render(ButtonComponent.new(variant: :color, color: :pink, color_variant: :soft)) { "Pink" } %>
+        <%= render(ButtonComponent.new(variant: :color, color: :rose, color_variant: :soft)) { "Rose" } %>
     </div>
-
 </div>
 
-<div class="mt-16">
+<div class="pb-16">
+    <!-- Sizes -->
     <div class="flex flex-wrap items-end justify-center gap-3">
-        <button type="button" class="inline-flex items-center justify-center gap-2 text-zinc-800 bg-white border border-zinc-300 hover:bg-zinc-100 font-medium rounded-md text-xs px-2 py-0.5 cursor-pointer focus:outline-none whitespace-nowrap disabled:cursor-default disabled:pointer-events-none disabled:opacity-75">Small</button>
-        <button type="button" class="inline-flex items-center justify-center gap-2 text-zinc-800 bg-white border border-zinc-300 hover:bg-zinc-100 font-medium rounded-lg text-sm px-3 py-1 cursor-pointer focus:outline-none whitespace-nowrap disabled:cursor-default disabled:pointer-events-none disabled:opacity-75">Medium</button>
-        <button type="button" class="inline-flex items-center justify-center gap-2 text-zinc-800 bg-white border border-zinc-300 hover:bg-zinc-100 font-medium rounded-lg text-sm px-4 py-2 cursor-pointer focus:outline-none whitespace-nowrap disabled:cursor-default disabled:pointer-events-none disabled:opacity-75">Default</button>
-        <button type="button" class="inline-flex items-center justify-center gap-2 text-zinc-800 bg-white border border-zinc-300 hover:bg-zinc-100 font-medium rounded-lg px-6 py-2.5 cursor-pointer focus:outline-none whitespace-nowrap disabled:cursor-default disabled:pointer-events-none disabled:opacity-75">Large</button>
+        <%= render(ButtonComponent.new(size: :small)) { "Small" } %>
+        <%= render(ButtonComponent.new(size: :medium)) { "Medium" } %>
+        <%= render(ButtonComponent.new) { "Default" } %>
+        <%= render(ButtonComponent.new(size: :large)) { "Large" } %>
     </div>
 </div>
 
-<div class="mt-16">
+<div class="pb-16">
+    <!-- Full width buttons -->
     <div class="flex flex-wrap items-center justify-center gap-3 max-w-xs mx-auto">
-        <button type="button" class="inline-flex items-center justify-center gap-2 w-full text-zinc-800 bg-white border border-zinc-300 hover:bg-zinc-100 font-medium rounded-lg text-sm px-4 py-2 cursor-pointer focus:outline-none whitespace-nowrap disabled:cursor-default disabled:pointer-events-none disabled:opacity-75">Send invite</button>
-        <button type="button" class="inline-flex items-center justify-center gap-2 w-full text-zinc-50 bg-zinc-800 border border-transparent hover:bg-zinc-950 font-medium rounded-lg text-sm px-4 py-2 cursor-pointer focus:outline-none whitespace-nowrap disabled:cursor-default disabled:pointer-events-none disabled:opacity-75">
-            <%= icon "apple-fill", library: "logos" %>
-            <span>Login with Apple</span>
-        </button>
+        <%= render(ButtonComponent.new(full_width: true)) { "Send invite" } %>
+        <%= render(ButtonComponent.new(full_width: true, variant: :solid)) do %>
+        <%= icon "apple-fill", library: "logos", class: "size-4 -ms-1" %>
+        <span>Login with Apple</span>
+        <% end %>
     </div>
 </div>
 
-<div class="mt-16">
+<div class="pb-16">
+    <!-- Buttons with icons -->
     <div class="flex flex-wrap items-center justify-center gap-3">
-
-        <button type="button" class="inline-flex items-center justify-center gap-2 text-zinc-800 bg-white border border-zinc-300 hover:bg-zinc-100 font-medium rounded-lg text-sm h-[38px] w-[38px] px-0 py-0 cursor-pointer focus:outline-none whitespace-nowrap disabled:cursor-default disabled:pointer-events-none disabled:opacity-75">
-            <%= icon "copy", class: "size-4" %>
-        </button>
-
-        <button type="button" class="inline-flex items-center justify-center gap-2 text-zinc-800 bg-white border border-zinc-300 hover:bg-zinc-100 font-medium rounded-lg text-sm px-4 py-2 cursor-pointer focus:outline-none whitespace-nowrap disabled:cursor-default disabled:pointer-events-none disabled:opacity-75">
-            <%= icon "download", class: "size-4 -ms-1" %>
-            <span>Export</span>
-        </button>
-
-        <button type="button" class="inline-flex items-center justify-center gap-2 text-zinc-50 bg-zinc-800 border border-transparent hover:bg-zinc-950 font-medium rounded-lg text-sm px-4 py-2 cursor-pointer focus:outline-none whitespace-nowrap disabled:cursor-default disabled:pointer-events-none disabled:opacity-75">
-            <span>Visit Google</span>
-            <%= icon "arrow-up-right", class: "size-4 -me-1" %>
-        </button>
-
-        <button type="button" class="inline-flex items-center justify-center gap-2 text-zinc-800 bg-white border border-transparent hover:bg-zinc-100 hover:border-zinc-100 font-medium rounded-lg text-sm h-[38px] w-[38px] px-0 py-0 cursor-pointer focus:outline-none whitespace-nowrap disabled:cursor-default disabled:pointer-events-none disabled:opacity-75">
-            <%= icon "x", class: "size-4" %>
-        </button>
-
+        <!-- Only icon inside -->
+        <%= render(ButtonComponent.new(icon_only: true)) do %>
+        <%= icon "copy", class: "size-4" %>
+        <% end %>
+        <!-- Icon on left -->
+        <%= render(ButtonComponent.new) do %>
+        <%= icon "download", class: "size-4 -ms-1" %>
+        <span>Export</span>
+        <% end %>
+        <!-- Icon on right -->
+        <%= render(ButtonComponent.new(variant: :solid)) do %>
+        <span>Visit Google</span>
+        <%= icon "arrow-up-right", class: "size-4 -me-1" %>
+        <% end %>
+        <!-- Icon on left and right -->
+        <%= render(ButtonComponent.new) do %>
+        <%= icon "mail", class: "size-4 -ms-1" %>
+        <span>Email</span>
+        <%= icon "arrow-right", class: "size-4 -me-1" %>
+        <% end %>
+        <!-- Only icon inside (ghost) -->
+        <%= render(ButtonComponent.new(variant: :ghost, icon_only: true)) do %>
+        <%= icon "x", class: "size-4" %>
+        <% end %>
     </div>
 </div>
 
-<div class="mt-16">
+<div class="pb-16">
+    <!-- Button groups -->
     <div class="flex flex-wrap items-center justify-center gap-3">
+        <!-- Normal button group -->
         <div class="inline-flex -space-x-0 divide-x divide-gray-300 overflow-hidden rounded-lg border border-gray-300">
-            <button type="button" class="inline-flex items-center justify-center gap-2 text-zinc-800 bg-white hover:bg-zinc-100 font-medium text-sm px-4 py-2 cursor-pointer focus:outline-none whitespace-nowrap disabled:cursor-default disabled:pointer-events-none disabled:opacity-75">Oldest</button>
-            <button type="button" class="inline-flex items-center justify-center gap-2 text-zinc-800 bg-white hover:bg-zinc-100 font-medium text-sm px-4 py-2 cursor-pointer focus:outline-none whitespace-nowrap disabled:cursor-default disabled:pointer-events-none disabled:opacity-75">Newest</button>
-            <button type="button" class="inline-flex items-center justify-center gap-2 text-zinc-800 bg-white hover:bg-zinc-100 font-medium text-sm px-4 py-2 cursor-pointer focus:outline-none whitespace-nowrap disabled:cursor-default disabled:pointer-events-none disabled:opacity-75">Top</button>
+            <%= render(ButtonComponent.new(classes: "rounded-none", grouped: true)) { "Oldest" } %>
+            <%= render(ButtonComponent.new(classes: "rounded-none", grouped: true)) { "Newest" } %>
+            <%= render(ButtonComponent.new(classes: "rounded-none", grouped: true)) { "Top" } %>
         </div>
-
+        <!-- Button group with text and icons -->
         <div class="inline-flex -space-x-0 divide-x divide-gray-300 overflow-hidden rounded-lg border border-gray-300">
-            <button type="button" class="inline-flex items-center justify-center gap-2 text-zinc-800 bg-white hover:bg-zinc-100 font-medium text-sm px-4 py-2 cursor-pointer focus:outline-none whitespace-nowrap disabled:cursor-default disabled:pointer-events-none disabled:opacity-75">
-                <%= icon "files", class: "size-4 -ms-1" %>
-                Files
-            </button>
-            <button type="button" class="inline-flex items-center justify-center gap-2 text-zinc-800 bg-white hover:bg-zinc-100 font-medium text-sm px-4 py-2 cursor-pointer focus:outline-none whitespace-nowrap disabled:cursor-default disabled:pointer-events-none disabled:opacity-75">
-                <%= icon "movie", class: "size-4 -ms-1" %>
-                Media
-            </button>
-            <button type="button" class="inline-flex items-center justify-center gap-2 text-zinc-800 bg-white hover:bg-zinc-100 font-medium text-sm h-9 w-9 px-0 py-0 cursor-pointer focus:outline-none whitespace-nowrap disabled:cursor-default disabled:pointer-events-none disabled:opacity-75">
-                <%= icon "dots", class: "size-4" %>
-            </button>
+            <%= render(ButtonComponent.new(classes: "rounded-none", grouped: true)) do %>
+            <%= icon "files", class: "size-4 -ms-1" %>
+            Files
+            <% end %>
+            <%= render(ButtonComponent.new(classes: "rounded-none", grouped: true)) do %>
+            <%= icon "movie", class: "size-4 -ms-1" %>
+            Media
+            <% end %>
+            <%= render(ButtonComponent.new(classes: "rounded-none h-9 w-9 px-0 py-0", icon_only: true, grouped: true)) do %>
+            <%= icon "dots", class: "size-4" %>
+            <% end %>
         </div>
-
+        <!-- Button group with just icons -->
         <div class="inline-flex -space-x-0 divide-x divide-gray-300 overflow-hidden rounded-lg border border-gray-300">
-            <button type="button" class="inline-flex items-center justify-center gap-2 text-zinc-800 bg-white hover:bg-zinc-100 font-medium text-sm h-9 w-9 px-0 py-0 cursor-pointer focus:outline-none whitespace-nowrap disabled:cursor-default disabled:pointer-events-none disabled:opacity-75">
-                <%= icon "align-left", class: "size-4" %>
-            </button>
-            <button type="button" class="inline-flex items-center justify-center gap-2 text-zinc-800 bg-white hover:bg-zinc-100 font-medium text-sm h-9 w-9 px-0 py-0 cursor-pointer focus:outline-none whitespace-nowrap disabled:cursor-default disabled:pointer-events-none disabled:opacity-75">
-                <%= icon "align-center", class: "size-4" %>
-            </button>
-            <button type="button" class="inline-flex items-center justify-center gap-2 text-zinc-800 bg-white hover:bg-zinc-100 font-medium text-sm h-9 w-9 px-0 py-0 cursor-pointer focus:outline-none whitespace-nowrap disabled:cursor-default disabled:pointer-events-none disabled:opacity-75">
-                <%= icon "align-right", class: "size-4" %>
-            </button>
+            <%= render(ButtonComponent.new(classes: "rounded-none h-9 w-9 px-0 py-0", icon_only: true, grouped: true)) do %>
+            <%= icon "align-left", class: "size-4" %>
+            <% end %>
+            <%= render(ButtonComponent.new(classes: "rounded-none h-9 w-9 px-0 py-0", icon_only: true, grouped: true)) do %>
+            <%= icon "align-center", class: "size-4" %>
+            <% end %>
+            <%= render(ButtonComponent.new(classes: "rounded-none h-9 w-9 px-0 py-0", icon_only: true, grouped: true)) do %>
+            <%= icon "align-right", class: "size-4" %>
+            <% end %>
         </div>
-
     </div>
 </div>
-
-<div class="pb-16"></div>

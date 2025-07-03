@@ -1,0 +1,9 @@
+<%# frozen_string_literal: true %>
+<%# ButtonComponent template %>
+<button type="<%= type %>"
+        class="<%= button_classes %>"
+        <%= "disabled" if disabled %>
+        <%= "aria-disabled=\"true\"" if disabled %>
+        <%= "aria-label=\"#{aria_label}\"" if aria_label.present? %>>
+  <%= content %>
+</button> 
