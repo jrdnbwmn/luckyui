@@ -14,13 +14,12 @@
 
             <!-- Sections -->
             <div class="flex flex-col gap-3 mb-7">
-                <h3 class="text-zinc-500 md:text-sm">Sections</h3>
+                <h3 class="text-zinc-500 md:text-sm">Interface</h3>
                 <ul class="text-zinc-500 flex flex-col gap-3 md:gap-2 border-l-2 border-zinc-200" role="list">
-                    <li class="-ml-[2px]"><%= link_to components_tab_path, class: "#{ current_page?(components_tab_path) ? 'font-semibold text-zinc-900 border-zinc-800' : '' } block border-l-2 border-transparent pl-5 aria-[current]:border-zinc-800 aria-[current]:font-semibold aria-[current]:text-zinc-900 sm:pl-4 hover:text-zinc-900 pr-4 md:text-sm text-2xl" do %>Tab<% end %></li>
                     <li class="-ml-[2px]"><%= link_to components_accordion_path, class: "#{ current_page?(components_accordion_path) ? 'font-semibold text-zinc-900 border-zinc-800' : '' } block border-l-2 border-transparent pl-5 aria-[current]:border-zinc-800 aria-[current]:font-semibold aria-[current]:text-zinc-900 sm:pl-4 hover:text-zinc-900 pr-4 md:text-sm text-2xl" do %>Accordion<% end %></li>
-                    <li class="-ml-[2px]"><%= link_to components_tooltip_path, class: "#{ current_page?(components_tooltip_path) ? 'font-semibold text-zinc-900 border-zinc-800' : '' } block border-l-2 border-transparent pl-5 aria-[current]:border-zinc-800 aria-[current]:font-semibold aria-[current]:text-zinc-900 sm:pl-4 hover:text-zinc-900 pr-4 md:text-sm text-2xl" do %>Tooltip<% end %></li>
-                    <li class="-ml-[2px]"><%= link_to components_dropdown_path, class: "#{ current_page?(components_dropdown_path) ? 'font-semibold text-zinc-900 border-zinc-800' : '' } block border-l-2 border-transparent pl-5 aria-[current]:border-zinc-800 aria-[current]:font-semibold aria-[current]:text-zinc-900 sm:pl-4 hover:text-zinc-900 pr-4 md:text-sm text-2xl" do %>Dropdown<% end %></li>
                     <li class="-ml-[2px]"><%= link_to components_icon_path, class: "#{ current_page?(components_icon_path) ? 'font-semibold text-zinc-900 border-zinc-800' : '' } block border-l-2 border-transparent pl-5 aria-[current]:border-zinc-800 aria-[current]:font-semibold aria-[current]:text-zinc-900 sm:pl-4 hover:text-zinc-900 pr-4 md:text-sm text-2xl" do %>Icon<% end %></li>
+                    <li class="-ml-[2px]"><%= link_to components_tab_path, class: "#{ current_page?(components_tab_path) ? 'font-semibold text-zinc-900 border-zinc-800' : '' } block border-l-2 border-transparent pl-5 aria-[current]:border-zinc-800 aria-[current]:font-semibold aria-[current]:text-zinc-900 sm:pl-4 hover:text-zinc-900 pr-4 md:text-sm text-2xl" do %>Tab<% end %></li>
+                    <li class="-ml-[2px]"><%= link_to components_tooltip_path, class: "#{ current_page?(components_tooltip_path) ? 'font-semibold text-zinc-900 border-zinc-800' : '' } block border-l-2 border-transparent pl-5 aria-[current]:border-zinc-800 aria-[current]:font-semibold aria-[current]:text-zinc-900 sm:pl-4 hover:text-zinc-900 pr-4 md:text-sm text-2xl" do %>Tooltip<% end %></li>
                 </ul>
             </div>
 
@@ -29,8 +28,9 @@
                 <h3 class="text-zinc-500 md:text-sm">Forms</h3>
                 <ul class="text-zinc-500 flex flex-col gap-3 md:gap-2 border-l-2 border-zinc-200" role="list">
                     <li class="-ml-[2px]"><%= link_to components_button_path, class: "#{ current_page?(components_button_path) ? 'font-semibold text-zinc-900 border-zinc-800' : '' } block border-l-2 border-transparent pl-5 aria-[current]:border-zinc-800 aria-[current]:font-semibold aria-[current]:text-zinc-900 sm:pl-4 hover:text-zinc-900 pr-4 md:text-sm text-2xl" do %>Button<% end %></li>
-                    <li class="-ml-[2px]"><%= link_to components_switch_path, class: "#{ current_page?(components_switch_path) ? 'font-semibold text-zinc-900 border-zinc-800' : '' } block border-l-2 border-transparent pl-5 aria-[current]:border-zinc-800 aria-[current]:font-semibold aria-[current]:text-zinc-900 sm:pl-4 hover:text-zinc-900 pr-4 md:text-sm text-2xl" do %>Switch<% end %></li>
+                    <li class="-ml-[2px]"><%= link_to components_dropdown_path, class: "#{ current_page?(components_dropdown_path) ? 'font-semibold text-zinc-900 border-zinc-800' : '' } block border-l-2 border-transparent pl-5 aria-[current]:border-zinc-800 aria-[current]:font-semibold aria-[current]:text-zinc-900 sm:pl-4 hover:text-zinc-900 pr-4 md:text-sm text-2xl" do %>Dropdown<% end %></li>
                     <li class="-ml-[2px]"><%= link_to components_input_path, class: "#{ current_page?(components_input_path) ? 'font-semibold text-zinc-900 border-zinc-800' : '' } block border-l-2 border-transparent pl-5 aria-[current]:border-zinc-800 aria-[current]:font-semibold aria-[current]:text-zinc-900 sm:pl-4 hover:text-zinc-900 pr-4 md:text-sm text-2xl" do %>Input<% end %></li>
+                    <li class="-ml-[2px]"><%= link_to components_switch_path, class: "#{ current_page?(components_switch_path) ? 'font-semibold text-zinc-900 border-zinc-800' : '' } block border-l-2 border-transparent pl-5 aria-[current]:border-zinc-800 aria-[current]:font-semibold aria-[current]:text-zinc-900 sm:pl-4 hover:text-zinc-900 pr-4 md:text-sm text-2xl" do %>Switch<% end %></li>
                 </ul>
             </div>
 
