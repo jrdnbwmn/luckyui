@@ -39,7 +39,7 @@ class ButtonComponent < ViewComponent::Base
 
   def button_classes
     base = [
-      "inline-flex items-center justify-center gap-2 font-medium rounded-lg cursor-pointer focus:outline-none whitespace-nowrap",
+      "inline-flex items-center justify-center gap-2 font-medium rounded-lg cursor-pointer whitespace-nowrap",
       (icon_only ? "h-[38px] w-[38px] px-0 py-0" : size_class),
       full_width ? "w-full" : nil,
       disabled ? "disabled:cursor-default disabled:pointer-events-none" : nil,
@@ -66,9 +66,9 @@ class ButtonComponent < ViewComponent::Base
     return color_variant_class if variant == :color && color
     case variant
     when :outline
-      grouped ? "text-zinc-800 bg-white hover:bg-zinc-100 disabled:opacity-75 focus:ring-2 focus:ring-zinc-100" : "text-zinc-800 bg-white border border-zinc-300 hover:bg-zinc-100 disabled:opacity-75 focus:ring-2 focus:ring-zinc-100"
+      grouped ? "text-zinc-800 bg-white hover:bg-zinc-100 disabled:opacity-75" : "text-zinc-800 bg-white border border-zinc-300 hover:bg-zinc-100 disabled:opacity-75"
     when :solid
-      grouped ? "text-zinc-50 bg-zinc-800 hover:bg-zinc-950 disabled:opacity-75 focus:ring-2 focus:ring-zinc-300" : "text-zinc-50 bg-zinc-800 border border-transparent hover:bg-zinc-950 disabled:opacity-75 focus:ring-2 focus:ring-zinc-300"
+      grouped ? "text-zinc-50 bg-zinc-800 hover:bg-zinc-950 disabled:opacity-75" : "text-zinc-50 bg-zinc-800 border border-transparent hover:bg-zinc-950 disabled:opacity-75"
     when :ghost
       grouped ? "text-zinc-800 bg-white border-transparent hover:bg-zinc-100 hover:border-zinc-100 disabled:opacity-75" : "text-zinc-800 bg-white border border-transparent hover:bg-zinc-100 hover:border-zinc-100 disabled:opacity-75"
     else
