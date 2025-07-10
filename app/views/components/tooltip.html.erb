@@ -9,24 +9,27 @@
 
 <div class="mt-16">
     <div class="flex h-40 items-center justify-center space-x-5">
-        <div x-data="{ tooltip: 'This is a tooltip.' }">
+        <div x-data="{ tooltip: 'This is a tooltip' }">
             <div x-tooltip="tooltip" class="rounded-lg bg-zinc-100 px-3 py-1.5 text-sm cursor-default">Hover over me</div>
+        </div>
+        <div x-data="{ tooltip: 'For US businesses, enter your 9-digit Employer Identification Number (EIN) without hyphens. For European companies, enter your VAT number including the country prefix (e.g., DE123456789).' }">
+            <div x-tooltip="tooltip" class="rounded-lg bg-zinc-100 px-3 py-1.5 text-sm cursor-default">Long tooltip</div>
         </div>
     </div>
 </div>
 
 <div class="mt-16">
     <div class="flex h-40 items-center justify-center space-x-5 text-zinc-800">
-        <span x-data="{ tooltip: 'This is a top tooltip.' }">
+        <span x-data="{ tooltip: 'This is a top tooltip' }">
             <div x-tooltip="tooltip" class="rounded-lg bg-zinc-100 px-3 py-1.5 text-sm cursor-default">Top</div>
         </span>
-        <span x-data="{ tooltip: 'This is a right tooltip.' }">
+        <span x-data="{ tooltip: 'This is a right tooltip' }">
             <div x-tooltip.placement.right="tooltip" class="rounded-lg bg-zinc-100 px-3 py-1.5 text-sm cursor-default">Right</div>
         </span>
-        <span x-data="{ tooltip: 'This is a bottom tooltip.' }">
+        <span x-data="{ tooltip: 'This is a bottom tooltip' }">
             <div x-tooltip.placement.bottom="tooltip" class="rounded-lg bg-zinc-100 px-3 py-1.5 text-sm cursor-default">Bottom</div>
         </span>
-        <span x-data="{ tooltip: 'This is a left tooltip.' }">
+        <span x-data="{ tooltip: 'This is a left tooltip' }">
             <div x-tooltip.placement.left="tooltip" class="rounded-lg bg-zinc-100 px-3 py-1.5 text-sm cursor-default">Left</div>
         </span>
     </div>
@@ -34,10 +37,10 @@
 
 <div class="mt-16">
     <div class="flex h-40 items-center justify-center space-x-5">
-        <span x-data="{ tooltip: 'This is a hover tooltip.' }">
+        <span x-data="{ tooltip: 'This is a hover tooltip' }">
             <button type="button" x-tooltip="tooltip" class="inline-flex items-center justify-center gap-2 text-zinc-800 bg-white border border-zinc-300 hover:bg-zinc-100 font-medium rounded-lg text-sm px-4 py-2 cursor-pointer focus:outline-none whitespace-nowrap disabled:cursor-default disabled:pointer-events-none disabled:opacity-75">Hover</button>
         </span>
-        <span x-data="{ tooltip: 'This is a click tooltip.' }">
+        <span x-data="{ tooltip: 'This is a click tooltip' }">
             <button type="button" x-tooltip.on.click="tooltip" class="inline-flex items-center justify-center gap-2 text-zinc-800 bg-white border border-zinc-300 hover:bg-zinc-100 font-medium rounded-lg text-sm px-4 py-2 cursor-pointer focus:outline-none whitespace-nowrap disabled:cursor-default disabled:pointer-events-none disabled:opacity-75">Click</button>
         </span>
     </div>
