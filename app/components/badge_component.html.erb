@@ -1,0 +1,17 @@
+<div class="<%= badge_classes %>" <%= %(onclick="#{on_click}") if on_click.present? %>>
+  <% if icon && icon_position == :left %>
+    <%= icon_helper(icon, class: 'size-3') %>
+  <% end %>
+  <span><%= content %></span>
+  <% if icon && icon_position == :right %>
+    <%= icon_helper(icon, class: 'size-3') %>
+  <% end %>
+  <% if closable %>
+    <button type="button"
+      class="p-1 -my-2 -ml-1 -mr-1.5 opacity-60 hover:opacity-100 cursor-pointer"
+      aria-label="Close badge"
+      <%= 'data-turbo-action="remove"' if close_turbo_stream %>>
+      <%= icon_helper('x', class: 'size-3') %>
+    </button>
+  <% end %>
+</div> 

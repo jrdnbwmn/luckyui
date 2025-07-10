@@ -2,172 +2,81 @@
 
 <div class="flex flex-col mb-8">
     <span class="text-sm mb-2 text-zinc-500">Interface</span>
-    <h1 class="text-4xl font-bold mb-4 text-zinc-900">Badge</h1>
+    <h1 class="text-4xl font-bold mb-4 text-zinc-800">Badge</h1>
     <p>Bottom left is default.</p>
 </div>
 
 <div class="pb-16">
     <div class="flex flex-wrap items-center justify-center gap-3 mb-8">
-        <div class="inline-flex items-center gap-1 font-medium whitespace-nowrap text-sm py-1 rounded-full px-2.5 text-zinc-900 bg-zinc-100">
-            <span>Default</span>
-        </div>
+        <!-- Default badge -->
+        <%= render(BadgeComponent.new) { "Default" } %>
     </div>
 </div>
 
 <div class="pb-16">
+    <!-- All the colors in the default size -->
     <div class="flex flex-wrap items-center justify-center gap-3 mb-8 mx-auto max-w-xl">
-        <div class="inline-flex items-center gap-1 font-medium whitespace-nowrap text-xs py-1 rounded-full px-2.5 text-zinc-900 bg-zinc-100">
-            <span>Zinc</span>
-        </div>
-        <div class="inline-flex items-center gap-1 font-medium whitespace-nowrap text-xs py-1 rounded-full px-2.5 text-red-900 bg-red-100">
-            <span>Red</span>
-        </div>
-        <div class="inline-flex items-center gap-1 font-medium whitespace-nowrap text-xs py-1 rounded-full px-2.5 text-orange-900 bg-orange-100">
-            <span>Orange</span>
-        </div>
-        <div class="inline-flex items-center gap-1 font-medium whitespace-nowrap text-xs py-1 rounded-full px-2.5 text-amber-900 bg-amber-100">
-            <span>Amber</span>
-        </div>
-        <div class="inline-flex items-center gap-1 font-medium whitespace-nowrap text-xs py-1 rounded-full px-2.5 text-yellow-900 bg-yellow-100">
-            <span>Yellow</span>
-        </div>
-        <div class="inline-flex items-center gap-1 font-medium whitespace-nowrap text-xs py-1 rounded-full px-2.5 text-lime-900 bg-lime-100">
-            <span>Lime</span>
-        </div>
-        <div class="inline-flex items-center gap-1 font-medium whitespace-nowrap text-xs py-1 rounded-full px-2.5 text-green-900 bg-green-100">
-            <span>Green</span>
-        </div>
-        <div class="inline-flex items-center gap-1 font-medium whitespace-nowrap text-xs py-1 rounded-full px-2.5 text-emerald-900 bg-emerald-100">
-            <span>Emerald</span>
-        </div>
-        <div class="inline-flex items-center gap-1 font-medium whitespace-nowrap text-xs py-1 rounded-full px-2.5 text-teal-900 bg-teal-100">
-            <span>Teal</span>
-        </div>
-        <div class="inline-flex items-center gap-1 font-medium whitespace-nowrap text-xs py-1 rounded-full px-2.5 text-cyan-900 bg-cyan-100">
-            <span>Cyan</span>
-        </div>
-        <div class="inline-flex items-center gap-1 font-medium whitespace-nowrap text-xs py-1 rounded-full px-2.5 text-sky-900 bg-sky-100">
-            <span>Sky</span>
-        </div>
-        <div class="inline-flex items-center gap-1 font-medium whitespace-nowrap text-xs py-1 rounded-full px-2.5 text-blue-900 bg-blue-100">
-            <span>Blue</span>
-        </div>
-        <div class="inline-flex items-center gap-1 font-medium whitespace-nowrap text-xs py-1 rounded-full px-2.5 text-indigo-900 bg-indigo-100">
-            <span>Indigo</span>
-        </div>
-        <div class="inline-flex items-center gap-1 font-medium whitespace-nowrap text-xs py-1 rounded-full px-2.5 text-violet-900 bg-violet-100">
-            <span>Violet</span>
-        </div>
-        <div class="inline-flex items-center gap-1 font-medium whitespace-nowrap text-xs py-1 rounded-full px-2.5 text-purple-900 bg-purple-100">
-            <span>Purple</span>
-        </div>
-        <div class="inline-flex items-center gap-1 font-medium whitespace-nowrap text-xs py-1 rounded-full px-2.5 text-fuchsia-900 bg-fuchsia-100">
-            <span>Fuchsia</span>
-        </div>
-        <div class="inline-flex items-center gap-1 font-medium whitespace-nowrap text-xs py-1 rounded-full px-2.5 text-pink-900 bg-pink-100">
-            <span>Pink</span>
-        </div>
-        <div class="inline-flex items-center gap-1 font-medium whitespace-nowrap text-xs py-1 rounded-full px-2.5 text-rose-900 bg-rose-100">
-            <span>Rose</span>
-        </div>
+        <%= render(BadgeComponent.new(color: :zinc)) { "Zinc" } %>
+        <%= render(BadgeComponent.new(color: :red)) { "Red" } %>
+        <%= render(BadgeComponent.new(color: :orange)) { "Orange" } %>
+        <%= render(BadgeComponent.new(color: :amber)) { "Amber" } %>
+        <%= render(BadgeComponent.new(color: :yellow)) { "Yellow" } %>
+        <%= render(BadgeComponent.new(color: :lime)) { "Lime" } %>
+        <%= render(BadgeComponent.new(color: :green)) { "Green" } %>
+        <%= render(BadgeComponent.new(color: :emerald)) { "Emerald" } %>
+        <%= render(BadgeComponent.new(color: :teal)) { "Teal" } %>
+        <%= render(BadgeComponent.new(color: :cyan)) { "Cyan" } %>
+        <%= render(BadgeComponent.new(color: :sky)) { "Sky" } %>
+        <%= render(BadgeComponent.new(color: :blue)) { "Blue" } %>
+        <%= render(BadgeComponent.new(color: :indigo)) { "Indigo" } %>
+        <%= render(BadgeComponent.new(color: :violet)) { "Violet" } %>
+        <%= render(BadgeComponent.new(color: :purple)) { "Purple" } %>
+        <%= render(BadgeComponent.new(color: :fuchsia)) { "Fuchsia" } %>
+        <%= render(BadgeComponent.new(color: :pink)) { "Pink" } %>
+        <%= render(BadgeComponent.new(color: :rose)) { "Rose" } %>
     </div>
 </div>
 
 <div class="pb-16">
+    <!-- All the colors again in the large size -->
     <div class="flex flex-wrap items-center justify-center gap-3 mb-8 mx-auto max-w-2xl">
-        <div class="inline-flex items-center gap-1 font-medium whitespace-nowrap text-sm py-1 rounded-full px-2.5 text-zinc-900 bg-zinc-100">
-            <span>Zinc</span>
-        </div>
-        <div class="inline-flex items-center gap-1 font-medium whitespace-nowrap text-sm py-1 rounded-full px-2.5 text-red-900 bg-red-100">
-            <span>Red</span>
-        </div>
-        <div class="inline-flex items-center gap-1 font-medium whitespace-nowrap text-sm py-1 rounded-full px-2.5 text-orange-900 bg-orange-100">
-            <span>Orange</span>
-        </div>
-        <div class="inline-flex items-center gap-1 font-medium whitespace-nowrap text-sm py-1 rounded-full px-2.5 text-amber-900 bg-amber-100">
-            <span>Amber</span>
-        </div>
-        <div class="inline-flex items-center gap-1 font-medium whitespace-nowrap text-sm py-1 rounded-full px-2.5 text-yellow-900 bg-yellow-100">
-            <span>Yellow</span>
-        </div>
-        <div class="inline-flex items-center gap-1 font-medium whitespace-nowrap text-sm py-1 rounded-full px-2.5 text-lime-900 bg-lime-100">
-            <span>Lime</span>
-        </div>
-        <div class="inline-flex items-center gap-1 font-medium whitespace-nowrap text-sm py-1 rounded-full px-2.5 text-green-900 bg-green-100">
-            <span>Green</span>
-        </div>
-        <div class="inline-flex items-center gap-1 font-medium whitespace-nowrap text-sm py-1 rounded-full px-2.5 text-emerald-900 bg-emerald-100">
-            <span>Emerald</span>
-        </div>
-        <div class="inline-flex items-center gap-1 font-medium whitespace-nowrap text-sm py-1 rounded-full px-2.5 text-teal-900 bg-teal-100">
-            <span>Teal</span>
-        </div>
-        <div class="inline-flex items-center gap-1 font-medium whitespace-nowrap text-sm py-1 rounded-full px-2.5 text-cyan-900 bg-cyan-100">
-            <span>Cyan</span>
-        </div>
-        <div class="inline-flex items-center gap-1 font-medium whitespace-nowrap text-sm py-1 rounded-full px-2.5 text-sky-900 bg-sky-100">
-            <span>Sky</span>
-        </div>
-        <div class="inline-flex items-center gap-1 font-medium whitespace-nowrap text-sm py-1 rounded-full px-2.5 text-blue-900 bg-blue-100">
-            <span>Blue</span>
-        </div>
-        <div class="inline-flex items-center gap-1 font-medium whitespace-nowrap text-sm py-1 rounded-full px-2.5 text-indigo-900 bg-indigo-100">
-            <span>Indigo</span>
-        </div>
-        <div class="inline-flex items-center gap-1 font-medium whitespace-nowrap text-sm py-1 rounded-full px-2.5 text-violet-900 bg-violet-100">
-            <span>Violet</span>
-        </div>
-        <div class="inline-flex items-center gap-1 font-medium whitespace-nowrap text-sm py-1 rounded-full px-2.5 text-purple-900 bg-purple-100">
-            <span>Purple</span>
-        </div>
-        <div class="inline-flex items-center gap-1 font-medium whitespace-nowrap text-sm py-1 rounded-full px-2.5 text-fuchsia-900 bg-fuchsia-100">
-            <span>Fuchsia</span>
-        </div>
-        <div class="inline-flex items-center gap-1 font-medium whitespace-nowrap text-sm py-1 rounded-full px-2.5 text-pink-900 bg-pink-100">
-            <span>Pink</span>
-        </div>
-        <div class="inline-flex items-center gap-1 font-medium whitespace-nowrap text-sm py-1 rounded-full px-2.5 text-rose-900 bg-rose-100">
-            <span>Rose</span>
-        </div>
+        <%= render(BadgeComponent.new(color: :zinc, size: :large)) { "Zinc" } %>
+        <%= render(BadgeComponent.new(color: :red, size: :large)) { "Red" } %>
+        <%= render(BadgeComponent.new(color: :orange, size: :large)) { "Orange" } %>
+        <%= render(BadgeComponent.new(color: :amber, size: :large)) { "Amber" } %>
+        <%= render(BadgeComponent.new(color: :yellow, size: :large)) { "Yellow" } %>
+        <%= render(BadgeComponent.new(color: :lime, size: :large)) { "Lime" } %>
+        <%= render(BadgeComponent.new(color: :green, size: :large)) { "Green" } %>
+        <%= render(BadgeComponent.new(color: :emerald, size: :large)) { "Emerald" } %>
+        <%= render(BadgeComponent.new(color: :teal, size: :large)) { "Teal" } %>
+        <%= render(BadgeComponent.new(color: :cyan, size: :large)) { "Cyan" } %>
+        <%= render(BadgeComponent.new(color: :sky, size: :large)) { "Sky" } %>
+        <%= render(BadgeComponent.new(color: :blue, size: :large)) { "Blue" } %>
+        <%= render(BadgeComponent.new(color: :indigo, size: :large)) { "Indigo" } %>
+        <%= render(BadgeComponent.new(color: :violet, size: :large)) { "Violet" } %>
+        <%= render(BadgeComponent.new(color: :purple, size: :large)) { "Purple" } %>
+        <%= render(BadgeComponent.new(color: :fuchsia, size: :large)) { "Fuchsia" } %>
+        <%= render(BadgeComponent.new(color: :pink, size: :large)) { "Pink" } %>
+        <%= render(BadgeComponent.new(color: :rose, size: :large)) { "Rose" } %>
     </div>
 </div>
 
+<!-- Examples of badges with icons -->
 <div class="pb-16">
     <div class="flex flex-wrap items-center justify-center gap-3 mb-8">
-        <div class="inline-flex items-center gap-1 font-medium whitespace-nowrap text-xs py-1 rounded-full px-2.5 text-zinc-900 bg-zinc-100">
-            <%= icon "user", class: "size-3" %>
-            <span>Users</span>
-        </div>
-        <div class="inline-flex items-center gap-1 font-medium whitespace-nowrap text-xs py-1 rounded-full px-2.5 text-orange-900 bg-orange-100">
-            <%= icon "file", class: "size-3" %>
-            <span>Files</span>
-        </div>
+        <%= render(BadgeComponent.new(color: :zinc, icon: "user")) { "Users" } %>
+        <%= render(BadgeComponent.new(color: :orange, icon: "file")) { "Files" } %>
     </div>
     <div class="flex flex-wrap items-center justify-center gap-3 mb-8">
-        <div class="inline-flex items-center gap-1 font-medium whitespace-nowrap text-sm py-1 rounded-full px-2.5 text-green-900 bg-green-100">
-            <%= icon "bookmark" %>
-            <span>Bookmarks</span>
-        </div>
-        <div class="inline-flex items-center gap-1 font-medium whitespace-nowrap text-sm py-1 rounded-full px-2.5 text-blue-900 bg-blue-100">
-            <%= icon "calendar-week" %>
-            <span>Calendar</span>
-        </div>
+        <%= render(BadgeComponent.new(color: :green, size: :large, icon: "bookmark")) { "Bookmarks" } %>
+        <%= render(BadgeComponent.new(color: :blue, size: :large, icon: "calendar-week")) { "Calendar" } %>
     </div>
 </div>
 
+<!-- Examples of badges with a close button -->
 <div class="pb-16">
     <div class="flex flex-wrap items-center justify-center gap-3 mb-8">
-        <div class="inline-flex items-center gap-1 font-medium whitespace-nowrap text-xs py-1 rounded-full px-2.5 text-zinc-900 bg-zinc-100">
-            <span>Admin</span>
-            <button type="button" class="p-1 -my-2 -ml-1 -mr-1.5 opacity-60 hover:opacity-100 cursor-pointer">
-                <%= icon "x", class: "size-3" %>
-            </button>
-        </div>
-        <div class="inline-flex items-center gap-1 font-medium whitespace-nowrap text-sm py-1 rounded-full px-2.5 text-zinc-900 bg-zinc-100">
-            <span>Admin</span>
-            <button type="button" class="p-1 -my-2 -ml-1 -mr-1.5 opacity-60 hover:opacity-100 cursor-pointer">
-                <%= icon "x" %>
-            </button>
-        </div>
+        <%= render(BadgeComponent.new(color: :zinc, icon: nil, closable: true)) { "Admin" } %>
+        <%= render(BadgeComponent.new(color: :zinc, size: :large, icon: nil, closable: true)) { "Admin" } %>
     </div>
 </div>
