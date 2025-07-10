@@ -22,4 +22,7 @@ class ComponentsController < ApplicationController
 
   def input
   end
+
+  def badge
+  end
 end

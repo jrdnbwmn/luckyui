@@ -26,4 +26,5 @@ Rails.application.routes.draw do
   get "components/dropdown", to: "components#dropdown"
   get "components/icon", to: "components#icon"
   get "components/input", to: "components#input"
+  get "components/badge", to: "components#badge"
 end
