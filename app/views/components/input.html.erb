@@ -8,13 +8,16 @@
 
 <div class="space-y-6 mt-16">
     <div class="flex flex-wrap items-center justify-center gap-3 mx-auto max-w-sm">
-        <input type="text" placeholder="Enter workspace name" class="relative block w-full text-base appearance-none rounded-lg border px-2.5 py-2 transition duration-100 text-sm border-zinc-300 text-zinc-900 placeholder-zinc-400 bg-white disabled:border-zinc-300 disabled:bg-zinc-100 disabled:text-zinc-400 disabled:pointer-events-none">
+        <input type="text" placeholder="Email" class="relative block w-full text-base appearance-none rounded-lg border px-2.5 py-2 transition duration-100 text-sm border-zinc-300 text-zinc-900 placeholder-zinc-400 bg-white disabled:border-zinc-300 disabled:bg-zinc-100 disabled:text-zinc-400 disabled:pointer-events-none">
     </div>
-</div>
-
-<div class="space-y-6 mt-16">
     <div class="flex flex-wrap items-center justify-center gap-3 mx-auto max-w-sm">
-        <input disabled type="text" placeholder="Enter workspace name" class="relative block w-full text-base appearance-none rounded-lg border px-2.5 py-2 transition duration-100 text-sm border-zinc-300 text-zinc-900 placeholder-zinc-400 bg-white disabled:border-zinc-300 disabled:bg-zinc-100 disabled:text-zinc-400 disabled:pointer-events-none">
+        <input disabled type="text" placeholder="Email" class="relative block w-full text-base appearance-none rounded-lg border px-2.5 py-2 transition duration-100 text-sm border-zinc-300 text-zinc-900 placeholder-zinc-400 bg-white disabled:border-zinc-300 disabled:bg-zinc-100 disabled:text-zinc-400 disabled:pointer-events-none">
+    </div>
+    <div class="flex flex-wrap items-center justify-center gap-3 mx-auto max-w-sm">
+        <div class="w-full space-y-3">
+            <input type="email" value="invalid@email.com" class="relative block w-full text-base appearance-none rounded-lg border px-2.5 py-2 transition duration-100 text-sm border-red-600 text-zinc-900 placeholder-zinc-400 bg-white disabled:border-red-600 disabled:bg-zinc-100 disabled:text-zinc-400 disabled:pointer-events-none">
+            <p class="text-sm text-red-600">Email is invalid</p>
+        </div>
     </div>
 </div>
 
@@ -26,6 +29,35 @@
             </div>
             <div>
                 <%= render(ButtonComponent.new(variant: :solid)) { "Submit" } %>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="space-y-6 mt-16">
+    <div class="flex flex-wrap items-center justify-center gap-3 mx-auto max-w-sm">
+        <!-- Icon on left -->
+        <div class="relative w-full">
+            <div class="pointer-events-none absolute top-0 bottom-0 flex items-center justify-center text-xs text-zinc-400 ps-3 start-0 z-10">
+                <%= icon "mail" %>
+            </div>
+            <input type="email" placeholder="Email" class="relative block w-full text-base appearance-none rounded-lg border px-2.5 py-2 ps-9 transition duration-100 text-sm border-zinc-300 text-zinc-900 placeholder-zinc-400 bg-white disabled:border-zinc-300 disabled:bg-zinc-100 disabled:text-zinc-400 disabled:pointer-events-none">
+        </div>
+        <!-- Icon on right -->
+        <div class="relative w-full">
+            <input type="text" placeholder="Credit card" class="relative block w-full text-base appearance-none rounded-lg border px-2.5 py-2 pe-9 transition duration-100 text-sm border-zinc-300 text-zinc-900 placeholder-zinc-400 bg-white disabled:border-zinc-300 disabled:bg-zinc-100 disabled:text-zinc-400 disabled:pointer-events-none">
+            <div class="pointer-events-none absolute top-0 bottom-0 flex items-center justify-center text-xs text-zinc-400 pe-3 end-0 z-10">
+                <%= icon "credit-card" %>
+            </div>
+        </div>
+        <!-- Icon on both sides -->
+        <div class="relative w-full">
+            <div class="pointer-events-none absolute top-0 bottom-0 flex items-center justify-center text-xs text-zinc-400 ps-3 start-0 z-10">
+                <%= icon "search" %>
+            </div>
+            <input type="text" placeholder="Search..." class="relative block w-full text-base appearance-none rounded-lg border px-2.5 py-2 ps-9 pe-9 transition duration-100 text-sm border-zinc-300 text-zinc-900 placeholder-zinc-400 bg-white disabled:border-zinc-300 disabled:bg-zinc-100 disabled:text-zinc-400 disabled:pointer-events-none">
+            <div class="pointer-events-none absolute top-0 bottom-0 flex items-center justify-center text-xs text-zinc-400 pe-3 end-0 z-10">
+                <%= icon "microphone" %>
             </div>
         </div>
     </div>
@@ -51,7 +83,7 @@
                 <span>Upload a file</span>
             </label>
             <div class="relative w-full">
-                <input type="file" accept=".csv, .xlsx, .xls" id="upload" name="upload" class="relative block w-full text-base appearance-none rounded-lg border px-2.5 py-2 transition duration-100 text-sm border-zinc-300 text-zinc-900 placeholder-zinc-400 bg-white disabled:border-zinc-300 disabled:bg-zinc-100 disabled:text-zinc-400 disabled:pointer-events-none file:-my-2 file:-ml-2.5 file:cursor-pointer file:rounded-l-lg file:rounded-r-none file:border-0 file:px-3 file:py-2 file:outline-hidden file:disabled:pointer-events-none file:border-solid file:border-zinc-300 file:bg-zinc-100 file:text-zinc-800 file:hover:bg-zinc-200 file:[border-inline-end-width:1px] file:[margin-inline-end:0.75rem] file:disabled:bg-zinc-100 file:disabled:text-zinc-500">
+                <input type="file" accept=".csv, .xlsx, .xls" id="upload" name="upload" class="relative block w-full text-base appearance-none rounded-lg border px-2.5 py-2 transition duration-100 text-sm border-zinc-300 text-zinc-900 placeholder-zinc-400 bg-white disabled:border-zinc-300 disabled:bg-zinc-100 disabled:text-zinc-400 disabled:pointer-events-none file:-my-2 file:-ml-2.5 file:cursor-pointer file:rounded-l-lg file:rounded-r-none file:border-0 file:px-4 file:py-2 file:outline-hidden file:disabled:pointer-events-none file:border-solid file:border-zinc-300 file:bg-zinc-100 file:text-zinc-800 file:hover:bg-zinc-200 file:[border-inline-end-width:1px] file:[margin-inline-end:0.75rem] file:disabled:bg-zinc-100 file:disabled:text-zinc-500">
             </div>
             <p class="text-sm text-zinc-500">You are only allowed to upload .CSV, .XLSX or .XLS files.</p>
         </div>
