@@ -25,4 +25,7 @@ class ComponentsController < ApplicationController
 
   def badge
   end
+
+  def select
+  end
 end
