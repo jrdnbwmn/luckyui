@@ -11,26 +11,22 @@
         <div class="relative w-full">
             <select class="relative block w-full text-base appearance-none rounded-lg border px-2.5 py-2 pe-9 transition duration-100 text-sm border-zinc-300 text-zinc-900 placeholder-zinc-400 bg-white disabled:border-zinc-300 disabled:bg-zinc-100 disabled:text-zinc-400 disabled:pointer-events-none">
                 <option value="">Choose a food</option>
-                <hr />
                 <optgroup label="Fruit">
                     <option value="apple">Apples</option>
                     <option value="banana">Bananas</option>
                     <option value="cherry">Cherries</option>
                     <option value="damson">Damsons</option>
                 </optgroup>
-                <hr />
                 <optgroup label="Vegetables">
                     <option value="artichoke">Artichokes</option>
                     <option value="broccoli">Broccoli</option>
                     <option value="cabbage">Cabbages</option>
                 </optgroup>
-                <hr />
                 <optgroup label="Meat">
                     <option value="beef">Beef</option>
                     <option value="chicken">Chicken</option>
                     <option value="pork">Pork</option>
                 </optgroup>
-                <hr />
                 <optgroup label="Fish">
                     <option value="cod">Cod</option>
                     <option value="haddock">Haddock</option>
@@ -41,6 +37,58 @@
             <div class="pointer-events-none absolute top-0 bottom-0 flex items-center justify-center text-xs text-zinc-400 pe-3 end-0 z-10">
                 <%= icon "chevron-down" %>
             </div>
+        </div>
+    </div>
+    <div class="flex flex-wrap items-center justify-center gap-3 mx-auto max-w-sm">
+        <div class="relative w-full">
+            <select disabled class="relative block w-full text-base appearance-none rounded-lg border px-2.5 py-2 pe-9 transition duration-100 text-sm border-zinc-300 text-zinc-900 placeholder-zinc-400 bg-white disabled:border-zinc-300 disabled:bg-zinc-100 disabled:text-zinc-400 disabled:pointer-events-none">
+                <option value="">Select language</option>
+                <option value="english">English</option>
+                <option value="japanese">Japanese</option>
+                <option value="italian">Italian</option>
+            </select>
+            <div class="pointer-events-none absolute top-0 bottom-0 flex items-center justify-center text-xs text-zinc-400 pe-3 end-0 z-10">
+                <%= icon "chevron-down" %>
+            </div>
+        </div>
+    </div>
+    <div class="flex flex-wrap items-center justify-center gap-3 mx-auto max-w-sm">
+        <div class="w-full space-y-3">
+            <div class="relative w-full">
+                <select class="relative block w-full text-base appearance-none rounded-lg border px-2.5 py-2 pe-9 transition duration-100 text-sm border-red-600 text-zinc-900 placeholder-zinc-400 bg-white disabled:border-red-600 disabled:bg-zinc-100 disabled:text-zinc-400 disabled:pointer-events-none">
+                    <option value="">Select language</option>
+                    <option value="english">English</option>
+                    <option value="japanese">Japanese</option>
+                    <option value="italian">Italian</option>
+                </select>
+                <div class="pointer-events-none absolute top-0 bottom-0 flex items-center justify-center text-xs text-zinc-400 pe-3 end-0 z-10">
+                    <%= icon "chevron-down" %>
+                </div>
+            </div>
+            <p class="text-sm text-red-600">Must select an option</p>
+        </div>
+    </div>
+</div>
+
+<div class="space-y-6 mt-16">
+    <div class="flex flex-wrap items-center justify-center gap-3 mx-auto max-w-sm">
+        <div class="w-full space-y-3">
+            <label for="language" class="flex items-center justify-between text-sm font-medium">
+                <span>Language</span>
+                <%= render(BadgeComponent.new(classes: "-my-1")) { "Required" } %>
+            </label>
+            <div class="relative w-full">
+                <select id="language" name="language" class="relative block w-full text-base appearance-none rounded-lg border px-2.5 py-2 pe-9 transition duration-100 text-sm border-zinc-300 text-zinc-900 placeholder-zinc-400 bg-white disabled:border-zinc-300 disabled:bg-zinc-100 disabled:text-zinc-400 disabled:pointer-events-none">
+                    <option value="">Select language</option>
+                    <option value="english">English</option>
+                    <option value="japanese">Japanese</option>
+                    <option value="italian">Italian</option>
+                </select>
+                <div class="pointer-events-none absolute top-0 bottom-0 flex items-center justify-center text-xs text-zinc-400 pe-3 end-0 z-10">
+                    <%= icon "chevron-down" %>
+                </div>
+            </div>
+            <p class="text-sm text-zinc-500">Tell us your preferred language</p>
         </div>
     </div>
 </div>
