@@ -31,4 +31,7 @@ class ComponentsController < ApplicationController
 
   def textarea
   end
+  
+  def text
+  end
 end
