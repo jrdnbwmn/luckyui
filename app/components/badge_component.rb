@@ -5,7 +5,7 @@ class BadgeComponent < ViewComponent::Base
   COLORS = %i[zinc red orange amber yellow lime green emerald teal cyan sky blue indigo violet purple fuchsia pink rose].freeze
   SIZES = { default: 'text-xs', large: 'text-sm' }.freeze
 
-  attr_reader :color, :size, :icon, :icon_position, :closable, :close_turbo_stream, :on_click, :classes
+  attr_reader :color, :size, :icon, :icon_position, :closable, :close_turbo_stream, :on_click, :classes, :aria_label, :role
 
   def initialize(
     color: :zinc,
@@ -15,7 +15,9 @@ class BadgeComponent < ViewComponent::Base
     closable: false,
     close_turbo_stream: false,
     on_click: nil,
-    classes: nil
+    classes: nil,
+    aria_label: nil,
+    role: "status"
   )
     @color = COLORS.include?(color.to_sym) ? color.to_sym : :zinc
     @size = SIZES.key?(size.to_sym) ? size.to_sym : :default
@@ -25,6 +27,15 @@ class BadgeComponent < ViewComponent::Base
     @close_turbo_stream = close_turbo_stream
     @on_click = on_click
     @classes = classes
+    @aria_label = aria_label
+    @role = role
+    
+    # Development warnings for invalid parameters
+    if Rails.env.development?
+      warn "[BadgeComponent] Invalid color '#{color}'. Valid options: #{COLORS.join(', ')}" unless COLORS.include?(color.to_sym)
+      warn "[BadgeComponent] Invalid size '#{size}'. Valid options: #{SIZES.keys.join(', ')}" unless SIZES.key?(size.to_sym)
+      warn "[BadgeComponent] closable: true should include aria_label for accessibility" if closable && aria_label.blank?
+    end
   end
 
   def badge_classes

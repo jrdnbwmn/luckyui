@@ -21,10 +21,10 @@ class ButtonComponent < ViewComponent::Base
     grouped: false,
     aria_label: nil
   )
-    @variant = variant.to_sym
-    @color = color&.to_sym
-    @color_variant = color_variant.to_sym
-    @size = size.to_sym
+    @variant = VARIANTS.include?(variant.to_sym) ? variant.to_sym : :outline
+    @color = color.nil? ? nil : (COLORS.include?(color.to_sym) ? color.to_sym : nil)
+    @color_variant = COLOR_VARIANTS.include?(color_variant.to_sym) ? color_variant.to_sym : :solid
+    @size = SIZES.include?(size.to_sym) ? size.to_sym : :default
     @full_width = full_width
     @disabled = disabled
     @type = type
@@ -32,8 +32,14 @@ class ButtonComponent < ViewComponent::Base
     @icon_only = icon_only
     @grouped = grouped
     @aria_label = aria_label
-    if Rails.env.development? && icon_only && aria_label.blank?
-      warn "[ButtonComponent] icon_only: true requires aria_label for accessibility"
+    
+    # Development warnings for accessibility and invalid parameters
+    if Rails.env.development?
+      warn "[ButtonComponent] icon_only: true requires aria_label for accessibility" if icon_only && aria_label.blank?
+      warn "[ButtonComponent] Invalid variant '#{variant}'. Valid options: #{VARIANTS.join(', ')}" unless VARIANTS.include?(variant.to_sym)
+      warn "[ButtonComponent] Invalid color '#{color}'. Valid options: #{COLORS.join(', ')}" if color && !COLORS.include?(color.to_sym)
+      warn "[ButtonComponent] Invalid color_variant '#{color_variant}'. Valid options: #{COLOR_VARIANTS.join(', ')}" unless COLOR_VARIANTS.include?(color_variant.to_sym)
+      warn "[ButtonComponent] Invalid size '#{size}'. Valid options: #{SIZES.join(', ')}" unless SIZES.include?(size.to_sym)
     end
   end
 

@@ -1,17 +1,24 @@
-<div class="<%= badge_classes %>" <%= %(onclick="#{on_click}") if on_click.present? %>>
+<span class="<%= badge_classes %>" 
+      <%= "role=\"#{role}\"" if role %>
+      <%= "aria-label=\"#{aria_label}\"" if aria_label.present? %>
+      <%= %(onclick="#{on_click}") if on_click.present? %>>
+  
   <% if icon && icon_position == :left %>
     <%= icon_helper(icon, class: 'size-3') %>
   <% end %>
+  
   <span><%= content %></span>
+  
   <% if icon && icon_position == :right %>
     <%= icon_helper(icon, class: 'size-3') %>
   <% end %>
+  
   <% if closable %>
     <button type="button"
-      class="p-1 -my-2 -ml-1 -mr-1.5 opacity-60 hover:opacity-100 cursor-pointer"
-      aria-label="Close badge"
-      <%= 'data-turbo-action="remove"' if close_turbo_stream %>>
+            class="ml-1 -mr-1 h-4 w-4 rounded-full inline-flex items-center justify-center text-<%= color %>-600 hover:bg-<%= color %>-200 focus:bg-<%= color %>-200 focus:outline-none"
+            aria-label="<%= aria_label.present? ? "Remove #{aria_label}" : "Remove badge" %>"
+            <%= 'data-turbo-action="remove"' if close_turbo_stream %>>
       <%= icon_helper('x', class: 'size-3') %>
     </button>
   <% end %>
-</div> 
+</span> 
