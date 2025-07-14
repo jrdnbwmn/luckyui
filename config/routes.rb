@@ -28,4 +28,5 @@ Rails.application.routes.draw do
   get "components/input", to: "components#input"
   get "components/badge", to: "components#badge"
   get "components/select", to: "components#select"
+  get "components/textarea", to: "components#textarea"
 end

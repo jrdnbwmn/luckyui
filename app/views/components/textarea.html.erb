@@ -1,0 +1,41 @@
+<% content_for :title, "Textarea - Lucky  UI" %>
+
+<div class="flex flex-col mb-8">
+    <span class="text-sm mb-2 text-zinc-500">Forms</span>
+    <h1 class="text-4xl font-bold mb-4 text-zinc-900">Textarea</h1>
+    <p>Tabs organize and allow navigation between groups of content that are related and at the same level of hierarchy.</p>
+</div>
+
+<div class="space-y-6 mt-16">
+    <div class="flex flex-wrap items-center justify-center gap-3 mx-auto max-w-sm">
+        <div class="w-full max-w-xs mx-auto">
+            <textarea x-data="{ resize () { $el.style.height = '0px'; $el.style.height = $el.scrollHeight + 'px' } }" x-init="resize()" @input="resize()" placeholder="Type your message here. I will resize based on the height of the content." class="h-auto min-h-[80px] relative block w-full text-base appearance-none rounded-lg border px-2.5 py-2 transition duration-100 text-sm border-zinc-300 text-zinc-900 placeholder-zinc-400 bg-white disabled:border-zinc-300 disabled:bg-zinc-100 disabled:text-zinc-400 disabled:pointer-events-none"></textarea>
+        </div>
+    </div>
+    <div class="flex flex-wrap items-center justify-center gap-3 mx-auto max-w-sm">
+        <div class="w-full max-w-xs mx-auto">
+            <textarea disabled x-data="{ resize () { $el.style.height = '0px'; $el.style.height = $el.scrollHeight + 'px' } }" x-init="resize()" @input="resize()" placeholder="Type your message here" class="h-auto min-h-[80px] relative block w-full text-base appearance-none rounded-lg border px-2.5 py-2 transition duration-100 text-sm border-zinc-300 text-zinc-900 placeholder-zinc-400 bg-white disabled:border-zinc-300 disabled:bg-zinc-100 disabled:text-zinc-400 disabled:pointer-events-none"></textarea>
+        </div>
+    </div>
+    <div class="flex flex-wrap items-center justify-center gap-3 mx-auto max-w-sm">
+        <div class="w-full space-y-3 max-w-xs mx-auto">
+            <textarea x-data="{ resize () { $el.style.height = '0px'; $el.style.height = $el.scrollHeight + 'px' } }" x-init="resize()" @input="resize()" placeholder="Type your message here" class="h-auto min-h-[80px] relative block w-full text-base appearance-none rounded-lg border px-2.5 py-2 transition duration-100 text-sm border-red-600 text-zinc-900 placeholder-zinc-400 bg-white disabled:border-red-600 disabled:bg-zinc-100 disabled:text-zinc-400 disabled:pointer-events-none"></textarea>
+            <p class="text-sm text-red-600">Message should be at least 10 characters</p>
+        </div>
+    </div>
+</div>
+
+<div class="space-y-6 mt-16">
+    <div class="flex flex-wrap items-center justify-center gap-3 mx-auto max-w-sm">
+        <div class="w-full max-w-xs mx-auto">
+            <div class="space-y-3">
+                <label for="message" class="flex items-center justify-between text-sm font-medium">
+                    <span>Message</span>
+                    <%= render(BadgeComponent.new(classes: "-my-1")) { "Required" } %>
+                </label>
+                <textarea id="message" name="message" x-data="{ resize () { $el.style.height = '0px'; $el.style.height = $el.scrollHeight + 'px' } }" x-init="resize()" @input="resize()" placeholder="Type your message here" class="h-auto min-h-[80px] relative block w-full text-base appearance-none rounded-lg border px-2.5 py-2 transition duration-100 text-sm border-zinc-300 text-zinc-900 placeholder-zinc-400 bg-white disabled:border-zinc-300 disabled:bg-zinc-100 disabled:text-zinc-400 disabled:pointer-events-none"></textarea>
+                <p class="text-sm text-zinc-500">Please add as many details as you can.</p>
+            </div>
+        </div>
+    </div>
+</div>

@@ -28,4 +28,7 @@ class ComponentsController < ApplicationController
 
   def select
   end
+
+  def textarea
+  end
 end
