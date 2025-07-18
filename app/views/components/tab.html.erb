@@ -16,7 +16,7 @@
         <div class="rounded-2xl border border-zinc-200 bg-white">
             <!-- Preview section -->
             <div class="px-6 py-16 overflow-x-auto">
-                <div class="m-auto max-w-full max-lg:min-w-fit lg:max-w-96  flex justify-center">
+                <div class="m-auto max-w-full max-lg:min-w-fit lg:max-w-96 flex justify-center">
                     <div class="w-full flex justify-center gap-2">
                         <!-- Preview inside this div -->
                         <div>
@@ -24,21 +24,21 @@
                                 <div class="overflow-hidden rounded-xl bg-zinc-100 p-2">
                                     <ul class="flex items-center gap-2 text-sm font-medium">
                                         <li>
-                                            <a @click="activeTab = 0" :class="{ 'bg-white shadow text-zinc-700': activeTab === 0 }" class="inline-flex cursor-pointer items-center gap-2 rounded-lg px-3 py-2 hover:bg-white border border-transparent hover:text-zinc-700 hover:shadow"> Profile</a>
+                                            <a @click="activeTab = 0" :class="{ 'bg-white shadow text-zinc-700': activeTab === 0 }" class="inline-flex cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 hover:bg-white border border-transparent hover:text-zinc-700 hover:shadow"> Profile</a>
                                         </li>
                                         <li>
-                                            <a @click="activeTab = 1" :class="{ 'bg-white shadow text-zinc-700': activeTab === 1 }" class="inline-flex cursor-pointer items-center gap-2 rounded-lg px-3 py-2 hover:bg-white border border-transparent hover:text-zinc-700 hover:shadow"> Preferences</a>
+                                            <a @click="activeTab = 1" :class="{ 'bg-white shadow text-zinc-700': activeTab === 1 }" class="inline-flex cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 hover:bg-white border border-transparent hover:text-zinc-700 hover:shadow"> Preferences</a>
                                         </li>
                                         <li>
-                                            <a @click="activeTab = 2" :class="{ 'bg-white shadow text-zinc-700': activeTab === 2 }" class="inline-flex cursor-pointer items-center gap-2 rounded-lg px-3 py-2 hover:bg-white border border-transparent hover:text-zinc-700 hover:shadow">
+                                            <a @click="activeTab = 2" :class="{ 'bg-white shadow text-zinc-700': activeTab === 2 }" class="inline-flex cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 hover:bg-white border border-transparent hover:text-zinc-700 hover:shadow">
                                                 Notifications
                                                 <span class="rounded-full bg-zinc-200 px-2 py-0.5 text-xs font-semibold "> 8 </span></a>
                                         </li>
                                         <li>
-                                            <a @click="activeTab = 3" :class="{ 'bg-white shadow text-zinc-700': activeTab === 3 }" class="inline-flex cursor-pointer items-center gap-2 rounded-lg px-3 py-2 hover:bg-white border border-transparent hover:text-zinc-700 hover:shadow"> Applications</a>
+                                            <a @click="activeTab = 3" :class="{ 'bg-white shadow text-zinc-700': activeTab === 3 }" class="inline-flex cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 hover:bg-white border border-transparent hover:text-zinc-700 hover:shadow"> Applications</a>
                                         </li>
                                         <li>
-                                            <a @click="activeTab = 4" :class="{ 'bg-white shadow text-zinc-700': activeTab === 4 }" class="inline-flex cursor-pointer items-center gap-2 rounded-lg px-3 py-2 hover:bg-white border border-transparent hover:text-zinc-700 hover:shadow"> API</a>
+                                            <a @click="activeTab = 4" :class="{ 'bg-white shadow text-zinc-700': activeTab === 4 }" class="inline-flex cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 hover:bg-white border border-transparent hover:text-zinc-700 hover:shadow"> API</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -104,16 +104,61 @@
         </div>
     </section>
 
-    <section class="mt-16">
-        <div class="flex items-center gap-2 mb-3">
-            <h3 class="inline-block text-xl font-semibold text-zinc-900">Underline</h3>
-            <div class="inline-flex items-center gap-1 font-medium whitespace-nowrap text-xs py-1 rounded-full px-2.5 text-emerald-900 bg-emerald-100">
-                <span>Requires JS</span>
+    <div class="mt-16 pb-16">
+        <!-- Main visual styles -->
+        <div class="w-full mx-auto max-w-lg">
+            <div x-data="{ activeTab:  0 }" class="flex gap-6">
+                <div class="overflow-hidden rounded-xl bg-zinc-100 p-2">
+                    <ul class="flex flex-col gap-1 w-56 text-sm font-medium">
+                        <li>
+                            <a @click="activeTab = 0" class="inline-flex w-full cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 border border-transparent text-zinc-500 hover:bg-white hover:text-zinc-700 hover:shadow" :class="{ 'bg-white shadow text-zinc-700': activeTab === 0 }">
+                                <%= icon "user", variant: "filled", class: "size-4" %>
+                                <span>Profile</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a @click="activeTab = 1" class="inline-flex w-full cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 border border-transparent text-zinc-500 hover:bg-white hover:text-zinc-700 hover:shadow" :class="{ 'bg-white shadow text-zinc-700': activeTab === 1 }">
+                                <%= icon "adjustments", class: "size-4" %>
+                                <span>Preferences</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a @click="activeTab = 2" class="inline-flex w-full cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 border border-transparent text-zinc-500 hover:bg-white hover:text-zinc-700 hover:shadow" :class="{ 'bg-white shadow text-zinc-700': activeTab === 2 }">
+                                <%= icon "bell", variant: "filled", class: "size-4" %>
+                                <div class="flex justify-between items-center w-full">
+                                    <span>Notifications</span>
+                                    <span class="rounded-full bg-zinc-200 px-2 py-0.5 text-xs font-semibold text-zinc-500"> 8 </span>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a @click="activeTab = 3" class="inline-flex w-full cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 border border-transparent text-zinc-500 hover:bg-white hover:text-zinc-700 hover:shadow" :class="{ 'bg-white shadow text-zinc-700': activeTab === 3 }">
+                                <%= icon "apps", variant: "filled", class: "size-4" %>
+                                <span>Applications</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a @click="activeTab = 4" class="inline-flex w-full cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 border border-transparent text-zinc-500 hover:bg-white hover:text-zinc-700 hover:shadow" :class="{ 'bg-white shadow text-zinc-700': activeTab === 4 }">
+                                <%= icon "cube", class: "size-4" %>
+                                <span>API</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="pt-3 flex-1 border border-zinc-200 rounded-lg p-4">
+                    <div :class="{ '!block': activeTab === 0 }" x-show.transition.in.opacity.duration.600="activeTab === 0" class="hidden">Profile content</div>
+                    <div :class="{ '!block': activeTab === 1 }" x-show.transition.in.opacity.duration.600="activeTab === 1" class="hidden">Preferences content</div>
+                    <div :class="{ '!block': activeTab === 2 }" x-show.transition.in.opacity.duration.600="activeTab === 2" class="hidden">Notifications content</div>
+                    <div :class="{ '!block': activeTab === 3 }" x-show.transition.in.opacity.duration.600="activeTab === 3" class="hidden">Applications content</div>
+                    <div :class="{ '!block': activeTab === 4 }" x-show.transition.in.opacity.duration.600="activeTab === 4" class="hidden">API content</div>
+                </div>
             </div>
         </div>
-        <div class="rounded-2xl border border-zinc-200 bg-white">
-            <!-- Preview section -->
-            <div class="px-6 py-16 overflow-x-auto">
+    </div>
+
+    <section class="mt-16 pb-16">
+        <div class="flex flex-wrap items-center justify-center gap-3 mb-8">
+            <div class="overflow-x-auto w-full ">
                 <div class="m-auto max-w-full max-lg:min-w-fit lg:max-w-96  flex justify-center">
                     <div class="w-full flex justify-center gap-2">
                         <!-- Preview inside this div -->
@@ -161,55 +206,146 @@
                     </div>
                 </div>
             </div>
-            <!-- Code section -->
-            <div class="relative rounded-b-2xl overflow-hidden flex max-h-80 bg-zinc-50 border-t border-zinc-200">
-                <div class="absolute top-0 right-0 pt-[11px] pr-[11px] z-1">
-                    <!-- Needs a tooltip on hover and a confirmation when you click it -->
-                    <button type="button" class="relative items-center font-medium justify-center gap-2 cursor-pointer whitespace-nowrap disabled:opacity-75 disabled:cursor-default disabled:pointer-events-none h-8 text-sm rounded-md w-8 inline-flex bg-white hover:bg-zinc-100 text-zinc-800 shadow-sm">
-                        <%= render 'shared/copyicon' %>
-                    </button>
-                    <div popover="manual" class="relative py-2 px-2.5 rounded-md text-xs text-white font-medium bg-zinc-800 p-0 overflow-visible" data-flux-tooltip-content="" id="lofi-tooltip-145e57b3415b5" aria-hidden="true" role="tooltip">
-                        Copy to clipboard
-                    </div>
+        </div>
+    </section>
+
+    <section class="mt-16 pb-16">
+        <div class="flex flex-wrap items-center justify-center gap-3">
+
+        </div>
+    </section>
+
+    <div class="mt-16 pb-16">
+        <!-- Main visual styles -->
+        <div class="w-full mx-auto max-w-lg">
+            <div x-data="{ activeTab:  0 }" class="flex gap-6">
+                <div class="flex flex-col w-56 gap-3 mb-7">
+                    <h3 class="text-zinc-500 md:text-sm">Interface</h3>
+                    <ul class="text-zinc-500 flex flex-col gap-3 md:gap-2 border-l-2 border-zinc-200" role="list">
+                        <li class="-ml-[2px]"><%= link_to components_accordion_path, class: "#{ current_page?(components_accordion_path) ? 'text-zinc-900 border-zinc-800' : '' } inline-flex gap-2 w-full border-l-2 border-transparent pl-5 font-medium aria-[current]:border-zinc-800 aria-[current]:text-zinc-900 sm:pl-4 hover:text-zinc-900 pr-4 md:text-sm text-2xl" do %>
+                            <%= icon "user", variant: "filled", class: "size-4" %>
+                            <span>Profile</span>
+                            <% end %>
+                        </li>
+                        <li class="-ml-[2px]"><%= link_to components_badge_path, class: "#{ current_page?(components_badge_path) ? 'text-zinc-900 border-zinc-800' : '' } inline-flex gap-2 w-full border-l-2 border-transparent pl-5 font-medium aria-[current]:border-zinc-800 aria-[current]:text-zinc-900 sm:pl-4 hover:text-zinc-900 pr-4 md:text-sm text-2xl" do %>
+                            <%= icon "adjustments", class: "size-4" %>
+                            <span>Preferences</span>
+                            <% end %>
+                        </li>
+                        <li class="-ml-[2px]"><%= link_to components_icon_path, class: "#{ current_page?(components_icon_path) ? 'text-zinc-900 border-zinc-800' : '' } inline-flex gap-2 w-full border-l-2 border-transparent pl-5 font-medium aria-[current]:border-zinc-800 aria-[current]:text-zinc-900 sm:pl-4 hover:text-zinc-900 pr-4 md:text-sm text-2xl" do %>
+                            <%= icon "bell", variant: "filled", class: "size-4" %>
+                            <div class="flex justify-between items-center w-full">
+                                <span>Notifications</span>
+                                <span class="rounded-full bg-zinc-200 px-2 py-0.5 text-xs font-semibold text-zinc-500"> 8 </span>
+                            </div>
+                            <% end %>
+                        </li>
+                        <li class="-ml-[2px]"><%= link_to components_tab_path, class: "#{ current_page?(components_tab_path) ? 'text-zinc-900 border-zinc-800' : '' } inline-flex gap-2 w-full border-l-2 border-transparent pl-5 font-medium aria-[current]:border-zinc-800 aria-[current]:text-zinc-900 sm:pl-4 hover:text-zinc-900 pr-4 md:text-sm text-2xl" do %>
+                            <%= icon "apps", variant: "filled", class: "size-4" %>
+                            <span>Applications</span>
+                            <% end %>
+                        </li>
+                        <li class="-ml-[2px]"><%= link_to components_text_path, class: "#{ current_page?(components_text_path) ? 'text-zinc-900 border-zinc-800' : '' } inline-flex gap-2 w-full border-l-2 border-transparent pl-5 font-medium aria-[current]:border-zinc-800 aria-[current]:text-zinc-900 sm:pl-4 hover:text-zinc-900 pr-4 md:text-sm text-2xl" do %>
+                            <%= icon "cube", class: "size-4" %>
+                            <span>API</span>
+                            <% end %>
+                        </li>
+                    </ul>
                 </div>
-                <div class="text-sm min-w-full max-h-full overflow-auto" style="scrollbar-width: thin;">
-                    <div>
-                        <!-- Insert code -->
-                        <pre><code class="language-html p-6 leading-[1.7] bg-zinc-50 text-zinc-700 text-sm font-mono">&lt;div data-controller=&quot;tabs&quot; data-tabs-active-index-value=&quot;0&quot; data-tabs-active-tab-class-value=&quot;bg-white shadow-md&quot; data-tabs-inactive-tab-class-value=&quot;&quot;&gt;
-            &lt;div class=&quot;overflow-hidden inline-block rounded-xl p-1.5 bg-zinc-100&quot;&gt;
-                &lt;ul class=&quot;flex items-center gap-1.5 font-medium text-sm&quot; data-action=&quot;keydown-&gt;tabs#onKeydown&quot; role=&quot;tablist&quot;&gt;
-                    &lt;li&gt;
-                        &lt;a href=&quot;#&quot; data-action=&quot;click-&gt;tabs#selectTab&quot; data-tabs-index-param=&quot;0&quot; data-tabs-target=&quot;tab&quot; class=&quot;inline-flex cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 hover:bg-white hover:shadow-sm transition-all duration-200&quot;&gt;
-                            Preview
-                        &lt;/a&gt;
-                    &lt;/li&gt;
-                    &lt;li&gt;
-                        &lt;a href=&quot;#&quot; data-action=&quot;click-&gt;tabs#selectTab&quot; data-tabs-index-param=&quot;1&quot; data-tabs-target=&quot;tab&quot; class=&quot;inline-flex cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 hover:bg-white hover:shadow-sm transition-all duration-200&quot;&gt;
-                            Code
-                        &lt;/a&gt;
-                    &lt;/li&gt;
-                &lt;/ul&gt;
-            &lt;/div&gt;
-            &lt;div class=&quot;py-3&quot;&gt;
-                &lt;div data-tabs-target=&quot;panel&quot;&gt;
-                    &lt;div class=&quot;border border-zinc-200 rounded-xl&quot; style=&quot;height:200px&quot;&gt;&lt;/div&gt;
-                &lt;/div&gt;
-                &lt;div data-tabs-target=&quot;panel&quot; hidden&gt;
-                    &lt;div class=&quot;rounded-xl&quot;&gt;
-                        &lt;pre class=&quot;flex overflow-auto rounded-b-lg p-4 text-sm/6 sm:rounded-t-lg language-html bg-zinc-100&quot;&gt;
-                            &lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;
-                        &lt;div&gt;stuff&lt;/div&gt;
-                            &lt;/code&gt;
-                        &lt;/pre&gt;
-                    &lt;/div&gt;
-                &lt;/div&gt;
-            &lt;/div&gt;
-        &lt;/div&gt;</code></pre>
-                    </div>
+                <div class="pt-3 flex-1 border border-zinc-200 rounded-lg p-4">
+                    <div :class="{ '!block': activeTab === 0 }" x-show.transition.in.opacity.duration.600="activeTab === 0" class="hidden">Profile content</div>
+                    <div :class="{ '!block': activeTab === 1 }" x-show.transition.in.opacity.duration.600="activeTab === 1" class="hidden">Preferences content</div>
+                    <div :class="{ '!block': activeTab === 2 }" x-show.transition.in.opacity.duration.600="activeTab === 2" class="hidden">Notifications content</div>
+                    <div :class="{ '!block': activeTab === 3 }" x-show.transition.in.opacity.duration.600="activeTab === 3" class="hidden">Applications content</div>
+                    <div :class="{ '!block': activeTab === 4 }" x-show.transition.in.opacity.duration.600="activeTab === 4" class="hidden">API content</div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+
+    <div class="mt-16 pb-16">
+        <!-- Main visual styles -->
+        <div class="flex flex-wrap items-center justify-center gap-3 mb-8">
+            <div x-data="{ activeTab:  0 }">
+                <ul class="flex items-center gap-2 text-sm font-medium">
+                    <li>
+                        <a @click="activeTab = 0" class="inline-flex cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 border border-transparent text-zinc-500 hover:text-zinc-900" :class="{ 'bg-zinc-100 border-zinc-100 text-zinc-900 hover:bg-zinc-100': activeTab === 0 }"> Profile</a>
+                    </li>
+                    <li>
+                        <a @click="activeTab = 1" class="inline-flex cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 border border-transparent text-zinc-500 hover:text-zinc-900" :class="{ 'bg-zinc-100 border-zinc-100 text-zinc-900 hover:bg-zinc-100': activeTab === 1 }"> Preferences</a>
+                    </li>
+                    <li>
+                        <a @click="activeTab = 2" class="inline-flex cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 border border-transparent text-zinc-500 hover:text-zinc-900" :class="{ 'bg-zinc-100 border-zinc-100 text-zinc-900 hover:bg-zinc-100': activeTab === 2 }">
+                            Notifications
+                            <span class="rounded-full bg-zinc-200 px-2 py-0.5 text-xs font-semibold text-zinc-500"> 8 </span></a>
+                    </li>
+                    <li>
+                        <a @click="activeTab = 3" class="inline-flex cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 border border-transparent text-zinc-500 hover:text-zinc-900" :class="{ 'bg-zinc-100 border-zinc-100 text-zinc-900 hover:bg-zinc-100': activeTab === 3 }"> Applications</a>
+                    </li>
+                    <li>
+                        <a @click="activeTab = 4" class="inline-flex cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 border border-transparent text-zinc-500 hover:text-zinc-900" :class="{ 'bg-zinc-100 text-zinc-900 hover:bg-zinc-100': activeTab === 4 }"> API</a>
+                    </li>
+                </ul>
+                <div class="pt-4">
+                    <div :class="{ '!block': activeTab === 0 }" x-show.transition.in.opacity.duration.600="activeTab === 0" class="hidden">Profile content</div>
+                    <div :class="{ '!block': activeTab === 1 }" x-show.transition.in.opacity.duration.600="activeTab === 1" class="hidden">Preferences content</div>
+                    <div :class="{ '!block': activeTab === 2 }" x-show.transition.in.opacity.duration.600="activeTab === 2" class="hidden">Notifications content</div>
+                    <div :class="{ '!block': activeTab === 3 }" x-show.transition.in.opacity.duration.600="activeTab === 3" class="hidden">Applications content</div>
+                    <div :class="{ '!block': activeTab === 4 }" x-show.transition.in.opacity.duration.600="activeTab === 4" class="hidden">API content</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-16 pb-16">
+        <!-- Main visual styles -->
+        <div class="w-full mx-auto max-w-lg">
+            <div x-data="{ activeTab:  0 }" class="flex gap-6">
+                <ul class="flex flex-col gap-1 w-56 text-sm font-medium">
+                    <li>
+                        <a @click="activeTab = 0" class="inline-flex w-full cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 border border-transparent text-zinc-500 hover:text-zinc-900" :class="{ 'bg-zinc-100 border-zinc-100 text-zinc-900 hover:bg-zinc-100': activeTab === 0 }">
+                            <%= icon "user", variant: "filled", class: "size-4" %>
+                            <span>Profile</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a @click="activeTab = 1" class="inline-flex w-full cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 border border-transparent text-zinc-500 hover:text-zinc-900" :class="{ 'bg-zinc-100 border-zinc-100 text-zinc-900 hover:bg-zinc-100': activeTab === 1 }">
+                            <%= icon "adjustments", class: "size-4" %>
+                            <span>Preferences</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a @click="activeTab = 2" class="inline-flex w-full cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 border border-transparent text-zinc-500 hover:text-zinc-900" :class="{ 'bg-zinc-100 border-zinc-100 text-zinc-900 hover:bg-zinc-100': activeTab === 2 }">
+                            <%= icon "bell", variant: "filled", class: "size-4" %>
+                            <div class="flex justify-between items-center w-full">
+                                <span>Notifications</span>
+                                <span class="rounded-full bg-zinc-200 px-2 py-0.5 text-xs font-semibold text-zinc-500"> 8 </span>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a @click="activeTab = 3" class="inline-flex w-full cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 border border-transparent text-zinc-500 hover:text-zinc-900" :class="{ 'bg-zinc-100 border-zinc-100 text-zinc-900 hover:bg-zinc-100': activeTab === 3 }">
+                            <%= icon "apps", variant: "filled", class: "size-4" %>
+                            <span>Applications</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a @click="activeTab = 4" class="inline-flex w-full cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 border border-transparent text-zinc-500 hover:text-zinc-900" :class="{ 'bg-zinc-100 text-zinc-900 hover:bg-zinc-100': activeTab === 4 }">
+                            <%= icon "cube", class: "size-4" %>
+                            <span>API</span>
+                        </a>
+                    </li>
+                </ul>
+                <div class="pt-3 flex-1 border border-zinc-200 rounded-lg p-4">
+                    <div :class="{ '!block': activeTab === 0 }" x-show.transition.in.opacity.duration.600="activeTab === 0" class="hidden">Profile content</div>
+                    <div :class="{ '!block': activeTab === 1 }" x-show.transition.in.opacity.duration.600="activeTab === 1" class="hidden">Preferences content</div>
+                    <div :class="{ '!block': activeTab === 2 }" x-show.transition.in.opacity.duration.600="activeTab === 2" class="hidden">Notifications content</div>
+                    <div :class="{ '!block': activeTab === 3 }" x-show.transition.in.opacity.duration.600="activeTab === 3" class="hidden">Applications content</div>
+                    <div :class="{ '!block': activeTab === 4 }" x-show.transition.in.opacity.duration.600="activeTab === 4" class="hidden">API content</div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <section class="mt-16">
         <h3 class="text-xl font-semibold mb-3 text-zinc-900">Usage</h3>
