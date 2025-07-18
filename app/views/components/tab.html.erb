@@ -19,14 +19,16 @@
             <div class="px-6 py-16 overflow-x-auto">
                 <div class="m-auto max-w-full max-lg:min-w-fit lg:max-w-96 flex justify-center">
                     <div class="w-full flex justify-center gap-2">
-                        <div>
-                            <div x-data="{ activeTab: 0 }">
+                        <div x-data="{ activeTab: 0 }">
                                 <div class="overflow-hidden rounded-xl bg-zinc-100 p-2">
-                                    <ul class="flex items-center gap-2 text-sm font-medium">
+                                    <ul class="flex items-center gap-2 text-sm font-medium" role="tablist" aria-label="Tab navigation">
                                         <li>
                                             <a @click="activeTab = 0" 
                                                :class="{ 'bg-white shadow text-zinc-900': activeTab === 0 }" 
-                                               class="inline-flex cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 hover:bg-white border border-transparent text-zinc-600 hover:text-zinc-900 hover:shadow">
+                                               :aria-selected="activeTab === 0" 
+                                               class="inline-flex cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 border border-transparent text-zinc-600 hover:bg-white hover:text-zinc-900 hover:shadow" 
+                                               role="tab" 
+                                               tabindex="0">
                                                 <%= icon "user", variant: "filled" %>
                                                 <span>Profile</span>
                                             </a>
@@ -34,7 +36,10 @@
                                         <li>
                                             <a @click="activeTab = 1" 
                                                :class="{ 'bg-white shadow text-zinc-900': activeTab === 1 }" 
-                                               class="inline-flex cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 hover:bg-white border border-transparent text-zinc-600 hover:text-zinc-900 hover:shadow">
+                                               :aria-selected="activeTab === 1" 
+                                               class="inline-flex cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 border border-transparent text-zinc-600 hover:bg-white hover:text-zinc-900 hover:shadow" 
+                                               role="tab" 
+                                               tabindex="-1">
                                                 <%= icon "adjustments", variant: "filled" %>
                                                 <span>Preferences</span>
                                             </a>
@@ -42,7 +47,10 @@
                                         <li>
                                             <a @click="activeTab = 2" 
                                                :class="{ 'bg-white shadow text-zinc-900': activeTab === 2 }" 
-                                               class="inline-flex cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 hover:bg-white border border-transparent text-zinc-600 hover:text-zinc-900 hover:shadow">
+                                               :aria-selected="activeTab === 2" 
+                                               class="inline-flex cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 border border-transparent text-zinc-600 hover:bg-white hover:text-zinc-900 hover:shadow" 
+                                               role="tab" 
+                                               tabindex="-1">
                                                 <%= icon "bell", variant: "filled" %>
                                                 <span>Notifications</span>
                                                 <span class="rounded-full bg-zinc-200 px-2 py-0.5 text-xs font-semibold text-zinc-500">8</span>
@@ -51,7 +59,10 @@
                                         <li>
                                             <a @click="activeTab = 3" 
                                                :class="{ 'bg-white shadow text-zinc-900': activeTab === 3 }" 
-                                               class="inline-flex cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 hover:bg-white border border-transparent text-zinc-600 hover:text-zinc-900 hover:shadow">
+                                               :aria-selected="activeTab === 3" 
+                                               class="inline-flex cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 border border-transparent text-zinc-600 hover:bg-white hover:text-zinc-900 hover:shadow" 
+                                               role="tab" 
+                                               tabindex="-1">
                                                 <%= icon "apps", variant: "filled" %>
                                                 <span>Applications</span>
                                             </a>
@@ -59,7 +70,10 @@
                                         <li>
                                             <a @click="activeTab = 4" 
                                                :class="{ 'bg-white shadow text-zinc-900': activeTab === 4 }" 
-                                               class="inline-flex cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 hover:bg-white border border-transparent text-zinc-600 hover:text-zinc-900 hover:shadow">
+                                               :aria-selected="activeTab === 4" 
+                                               class="inline-flex cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 border border-transparent text-zinc-600 hover:bg-white hover:text-zinc-900 hover:shadow" 
+                                               role="tab" 
+                                               tabindex="-1">
                                                 <%= icon "cube" %>
                                                 <span>API</span>
                                             </a>
@@ -69,31 +83,40 @@
                                 <div class="py-3">
                                     <div :class="{ '!block': activeTab === 0 }" 
                          x-show.transition.in.opacity.duration.600="activeTab === 0" 
-                         class="hidden">
+                         class="hidden" 
+                         role="tabpanel" 
+                         aria-labelledby="tab-content">
                         Profile tab content
                     </div>
                                     <div :class="{ '!block': activeTab === 1 }" 
                          x-show.transition.in.opacity.duration.600="activeTab === 1" 
-                         class="hidden">
+                         class="hidden" 
+                         role="tabpanel" 
+                         aria-labelledby="tab-content">
                         Preferences tab content
                     </div>
                                     <div :class="{ '!block': activeTab === 2 }" 
                          x-show.transition.in.opacity.duration.600="activeTab === 2" 
-                         class="hidden">
+                         class="hidden" 
+                         role="tabpanel" 
+                         aria-labelledby="tab-content">
                         Notifications tab content
                     </div>
                                     <div :class="{ '!block': activeTab === 3 }" 
                          x-show.transition.in.opacity.duration.600="activeTab === 3" 
-                         class="hidden">
+                         class="hidden" 
+                         role="tabpanel" 
+                         aria-labelledby="tab-content">
                         Applications tab content
                     </div>
                                     <div :class="{ '!block': activeTab === 4 }" 
                          x-show.transition.in.opacity.duration.600="activeTab === 4" 
-                         class="hidden">
+                         class="hidden" 
+                         role="tabpanel" 
+                         aria-labelledby="tab-content">
                         API tab content
                     </div>
                                 </div>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -153,11 +176,14 @@
         <div class="w-full mx-auto max-w-lg">
             <div x-data="{ activeTab: 0 }" class="flex gap-6">
                 <div class="overflow-hidden rounded-xl bg-zinc-100 p-2">
-                    <ul class="flex flex-col gap-1 w-56 text-sm font-medium">
+                    <ul class="flex flex-col gap-1 w-56 text-sm font-medium" role="tablist" aria-label="Tab navigation" @keydown.arrow-up="activeTab = activeTab > 0 ? activeTab - 1 : 4" @keydown.arrow-down="activeTab = activeTab < 4 ? activeTab + 1 : 0" @keydown.home="activeTab = 0" @keydown.end="activeTab = 4">
                         <li>
                             <a @click="activeTab = 0" 
                                :class="{ 'bg-white shadow text-zinc-900': activeTab === 0 }" 
-                               class="inline-flex w-full cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 border border-transparent text-zinc-600 hover:bg-white hover:text-zinc-900 hover:shadow">
+                               class="inline-flex w-full cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 border border-transparent text-zinc-600 hover:bg-white hover:text-zinc-900 hover:shadow" 
+                               role="tab" 
+                               :aria-selected="activeTab === 0" 
+                               tabindex="0">
                                 <%= icon "user", variant: "filled" %>
                                 <span>Profile</span>
                             </a>
@@ -165,7 +191,10 @@
                         <li>
                             <a @click="activeTab = 1" 
                                :class="{ 'bg-white shadow text-zinc-900': activeTab === 1 }" 
-                               class="inline-flex w-full cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 border border-transparent text-zinc-600 hover:bg-white hover:text-zinc-900 hover:shadow">
+                               class="inline-flex w-full cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 border border-transparent text-zinc-600 hover:bg-white hover:text-zinc-900 hover:shadow" 
+                               role="tab" 
+                               :aria-selected="activeTab === 0" 
+                               tabindex="0">
                                 <%= icon "adjustments", variant: "filled" %>
                                 <span>Preferences</span>
                             </a>
@@ -173,7 +202,10 @@
                         <li>
                             <a @click="activeTab = 2" 
                                :class="{ 'bg-white shadow text-zinc-900': activeTab === 2 }" 
-                               class="inline-flex w-full cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 border border-transparent text-zinc-600 hover:bg-white hover:text-zinc-900 hover:shadow">
+                               class="inline-flex w-full cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 border border-transparent text-zinc-600 hover:bg-white hover:text-zinc-900 hover:shadow" 
+                               role="tab" 
+                               :aria-selected="activeTab === 0" 
+                               tabindex="0">
                                 <%= icon "bell", variant: "filled" %>
                                 <span>Notifications</span>
                                 <span class="rounded-full bg-zinc-200 px-2 py-0.5 text-xs font-semibold text-zinc-500">8</span>
@@ -182,7 +214,10 @@
                         <li>
                             <a @click="activeTab = 3" 
                                :class="{ 'bg-white shadow text-zinc-900': activeTab === 3 }" 
-                               class="inline-flex w-full cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 border border-transparent text-zinc-600 hover:bg-white hover:text-zinc-900 hover:shadow">
+                               class="inline-flex w-full cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 border border-transparent text-zinc-600 hover:bg-white hover:text-zinc-900 hover:shadow" 
+                               role="tab" 
+                               :aria-selected="activeTab === 0" 
+                               tabindex="0">
                                 <%= icon "apps", variant: "filled" %>
                                 <span>Applications</span>
                             </a>
@@ -190,7 +225,10 @@
                         <li>
                             <a @click="activeTab = 4" 
                                :class="{ 'bg-white shadow text-zinc-900': activeTab === 4 }" 
-                               class="inline-flex w-full cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 border border-transparent text-zinc-600 hover:bg-white hover:text-zinc-900 hover:shadow">
+                               class="inline-flex w-full cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 border border-transparent text-zinc-600 hover:bg-white hover:text-zinc-900 hover:shadow" 
+                               role="tab" 
+                               :aria-selected="activeTab === 0" 
+                               tabindex="0">
                                 <%= icon "cube" %>
                                 <span>API</span>
                             </a>
@@ -200,27 +238,37 @@
                 <div class="pt-3 flex-1 border border-zinc-200 rounded-lg p-4">
                     <div :class="{ '!block': activeTab === 0 }" 
                          x-show.transition.in.opacity.duration.600="activeTab === 0" 
-                         class="hidden">
+                         class="hidden" 
+                         role="tabpanel" 
+                         aria-labelledby="tab-content">
                         Profile content
                     </div>
                     <div :class="{ '!block': activeTab === 1 }" 
                          x-show.transition.in.opacity.duration.600="activeTab === 1" 
-                         class="hidden">
+                         class="hidden" 
+                         role="tabpanel" 
+                         aria-labelledby="tab-content">
                         Preferences content
                     </div>
                     <div :class="{ '!block': activeTab === 2 }" 
                          x-show.transition.in.opacity.duration.600="activeTab === 2" 
-                         class="hidden">
+                         class="hidden" 
+                         role="tabpanel" 
+                         aria-labelledby="tab-content">
                         Notifications content
                     </div>
                     <div :class="{ '!block': activeTab === 3 }" 
                          x-show.transition.in.opacity.duration.600="activeTab === 3" 
-                         class="hidden">
+                         class="hidden" 
+                         role="tabpanel" 
+                         aria-labelledby="tab-content">
                         Applications content
                     </div>
                     <div :class="{ '!block': activeTab === 4 }" 
                          x-show.transition.in.opacity.duration.600="activeTab === 4" 
-                         class="hidden">
+                         class="hidden" 
+                         role="tabpanel" 
+                         aria-labelledby="tab-content">
                         API content
                     </div>
                 </div>
@@ -234,16 +282,18 @@
     <section class="mt-16 pb-16">
         <div class="flex flex-wrap items-center justify-center gap-3 mb-8">
             <div class="overflow-x-auto w-full ">
-                <div class="m-auto max-w-full max-lg:min-w-fit lg:max-w-96  flex justify-center">
+                <div class="m-auto max-w-full max-lg:min-w-fit lg:max-w-96 flex justify-center">
                     <div class="w-full flex justify-center gap-2">
-                        <div>
-                            <div x-data="{ activeTab: 0 }">
+                        <div x-data="{ activeTab: 0 }">
                                 <div class="border-b border-b-zinc-200">
-                                    <ul class="-mb-px flex items-center gap-4 text-sm font-medium text-zinc-500">
+                                    <ul class="-mb-px flex items-center gap-4 text-sm font-medium text-zinc-500" role="tablist" aria-label="Tab navigation" @keydown.arrow-left="activeTab = activeTab > 0 ? activeTab - 1 : 4" @keydown.arrow-right="activeTab = activeTab < 4 ? activeTab + 1 : 0" @keydown.home="activeTab = 0" @keydown.end="activeTab = 4">
                                         <li>
                                             <a @click="activeTab = 0" 
                                                :class="{ 'relative text-zinc-900 after:absolute after:left-0 after:bottom-0 after:h-0.5 after:w-full after:bg-zinc-900': activeTab === 0 }" 
-                                               class="inline-flex cursor-pointer items-center gap-2 px-1.5 py-3 hover:text-zinc-900">
+                                               class="inline-flex cursor-pointer items-center gap-2 px-1.5 py-3 hover:text-zinc-900" 
+                                               role="tab" 
+                                               :aria-selected="activeTab === 0" 
+                                               tabindex="0">
                                                 <%= icon "user", variant: "filled" %>
                                                 <span>Profile</span>
                                             </a>
@@ -251,7 +301,10 @@
                                         <li>
                                             <a @click="activeTab = 1" 
                                                :class="{ 'relative text-zinc-900 after:absolute after:left-0 after:bottom-0 after:h-0.5 after:w-full after:bg-zinc-900': activeTab === 1 }" 
-                                               class="inline-flex cursor-pointer items-center gap-2 px-1.5 py-3 hover:text-zinc-900">
+                                               class="inline-flex cursor-pointer items-center gap-2 px-1.5 py-3 hover:text-zinc-900" 
+                                               role="tab" 
+                                               :aria-selected="activeTab === 0" 
+                                               tabindex="0">
                                                 <%= icon "adjustments", variant: "filled" %>
                                                 <span>Preferences</span>
                                             </a>
@@ -259,7 +312,10 @@
                                         <li>
                                             <a @click="activeTab = 2" 
                                                :class="{ 'relative text-zinc-900 after:absolute after:left-0 after:bottom-0 after:h-0.5 after:w-full after:bg-zinc-900': activeTab === 2 }" 
-                                               class="inline-flex cursor-pointer items-center gap-2 px-1.5 py-3 hover:text-zinc-900">
+                                               class="inline-flex cursor-pointer items-center gap-2 px-1.5 py-3 hover:text-zinc-900" 
+                                               role="tab" 
+                                               :aria-selected="activeTab === 0" 
+                                               tabindex="0">
                                                 <%= icon "bell", variant: "filled" %>
                                                 <span>Notifications</span>
                                                 <span class="rounded-full bg-zinc-200 px-2 py-0.5 text-xs font-semibold text-zinc-500">8</span>
@@ -268,7 +324,10 @@
                                         <li>
                                             <a @click="activeTab = 3" 
                                                :class="{ 'relative text-zinc-900 after:absolute after:left-0 after:bottom-0 after:h-0.5 after:w-full after:bg-zinc-900': activeTab === 3 }" 
-                                               class="inline-flex cursor-pointer items-center gap-2 px-1.5 py-3 hover:text-zinc-900">
+                                               class="inline-flex cursor-pointer items-center gap-2 px-1.5 py-3 hover:text-zinc-900" 
+                                               role="tab" 
+                                               :aria-selected="activeTab === 0" 
+                                               tabindex="0">
                                                 <%= icon "apps", variant: "filled" %>
                                                 <span>Applications</span>
                                             </a>
@@ -276,7 +335,10 @@
                                         <li>
                                             <a @click="activeTab = 4" 
                                                :class="{ 'relative text-zinc-900 after:absolute after:left-0 after:bottom-0 after:h-0.5 after:w-full after:bg-zinc-900': activeTab === 4 }" 
-                                               class="inline-flex cursor-pointer items-center gap-2 px-1.5 py-3 hover:text-zinc-900">
+                                               class="inline-flex cursor-pointer items-center gap-2 px-1.5 py-3 hover:text-zinc-900" 
+                                               role="tab" 
+                                               :aria-selected="activeTab === 0" 
+                                               tabindex="0">
                                                 <%= icon "cube" %>
                                                 <span>API</span>
                                             </a>
@@ -286,31 +348,40 @@
                                 <div class="py-3">
                                     <div :class="{ '!block': activeTab === 0 }" 
                          x-show.transition.in.opacity.duration.600="activeTab === 0" 
-                         class="hidden">
+                         class="hidden" 
+                         role="tabpanel" 
+                         aria-labelledby="tab-content">
                         Profile tab content
                     </div>
                                     <div :class="{ '!block': activeTab === 1 }" 
                          x-show.transition.in.opacity.duration.600="activeTab === 1" 
-                         class="hidden">
+                         class="hidden" 
+                         role="tabpanel" 
+                         aria-labelledby="tab-content">
                         Preferences tab content
                     </div>
                                     <div :class="{ '!block': activeTab === 2 }" 
                          x-show.transition.in.opacity.duration.600="activeTab === 2" 
-                         class="hidden">
+                         class="hidden" 
+                         role="tabpanel" 
+                         aria-labelledby="tab-content">
                         Notifications tab content
                     </div>
                                     <div :class="{ '!block': activeTab === 3 }" 
                          x-show.transition.in.opacity.duration.600="activeTab === 3" 
-                         class="hidden">
+                         class="hidden" 
+                         role="tabpanel" 
+                         aria-labelledby="tab-content">
                         Applications tab content
                     </div>
                                     <div :class="{ '!block': activeTab === 4 }" 
                          x-show.transition.in.opacity.duration.600="activeTab === 4" 
-                         class="hidden">
+                         class="hidden" 
+                         role="tabpanel" 
+                         aria-labelledby="tab-content">
                         API tab content
                     </div>
                                 </div>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -324,11 +395,14 @@
             <div x-data="{ activeTab: 0 }" class="flex gap-6">
                 <div class="flex flex-col w-56 gap-3 mb-7">
                     <h3 class="text-zinc-500 md:text-sm">Interface</h3>
-                    <ul class="text-zinc-500 flex flex-col gap-3 md:gap-2 border-l-2 border-zinc-200" role="list">
+                    <ul class="text-zinc-500 flex flex-col gap-3 md:gap-2 border-l-2 border-zinc-200" role="tablist" aria-label="Tab navigation" @keydown.arrow-up="activeTab = activeTab > 0 ? activeTab - 1 : 4" @keydown.arrow-down="activeTab = activeTab < 4 ? activeTab + 1 : 0" @keydown.home="activeTab = 0" @keydown.end="activeTab = 4">
                         <li class="-ml-[2px]">
                             <a @click="activeTab = 0" 
                                :class="{ 'text-zinc-900 border-zinc-800': activeTab === 0, 'text-zinc-500': activeTab !== 0 }" 
-                               class="inline-flex gap-2 w-full border-l-2 border-transparent pl-5 font-medium hover:text-zinc-900 pr-4 md:text-sm text-2xl cursor-pointer">
+                               class="inline-flex cursor-pointer items-center gap-2 w-full border-l-2 border-transparent pl-5 pr-4 font-medium text-2xl md:text-sm hover:text-zinc-900" 
+                               role="tab" 
+                               :aria-selected="activeTab === 0" 
+                               tabindex="0">
                                 <%= icon "user", variant: "filled" %>
                                 <span>Profile</span>
                             </a>
@@ -336,7 +410,10 @@
                         <li class="-ml-[2px]">
                             <a @click="activeTab = 1" 
                                :class="{ 'text-zinc-900 border-zinc-800': activeTab === 1, 'text-zinc-500': activeTab !== 1 }" 
-                               class="inline-flex gap-2 w-full border-l-2 border-transparent pl-5 font-medium hover:text-zinc-900 pr-4 md:text-sm text-2xl cursor-pointer">
+                               class="inline-flex cursor-pointer items-center gap-2 w-full border-l-2 border-transparent pl-5 pr-4 font-medium text-2xl md:text-sm hover:text-zinc-900" 
+                               role="tab" 
+                               :aria-selected="activeTab === 0" 
+                               tabindex="0">
                                 <%= icon "adjustments", variant: "filled" %>
                                 <span>Preferences</span>
                             </a>
@@ -344,7 +421,10 @@
                         <li class="-ml-[2px]">
                             <a @click="activeTab = 2" 
                                :class="{ 'text-zinc-900 border-zinc-800': activeTab === 2, 'text-zinc-500': activeTab !== 2 }" 
-                               class="inline-flex gap-2 w-full border-l-2 border-transparent pl-5 font-medium hover:text-zinc-900 pr-4 md:text-sm text-2xl cursor-pointer">
+                               class="inline-flex cursor-pointer items-center gap-2 w-full border-l-2 border-transparent pl-5 pr-4 font-medium text-2xl md:text-sm hover:text-zinc-900" 
+                               role="tab" 
+                               :aria-selected="activeTab === 0" 
+                               tabindex="0">
                                 <%= icon "bell", variant: "filled" %>
                                 <span>Notifications</span>
                                 <span class="rounded-full bg-zinc-200 px-2 py-0.5 text-xs font-semibold text-zinc-500">8</span>
@@ -353,7 +433,10 @@
                         <li class="-ml-[2px]">
                             <a @click="activeTab = 3" 
                                :class="{ 'text-zinc-900 border-zinc-800': activeTab === 3, 'text-zinc-500': activeTab !== 3 }" 
-                               class="inline-flex gap-2 w-full border-l-2 border-transparent pl-5 font-medium hover:text-zinc-900 pr-4 md:text-sm text-2xl cursor-pointer">
+                               class="inline-flex cursor-pointer items-center gap-2 w-full border-l-2 border-transparent pl-5 pr-4 font-medium text-2xl md:text-sm hover:text-zinc-900" 
+                               role="tab" 
+                               :aria-selected="activeTab === 0" 
+                               tabindex="0">
                                 <%= icon "apps", variant: "filled" %>
                                 <span>Applications</span>
                             </a>
@@ -361,7 +444,10 @@
                         <li class="-ml-[2px]">
                             <a @click="activeTab = 4" 
                                :class="{ 'text-zinc-900 border-zinc-800': activeTab === 4, 'text-zinc-500': activeTab !== 4 }" 
-                               class="inline-flex gap-2 w-full border-l-2 border-transparent pl-5 font-medium hover:text-zinc-900 pr-4 md:text-sm text-2xl cursor-pointer">
+                               class="inline-flex cursor-pointer items-center gap-2 w-full border-l-2 border-transparent pl-5 pr-4 font-medium text-2xl md:text-sm hover:text-zinc-900" 
+                               role="tab" 
+                               :aria-selected="activeTab === 0" 
+                               tabindex="0">
                                 <%= icon "cube" %>
                                 <span>API</span>
                             </a>
@@ -371,27 +457,37 @@
                 <div class="pt-3 flex-1 border border-zinc-200 rounded-lg p-4">
                     <div :class="{ '!block': activeTab === 0 }" 
                          x-show.transition.in.opacity.duration.600="activeTab === 0" 
-                         class="hidden">
+                         class="hidden" 
+                         role="tabpanel" 
+                         aria-labelledby="tab-content">
                         Profile content
                     </div>
                     <div :class="{ '!block': activeTab === 1 }" 
                          x-show.transition.in.opacity.duration.600="activeTab === 1" 
-                         class="hidden">
+                         class="hidden" 
+                         role="tabpanel" 
+                         aria-labelledby="tab-content">
                         Preferences content
                     </div>
                     <div :class="{ '!block': activeTab === 2 }" 
                          x-show.transition.in.opacity.duration.600="activeTab === 2" 
-                         class="hidden">
+                         class="hidden" 
+                         role="tabpanel" 
+                         aria-labelledby="tab-content">
                         Notifications content
                     </div>
                     <div :class="{ '!block': activeTab === 3 }" 
                          x-show.transition.in.opacity.duration.600="activeTab === 3" 
-                         class="hidden">
+                         class="hidden" 
+                         role="tabpanel" 
+                         aria-labelledby="tab-content">
                         Applications content
                     </div>
                     <div :class="{ '!block': activeTab === 4 }" 
                          x-show.transition.in.opacity.duration.600="activeTab === 4" 
-                         class="hidden">
+                         class="hidden" 
+                         role="tabpanel" 
+                         aria-labelledby="tab-content">
                         API content
                     </div>
                 </div>
@@ -405,11 +501,14 @@
     <div class="mt-16 pb-16">
         <div class="flex flex-wrap items-center justify-center gap-3 mb-8">
             <div x-data="{ activeTab: 0 }">
-                <ul class="flex items-center gap-2 text-sm font-medium">
+                <ul class="flex items-center gap-2 text-sm font-medium" role="tablist" aria-label="Tab navigation" @keydown.arrow-left="activeTab = activeTab > 0 ? activeTab - 1 : 4" @keydown.arrow-right="activeTab = activeTab < 4 ? activeTab + 1 : 0" @keydown.home="activeTab = 0" @keydown.end="activeTab = 4">
                     <li>
                         <a @click="activeTab = 0" 
                            :class="{ 'bg-zinc-100 border-zinc-100 text-zinc-900 hover:bg-zinc-100': activeTab === 0 }" 
-                           class="inline-flex cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 border border-transparent text-zinc-500 hover:text-zinc-900">
+                           class="inline-flex cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 border border-transparent text-zinc-500 hover:text-zinc-900" 
+                           role="tab" 
+                           :aria-selected="activeTab === 0" 
+                           tabindex="0">
                             <%= icon "user", variant: "filled" %>
                             <span>Profile</span>
                         </a>
@@ -417,7 +516,10 @@
                     <li>
                         <a @click="activeTab = 1" 
                            :class="{ 'bg-zinc-100 border-zinc-100 text-zinc-900 hover:bg-zinc-100': activeTab === 1 }" 
-                           class="inline-flex cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 border border-transparent text-zinc-500 hover:text-zinc-900">
+                           class="inline-flex cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 border border-transparent text-zinc-500 hover:text-zinc-900" 
+                           role="tab" 
+                           :aria-selected="activeTab === 0" 
+                           tabindex="0">
                             <%= icon "adjustments", variant: "filled" %>
                             <span>Preferences</span>
                         </a>
@@ -425,7 +527,10 @@
                     <li>
                         <a @click="activeTab = 2" 
                            :class="{ 'bg-zinc-100 border-zinc-100 text-zinc-900 hover:bg-zinc-100': activeTab === 2 }" 
-                           class="inline-flex cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 border border-transparent text-zinc-500 hover:text-zinc-900">
+                           class="inline-flex cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 border border-transparent text-zinc-500 hover:text-zinc-900" 
+                           role="tab" 
+                           :aria-selected="activeTab === 0" 
+                           tabindex="0">
                             <%= icon "bell", variant: "filled" %>
                             <span>Notifications</span>
                             <span class="rounded-full bg-zinc-200 px-2 py-0.5 text-xs font-semibold text-zinc-500">8</span>
@@ -434,7 +539,10 @@
                     <li>
                         <a @click="activeTab = 3" 
                            :class="{ 'bg-zinc-100 border-zinc-100 text-zinc-900 hover:bg-zinc-100': activeTab === 3 }" 
-                           class="inline-flex cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 border border-transparent text-zinc-500 hover:text-zinc-900">
+                           class="inline-flex cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 border border-transparent text-zinc-500 hover:text-zinc-900" 
+                           role="tab" 
+                           :aria-selected="activeTab === 0" 
+                           tabindex="0">
                             <%= icon "apps", variant: "filled" %>
                             <span>Applications</span>
                         </a>
@@ -442,7 +550,10 @@
                     <li>
                         <a @click="activeTab = 4" 
                            :class="{ 'bg-zinc-100 text-zinc-900 hover:bg-zinc-100': activeTab === 4 }" 
-                           class="inline-flex cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 border border-transparent text-zinc-500 hover:text-zinc-900">
+                           class="inline-flex cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 border border-transparent text-zinc-500 hover:text-zinc-900" 
+                           role="tab" 
+                           :aria-selected="activeTab === 0" 
+                           tabindex="0">
                             <%= icon "cube" %>
                             <span>API</span>
                         </a>
@@ -451,27 +562,37 @@
                 <div class="pt-4">
                     <div :class="{ '!block': activeTab === 0 }" 
                          x-show.transition.in.opacity.duration.600="activeTab === 0" 
-                         class="hidden">
+                         class="hidden" 
+                         role="tabpanel" 
+                         aria-labelledby="tab-content">
                         Profile content
                     </div>
                     <div :class="{ '!block': activeTab === 1 }" 
                          x-show.transition.in.opacity.duration.600="activeTab === 1" 
-                         class="hidden">
+                         class="hidden" 
+                         role="tabpanel" 
+                         aria-labelledby="tab-content">
                         Preferences content
                     </div>
                     <div :class="{ '!block': activeTab === 2 }" 
                          x-show.transition.in.opacity.duration.600="activeTab === 2" 
-                         class="hidden">
+                         class="hidden" 
+                         role="tabpanel" 
+                         aria-labelledby="tab-content">
                         Notifications content
                     </div>
                     <div :class="{ '!block': activeTab === 3 }" 
                          x-show.transition.in.opacity.duration.600="activeTab === 3" 
-                         class="hidden">
+                         class="hidden" 
+                         role="tabpanel" 
+                         aria-labelledby="tab-content">
                         Applications content
                     </div>
                     <div :class="{ '!block': activeTab === 4 }" 
                          x-show.transition.in.opacity.duration.600="activeTab === 4" 
-                         class="hidden">
+                         class="hidden" 
+                         role="tabpanel" 
+                         aria-labelledby="tab-content">
                         API content
                     </div>
                 </div>
@@ -483,11 +604,14 @@
     <div class="mt-16 pb-16">
         <div class="w-full mx-auto max-w-lg">
             <div x-data="{ activeTab: 0 }" class="flex gap-6">
-                <ul class="flex flex-col gap-1 w-56 text-sm font-medium">
+                <ul class="flex flex-col gap-1 w-56 text-sm font-medium" role="tablist" aria-label="Tab navigation" @keydown.arrow-up="activeTab = activeTab > 0 ? activeTab - 1 : 4" @keydown.arrow-down="activeTab = activeTab < 4 ? activeTab + 1 : 0" @keydown.home="activeTab = 0" @keydown.end="activeTab = 4">
                     <li>
                         <a @click="activeTab = 0" 
                            :class="{ 'bg-zinc-100 border-zinc-100 text-zinc-900 hover:bg-zinc-100': activeTab === 0 }" 
-                           class="inline-flex w-full cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 border border-transparent text-zinc-500 hover:text-zinc-900">
+                           class="inline-flex w-full cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 border border-transparent text-zinc-500 hover:text-zinc-900" 
+                           role="tab" 
+                           :aria-selected="activeTab === 0" 
+                           tabindex="0">
                             <%= icon "user", variant: "filled" %>
                             <span>Profile</span>
                         </a>
@@ -495,7 +619,10 @@
                     <li>
                         <a @click="activeTab = 1" 
                            :class="{ 'bg-zinc-100 border-zinc-100 text-zinc-900 hover:bg-zinc-100': activeTab === 1 }" 
-                           class="inline-flex w-full cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 border border-transparent text-zinc-500 hover:text-zinc-900">
+                           class="inline-flex w-full cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 border border-transparent text-zinc-500 hover:text-zinc-900" 
+                           role="tab" 
+                           :aria-selected="activeTab === 0" 
+                           tabindex="0">
                             <%= icon "adjustments", variant: "filled" %>
                             <span>Preferences</span>
                         </a>
@@ -503,7 +630,10 @@
                     <li>
                         <a @click="activeTab = 2" 
                            :class="{ 'bg-zinc-100 border-zinc-100 text-zinc-900 hover:bg-zinc-100': activeTab === 2 }" 
-                           class="inline-flex w-full cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 border border-transparent text-zinc-500 hover:text-zinc-900">
+                           class="inline-flex w-full cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 border border-transparent text-zinc-500 hover:text-zinc-900" 
+                           role="tab" 
+                           :aria-selected="activeTab === 0" 
+                           tabindex="0">
                             <%= icon "bell", variant: "filled" %>
                             <span>Notifications</span>
                             <span class="rounded-full bg-zinc-200 px-2 py-0.5 text-xs font-semibold text-zinc-500">8</span>
@@ -512,7 +642,10 @@
                     <li>
                         <a @click="activeTab = 3" 
                            :class="{ 'bg-zinc-100 border-zinc-100 text-zinc-900 hover:bg-zinc-100': activeTab === 3 }" 
-                           class="inline-flex w-full cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 border border-transparent text-zinc-500 hover:text-zinc-900">
+                           class="inline-flex w-full cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 border border-transparent text-zinc-500 hover:text-zinc-900" 
+                           role="tab" 
+                           :aria-selected="activeTab === 0" 
+                           tabindex="0">
                             <%= icon "apps", variant: "filled" %>
                             <span>Applications</span>
                         </a>
@@ -520,7 +653,10 @@
                     <li>
                         <a @click="activeTab = 4" 
                            :class="{ 'bg-zinc-100 text-zinc-900 hover:bg-zinc-100': activeTab === 4 }" 
-                           class="inline-flex w-full cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 border border-transparent text-zinc-500 hover:text-zinc-900">
+                           class="inline-flex w-full cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 border border-transparent text-zinc-500 hover:text-zinc-900" 
+                           role="tab" 
+                           :aria-selected="activeTab === 0" 
+                           tabindex="0">
                             <%= icon "cube" %>
                             <span>API</span>
                         </a>
@@ -529,27 +665,37 @@
                 <div class="pt-3 flex-1 border border-zinc-200 rounded-lg p-4">
                     <div :class="{ '!block': activeTab === 0 }" 
                          x-show.transition.in.opacity.duration.600="activeTab === 0" 
-                         class="hidden">
+                         class="hidden" 
+                         role="tabpanel" 
+                         aria-labelledby="tab-content">
                         Profile content
                     </div>
                     <div :class="{ '!block': activeTab === 1 }" 
                          x-show.transition.in.opacity.duration.600="activeTab === 1" 
-                         class="hidden">
+                         class="hidden" 
+                         role="tabpanel" 
+                         aria-labelledby="tab-content">
                         Preferences content
                     </div>
                     <div :class="{ '!block': activeTab === 2 }" 
                          x-show.transition.in.opacity.duration.600="activeTab === 2" 
-                         class="hidden">
+                         class="hidden" 
+                         role="tabpanel" 
+                         aria-labelledby="tab-content">
                         Notifications content
                     </div>
                     <div :class="{ '!block': activeTab === 3 }" 
                          x-show.transition.in.opacity.duration.600="activeTab === 3" 
-                         class="hidden">
+                         class="hidden" 
+                         role="tabpanel" 
+                         aria-labelledby="tab-content">
                         Applications content
                     </div>
                     <div :class="{ '!block': activeTab === 4 }" 
                          x-show.transition.in.opacity.duration.600="activeTab === 4" 
-                         class="hidden">
+                         class="hidden" 
+                         role="tabpanel" 
+                         aria-labelledby="tab-content">
                         API content
                     </div>
                 </div>
