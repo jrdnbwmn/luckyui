@@ -17,110 +17,84 @@
         <div class="rounded-2xl border border-zinc-200 bg-white">
             <!-- Preview -->
             <div class="px-6 py-16">
-                <div class="overflow-x-auto w-full flex justify-center">
-                    <div x-data="{ activeTab: 0 }">
-                        <div class="overflow-hidden rounded-xl bg-zinc-100 p-2">
-                                    <ul class="flex items-center gap-2 text-sm font-medium" role="tablist" aria-label="Tab navigation" @keydown.arrow-left="activeTab = activeTab > 0 ? activeTab - 1 : 4" @keydown.arrow-right="activeTab = activeTab < 4 ? activeTab + 1 : 0" @keydown.home="activeTab = 0" @keydown.end="activeTab = 4">
-                                        <li>
-                                            <a @click="activeTab = 0" 
-                                               :class="{ 'bg-white shadow text-zinc-900': activeTab === 0 }" 
-                                               :aria-selected="activeTab === 0" 
-                                               class="inline-flex cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 border border-transparent text-zinc-600 hover:bg-white hover:text-zinc-900 hover:shadow" 
-                                               role="tab" 
-                                               tabindex="0">
-                                                <%= icon "user", variant: "filled" %>
-                                                <span>Profile</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a @click="activeTab = 1" 
-                                               :class="{ 'bg-white shadow text-zinc-900': activeTab === 1 }" 
-                                               :aria-selected="activeTab === 1" 
-                                               class="inline-flex cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 border border-transparent text-zinc-600 hover:bg-white hover:text-zinc-900 hover:shadow" 
-                                               role="tab" 
-                                               tabindex="0">
-                                                <%= icon "adjustments", variant: "filled" %>
-                                                <span>Preferences</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a @click="activeTab = 2" 
-                                               :class="{ 'bg-white shadow text-zinc-900': activeTab === 2 }" 
-                                               :aria-selected="activeTab === 2" 
-                                               class="inline-flex cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 border border-transparent text-zinc-600 hover:bg-white hover:text-zinc-900 hover:shadow" 
-                                               role="tab" 
-                                               tabindex="0">
-                                                <%= icon "bell", variant: "filled" %>
-                                                <span>Notifications</span>
-                                                <span class="rounded-full bg-zinc-200 px-2 py-0.5 text-xs font-semibold text-zinc-500">8</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a @click="activeTab = 3" 
-                                               :class="{ 'bg-white shadow text-zinc-900': activeTab === 3 }" 
-                                               :aria-selected="activeTab === 3" 
-                                               class="inline-flex cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 border border-transparent text-zinc-600 hover:bg-white hover:text-zinc-900 hover:shadow" 
-                                               role="tab" 
-                                               tabindex="0">
-                                                <%= icon "apps", variant: "filled" %>
-                                                <span>Applications</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a @click="activeTab = 4" 
-                                               :class="{ 'bg-white shadow text-zinc-900': activeTab === 4 }" 
-                                               :aria-selected="activeTab === 4" 
-                                               class="inline-flex cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 border border-transparent text-zinc-600 hover:bg-white hover:text-zinc-900 hover:shadow" 
-                                               role="tab" 
-                                               tabindex="0">
-                                                <%= icon "cube" %>
-                                                <span>API</span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="py-3">
-                                    <div :class="{ '!block': activeTab === 0 }" 
-                         x-show.transition.in.opacity.duration.600="activeTab === 0" 
-                         class="hidden" 
-                         role="tabpanel" 
-                         aria-labelledby="tab-content">
-                        Profile tab content
-                    </div>
-                                    <div :class="{ '!block': activeTab === 1 }" 
-                         x-show.transition.in.opacity.duration.600="activeTab === 1" 
-                         class="hidden" 
-                         role="tabpanel" 
-                         aria-labelledby="tab-content">
-                        Preferences tab content
-                    </div>
-                                    <div :class="{ '!block': activeTab === 2 }" 
-                         x-show.transition.in.opacity.duration.600="activeTab === 2" 
-                         class="hidden" 
-                         role="tabpanel" 
-                         aria-labelledby="tab-content">
-                        Notifications tab content
-                    </div>
-                                    <div :class="{ '!block': activeTab === 3 }" 
-                         x-show.transition.in.opacity.duration.600="activeTab === 3" 
-                         class="hidden" 
-                         role="tabpanel" 
-                         aria-labelledby="tab-content">
-                        Applications tab content
-                    </div>
-                                    <div :class="{ '!block': activeTab === 4 }" 
-                         x-show.transition.in.opacity.duration.600="activeTab === 4" 
-                         class="hidden" 
-                         role="tabpanel" 
-                         aria-labelledby="tab-content">
-                        API tab content
-                    </div>
+                <div class="w-full flex justify-center">
+                    <div x-data="{ activeTab: 0, moreOpen: false }">
+                        <div class="rounded-xl bg-zinc-100 p-1.5">
+                            <ul class="flex items-center gap-1.5 text-sm font-medium" role="tablist" aria-label="Tab navigation" @keydown.arrow-left="activeTab = activeTab > 0 ? activeTab - 1 : 6" @keydown.arrow-right="activeTab = activeTab < 6 ? activeTab + 1 : 0" @keydown.home="activeTab = 0" @keydown.end="activeTab = 6">
+                                <li>
+                                    <a @click="activeTab = 0" :class="{ 'bg-white shadow text-zinc-900': activeTab === 0 }" :aria-selected="activeTab === 0" class="inline-flex cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 border border-transparent text-zinc-600 hover:bg-white hover:text-zinc-900 hover:shadow" role="tab" tabindex="0">
+                                        <%= icon "user", variant: "filled" %>
+                                        <span>Profile</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a @click="activeTab = 1" :class="{ 'bg-white shadow text-zinc-900': activeTab === 1 }" :aria-selected="activeTab === 1" class="inline-flex cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 border border-transparent text-zinc-600 hover:bg-white hover:text-zinc-900 hover:shadow" role="tab" tabindex="0">
+                                        <%= icon "adjustments", variant: "filled" %>
+                                        <span>Preferences</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a @click="activeTab = 2" :class="{ 'bg-white shadow text-zinc-900': activeTab === 2 }" :aria-selected="activeTab === 2" class="inline-flex cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 border border-transparent text-zinc-600 hover:bg-white hover:text-zinc-900 hover:shadow" role="tab" tabindex="0">
+                                        <%= icon "bell", variant: "filled" %>
+                                        <span>Notifications</span>
+                                        <span class="rounded-full bg-zinc-200 px-2 py-0.5 text-xs font-semibold text-zinc-500">8</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a @click="activeTab = 3" :class="{ 'bg-white shadow text-zinc-900': activeTab === 3 }" :aria-selected="activeTab === 3" class="inline-flex cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 border border-transparent text-zinc-600 hover:bg-white hover:text-zinc-900 hover:shadow" role="tab" tabindex="0">
+                                        <%= icon "apps", variant: "filled" %>
+                                        <span>Apps</span>
+                                    </a>
+                                </li>
+                                <li class="relative">
+                                    <button @click="moreOpen = !moreOpen" :class="{ 'bg-white shadow text-zinc-900': activeTab === 4 || activeTab === 5 || activeTab === 6 }" class="inline-flex cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 border border-transparent text-zinc-600 hover:bg-white hover:text-zinc-900 hover:shadow" role="tab" tabindex="0">
+                                        <%= icon "settings", variant: "filled" %>
+                                        <span>Settings</span>
+                                        <%= icon "chevron-down", class: "w-4 h-4" %>
+                                    </button>
+                                    <!-- Dropdown -->
+                                    <div x-show="moreOpen" x-transition.origin.top.left @click.outside="moreOpen = false" class="absolute left-0 flex flex-col gap-1.5 min-w-48 rounded-lg shadow mt-2 z-10 origin-top-left bg-white p-1.5 outline-none border border-zinc-200 text-sm">
+                                        <a @click="activeTab = 4; moreOpen = false" :class="{ 'bg-zinc-100': activeTab === 4 }" class="px-2 py-1.5 w-full flex items-center rounded-md transition-colors text-left text-zinc-800 hover:bg-zinc-100 focus-visible:bg-zinc-100 cursor-pointer">
+                                            Roles
+                                        </a>
+                                        <a @click="activeTab = 5; moreOpen = false" :class="{ 'bg-zinc-100': activeTab === 5 }" class="px-2 py-1.5 w-full flex items-center rounded-md transition-colors text-left text-zinc-800 hover:bg-zinc-100 focus-visible:bg-zinc-100 cursor-pointer">
+                                            Integrations
+                                        </a>
+                                        <a @click="activeTab = 6; moreOpen = false" :class="{ 'bg-zinc-100': activeTab === 6 }" class="px-2 py-1.5 w-full flex items-center rounded-md transition-colors text-left text-zinc-800 hover:bg-zinc-100 focus-visible:bg-zinc-100 cursor-pointer">
+                                            Billing
+                                        </a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="py-3">
+                            <div :class="{ '!block': activeTab === 0 }" x-show.transition.in.opacity.duration.600="activeTab === 0" class="hidden" role="tabpanel" aria-labelledby="tab-content">
+                                Profile tab content
+                            </div>
+                            <div :class="{ '!block': activeTab === 1 }" x-show.transition.in.opacity.duration.600="activeTab === 1" class="hidden" role="tabpanel" aria-labelledby="tab-content">
+                                Preferences tab content
+                            </div>
+                            <div :class="{ '!block': activeTab === 2 }" x-show.transition.in.opacity.duration.600="activeTab === 2" class="hidden" role="tabpanel" aria-labelledby="tab-content">
+                                Notifications tab content
+                            </div>
+                            <div :class="{ '!block': activeTab === 3 }" x-show.transition.in.opacity.duration.600="activeTab === 3" class="hidden" role="tabpanel" aria-labelledby="tab-content">
+                                Apps tab content
+                            </div>
+                            <div :class="{ '!block': activeTab === 4 }" x-show.transition.in.opacity.duration.600="activeTab === 4" class="hidden" role="tabpanel" aria-labelledby="tab-content">
+                                Roles tab content
+                            </div>
+                            <div :class="{ '!block': activeTab === 5 }" x-show.transition.in.opacity.duration.600="activeTab === 5" class="hidden" role="tabpanel" aria-labelledby="tab-content">
+                                Integrations tab content
+                            </div>
+                            <div :class="{ '!block': activeTab === 6 }" x-show.transition.in.opacity.duration.600="activeTab === 6" class="hidden" role="tabpanel" aria-labelledby="tab-content">
+                                Billing tab content
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
             <!-- Code section -->
-            <div class="relative rounded-b-2xl overflow-hidden flex max-h-80 bg-zinc-50 border-t border-zinc-200">
+            <div class="relative rounded-b-2xl overflow-hidden flex max-h-80 bg-zinc-100 border-t border-zinc-200">
                 <div class="absolute top-0 right-0 pt-[11px] pr-[11px] z-1">
                     <!-- Needs a tooltip on hover and a confirmation when you click it -->
                     <button type="button" class="relative items-center font-medium justify-center gap-2 cursor-pointer whitespace-nowrap disabled:opacity-75 disabled:cursor-default disabled:pointer-events-none h-8 text-sm rounded-md w-8 inline-flex bg-white hover:bg-zinc-100 text-zinc-800 shadow-sm">
@@ -133,7 +107,7 @@
                 <div class="text-sm min-w-full max-h-full overflow-auto" style="scrollbar-width: thin;">
                     <div>
                         <!-- Insert code -->
-                        <pre><code class="language-html p-6 leading-[1.7] bg-zinc-50 text-zinc-700 text-sm font-mono">&lt;div data-controller=&quot;tabs&quot; data-tabs-active-index-value=&quot;0&quot; data-tabs-active-tab-class-value=&quot;bg-white shadow-md&quot; data-tabs-inactive-tab-class-value=&quot;&quot;&gt;
+                        <pre><code class="language-html p-6 leading-[1.7] bg-zinc-100 text-zinc-700 text-sm font-mono">&lt;div data-controller=&quot;tabs&quot; data-tabs-active-index-value=&quot;0&quot; data-tabs-active-tab-class-value=&quot;bg-white shadow-md&quot; data-tabs-inactive-tab-class-value=&quot;&quot;&gt;
     &lt;div class=&quot;overflow-hidden inline-block rounded-xl p-1.5 bg-zinc-100&quot;&gt;
         &lt;ul class=&quot;flex items-center gap-1.5 font-medium text-sm&quot; data-action=&quot;keydown-&gt;tabs#onKeydown&quot; role=&quot;tablist&quot;&gt;
             &lt;li&gt;
@@ -172,102 +146,76 @@
     <!-- Segmented Vertical -->
     <div class="mt-16 pb-16">
         <div class="w-full mx-auto max-w-lg">
-            <div x-data="{ activeTab: 0 }" class="flex gap-6">
-                <div class="overflow-hidden rounded-xl bg-zinc-100 p-2">
-                    <ul class="flex flex-col gap-1 w-56 text-sm font-medium" role="tablist" aria-label="Tab navigation" @keydown.arrow-up="activeTab = activeTab > 0 ? activeTab - 1 : 4" @keydown.arrow-down="activeTab = activeTab < 4 ? activeTab + 1 : 0" @keydown.home="activeTab = 0" @keydown.end="activeTab = 4">
+            <div x-data="{ activeTab: 0, moreOpen: false }" class="flex gap-6">
+                <div class="overflow-hidden rounded-xl bg-zinc-100 p-1.5">
+                    <ul class="flex flex-col gap-1.5 w-56 text-sm font-medium" role="tablist" aria-label="Tab navigation" @keydown.arrow-up="activeTab = activeTab > 0 ? activeTab - 1 : 6" @keydown.arrow-down="activeTab = activeTab < 6 ? activeTab + 1 : 0" @keydown.home="activeTab = 0" @keydown.end="activeTab = 6">
                         <li>
-                            <a @click="activeTab = 0" 
-                               :class="{ 'bg-white shadow text-zinc-900': activeTab === 0 }" 
-                               class="inline-flex w-full cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 border border-transparent text-zinc-600 hover:bg-white hover:text-zinc-900 hover:shadow" 
-                               role="tab" 
-                               :aria-selected="activeTab === 0" 
-                               tabindex="0">
+                            <a @click="activeTab = 0" :class="{ 'bg-white shadow text-zinc-900': activeTab === 0 }" class="inline-flex w-full cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 border border-transparent text-zinc-600 hover:bg-white hover:text-zinc-900 hover:shadow" role="tab" :aria-selected="activeTab === 0" tabindex="0">
                                 <%= icon "user", variant: "filled" %>
                                 <span>Profile</span>
                             </a>
                         </li>
                         <li>
-                            <a @click="activeTab = 1" 
-                               :class="{ 'bg-white shadow text-zinc-900': activeTab === 1 }" 
-                               class="inline-flex w-full cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 border border-transparent text-zinc-600 hover:bg-white hover:text-zinc-900 hover:shadow" 
-                               role="tab" 
-                               :aria-selected="activeTab === 0" 
-                               tabindex="0">
+                            <a @click="activeTab = 1" :class="{ 'bg-white shadow text-zinc-900': activeTab === 1 }" class="inline-flex w-full cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 border border-transparent text-zinc-600 hover:bg-white hover:text-zinc-900 hover:shadow" role="tab" :aria-selected="activeTab === 0" tabindex="0">
                                 <%= icon "adjustments", variant: "filled" %>
                                 <span>Preferences</span>
                             </a>
                         </li>
                         <li>
-                            <a @click="activeTab = 2" 
-                               :class="{ 'bg-white shadow text-zinc-900': activeTab === 2 }" 
-                               class="inline-flex w-full cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 border border-transparent text-zinc-600 hover:bg-white hover:text-zinc-900 hover:shadow" 
-                               role="tab" 
-                               :aria-selected="activeTab === 0" 
-                               tabindex="0">
+                            <a @click="activeTab = 2" :class="{ 'bg-white shadow text-zinc-900': activeTab === 2 }" class="inline-flex w-full cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 border border-transparent text-zinc-600 hover:bg-white hover:text-zinc-900 hover:shadow" role="tab" :aria-selected="activeTab === 0" tabindex="0">
                                 <%= icon "bell", variant: "filled" %>
                                 <span>Notifications</span>
                                 <span class="rounded-full bg-zinc-200 px-2 py-0.5 text-xs font-semibold text-zinc-500">8</span>
                             </a>
                         </li>
                         <li>
-                            <a @click="activeTab = 3" 
-                               :class="{ 'bg-white shadow text-zinc-900': activeTab === 3 }" 
-                               class="inline-flex w-full cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 border border-transparent text-zinc-600 hover:bg-white hover:text-zinc-900 hover:shadow" 
-                               role="tab" 
-                               :aria-selected="activeTab === 0" 
-                               tabindex="0">
+                            <a @click="activeTab = 3" :class="{ 'bg-white shadow text-zinc-900': activeTab === 3 }" class="inline-flex w-full cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 border border-transparent text-zinc-600 hover:bg-white hover:text-zinc-900 hover:shadow" role="tab" :aria-selected="activeTab === 0" tabindex="0">
                                 <%= icon "apps", variant: "filled" %>
-                                <span>Applications</span>
+                                <span>Apps</span>
                             </a>
                         </li>
                         <li>
-                            <a @click="activeTab = 4" 
-                               :class="{ 'bg-white shadow text-zinc-900': activeTab === 4 }" 
-                               class="inline-flex w-full cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 border border-transparent text-zinc-600 hover:bg-white hover:text-zinc-900 hover:shadow" 
-                               role="tab" 
-                               :aria-selected="activeTab === 0" 
-                               tabindex="0">
-                                <%= icon "cube" %>
-                                <span>API</span>
-                            </a>
+                            <button @click="moreOpen = !moreOpen" class="inline-flex w-full cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 border border-transparent text-zinc-600 hover:bg-white hover:text-zinc-900 hover:shadow" role="tab" tabindex="0">
+                                <%= icon "settings", variant: "filled" %>
+                                <span>Settings</span>
+                                <%= icon "chevron-right", class: "w-4 h-4 ml-auto transition-transform", ":class" => "{ 'rotate-90': moreOpen }" %>
+                            </button>
+                            <!-- Collapsible sub-items -->
+                            <div x-show="moreOpen" x-transition class="ml-6 mt-1 space-y-1">
+                                <a @click="activeTab = 4" :class="{ 'bg-white shadow text-zinc-900': activeTab === 4 }" class="inline-flex w-full cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 border border-transparent text-zinc-600 hover:bg-white hover:text-zinc-900 hover:shadow text-sm">
+                                    Roles
+                                </a>
+                                <a @click="activeTab = 5" :class="{ 'bg-white shadow text-zinc-900': activeTab === 5 }" class="inline-flex w-full cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 border border-transparent text-zinc-600 hover:bg-white hover:text-zinc-900 hover:shadow text-sm">
+                                    Integrations
+                                </a>
+                                <a @click="activeTab = 6" :class="{ 'bg-white shadow text-zinc-900': activeTab === 6 }" class="inline-flex w-full cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 border border-transparent text-zinc-600 hover:bg-white hover:text-zinc-900 hover:shadow text-sm">
+                                    Billing
+                                </a>
+                            </div>
                         </li>
                     </ul>
                 </div>
                 <div class="pt-3 flex-1 border border-zinc-200 rounded-lg p-4">
-                    <div :class="{ '!block': activeTab === 0 }" 
-                         x-show.transition.in.opacity.duration.600="activeTab === 0" 
-                         class="hidden" 
-                         role="tabpanel" 
-                         aria-labelledby="tab-content">
+                    <div :class="{ '!block': activeTab === 0 }" x-show.transition.in.opacity.duration.600="activeTab === 0" class="hidden" role="tabpanel" aria-labelledby="tab-content">
                         Profile content
                     </div>
-                    <div :class="{ '!block': activeTab === 1 }" 
-                         x-show.transition.in.opacity.duration.600="activeTab === 1" 
-                         class="hidden" 
-                         role="tabpanel" 
-                         aria-labelledby="tab-content">
+                    <div :class="{ '!block': activeTab === 1 }" x-show.transition.in.opacity.duration.600="activeTab === 1" class="hidden" role="tabpanel" aria-labelledby="tab-content">
                         Preferences content
                     </div>
-                    <div :class="{ '!block': activeTab === 2 }" 
-                         x-show.transition.in.opacity.duration.600="activeTab === 2" 
-                         class="hidden" 
-                         role="tabpanel" 
-                         aria-labelledby="tab-content">
+                    <div :class="{ '!block': activeTab === 2 }" x-show.transition.in.opacity.duration.600="activeTab === 2" class="hidden" role="tabpanel" aria-labelledby="tab-content">
                         Notifications content
                     </div>
-                    <div :class="{ '!block': activeTab === 3 }" 
-                         x-show.transition.in.opacity.duration.600="activeTab === 3" 
-                         class="hidden" 
-                         role="tabpanel" 
-                         aria-labelledby="tab-content">
-                        Applications content
+                    <div :class="{ '!block': activeTab === 3 }" x-show.transition.in.opacity.duration.600="activeTab === 3" class="hidden" role="tabpanel" aria-labelledby="tab-content">
+                        Apps content
                     </div>
-                    <div :class="{ '!block': activeTab === 4 }" 
-                         x-show.transition.in.opacity.duration.600="activeTab === 4" 
-                         class="hidden" 
-                         role="tabpanel" 
-                         aria-labelledby="tab-content">
-                        API content
+                    <div :class="{ '!block': activeTab === 4 }" x-show.transition.in.opacity.duration.600="activeTab === 4" class="hidden" role="tabpanel" aria-labelledby="tab-content">
+                        Roles content
+                    </div>
+                    <div :class="{ '!block': activeTab === 5 }" x-show.transition.in.opacity.duration.600="activeTab === 5" class="hidden" role="tabpanel" aria-labelledby="tab-content">
+                        Integrations content
+                    </div>
+                    <div :class="{ '!block': activeTab === 6 }" x-show.transition.in.opacity.duration.600="activeTab === 6" class="hidden" role="tabpanel" aria-labelledby="tab-content">
+                        Billing content
                     </div>
                 </div>
             </div>
@@ -279,104 +227,78 @@
     <!-- Line Horizontal -->
     <section class="mt-16 pb-16">
         <div class="flex flex-wrap items-center justify-center gap-3 mb-8">
-            <div class="overflow-x-auto w-full flex justify-center">
-                <div x-data="{ activeTab: 0 }">
+            <div class="w-full flex justify-center">
+                <div x-data="{ activeTab: 0, moreOpen: false }">
                     <div class="border-b border-b-zinc-200">
-                        <ul class="-mb-px flex items-center gap-4 text-sm font-medium text-zinc-500" role="tablist" aria-label="Tab navigation" @keydown.arrow-left="activeTab = activeTab > 0 ? activeTab - 1 : 4" @keydown.arrow-right="activeTab = activeTab < 4 ? activeTab + 1 : 0" @keydown.home="activeTab = 0" @keydown.end="activeTab = 4">
+                        <ul class="-mb-px flex items-center gap-4 text-sm font-medium text-zinc-500" role="tablist" aria-label="Tab navigation" @keydown.arrow-left="activeTab = activeTab > 0 ? activeTab - 1 : 6" @keydown.arrow-right="activeTab = activeTab < 6 ? activeTab + 1 : 0" @keydown.home="activeTab = 0" @keydown.end="activeTab = 6">
                             <li>
-                                <a @click="activeTab = 0" 
-                                    :class="{ 'relative text-zinc-900 after:absolute after:left-0 after:bottom-0 after:h-0.5 after:w-full after:bg-zinc-900': activeTab === 0 }" 
-                                    class="inline-flex cursor-pointer items-center gap-2 px-1.5 py-3 hover:text-zinc-900" 
-                                    role="tab" 
-                                    :aria-selected="activeTab === 0" 
-                                    tabindex="0">
+                                <a @click="activeTab = 0" :class="{ 'relative text-zinc-900 after:absolute after:left-0 after:bottom-0 after:h-0.5 after:w-full after:bg-zinc-900': activeTab === 0 }" class="inline-flex cursor-pointer items-center gap-2 px-1.5 py-3 hover:text-zinc-900" role="tab" :aria-selected="activeTab === 0" tabindex="0">
                                     <%= icon "user", variant: "filled" %>
                                     <span>Profile</span>
                                 </a>
                             </li>
                             <li>
-                                <a @click="activeTab = 1" 
-                                    :class="{ 'relative text-zinc-900 after:absolute after:left-0 after:bottom-0 after:h-0.5 after:w-full after:bg-zinc-900': activeTab === 1 }" 
-                                    class="inline-flex cursor-pointer items-center gap-2 px-1.5 py-3 hover:text-zinc-900" 
-                                    role="tab" 
-                                    :aria-selected="activeTab === 0" 
-                                    tabindex="0">
+                                <a @click="activeTab = 1" :class="{ 'relative text-zinc-900 after:absolute after:left-0 after:bottom-0 after:h-0.5 after:w-full after:bg-zinc-900': activeTab === 1 }" class="inline-flex cursor-pointer items-center gap-2 px-1.5 py-3 hover:text-zinc-900" role="tab" :aria-selected="activeTab === 0" tabindex="0">
                                     <%= icon "adjustments", variant: "filled" %>
                                     <span>Preferences</span>
                                 </a>
                             </li>
                             <li>
-                                <a @click="activeTab = 2" 
-                                    :class="{ 'relative text-zinc-900 after:absolute after:left-0 after:bottom-0 after:h-0.5 after:w-full after:bg-zinc-900': activeTab === 2 }" 
-                                    class="inline-flex cursor-pointer items-center gap-2 px-1.5 py-3 hover:text-zinc-900" 
-                                    role="tab" 
-                                    :aria-selected="activeTab === 0" 
-                                    tabindex="0">
+                                <a @click="activeTab = 2" :class="{ 'relative text-zinc-900 after:absolute after:left-0 after:bottom-0 after:h-0.5 after:w-full after:bg-zinc-900': activeTab === 2 }" class="inline-flex cursor-pointer items-center gap-2 px-1.5 py-3 hover:text-zinc-900" role="tab" :aria-selected="activeTab === 0" tabindex="0">
                                     <%= icon "bell", variant: "filled" %>
                                     <span>Notifications</span>
                                     <span class="rounded-full bg-zinc-200 px-2 py-0.5 text-xs font-semibold text-zinc-500">8</span>
                                 </a>
                             </li>
                             <li>
-                                <a @click="activeTab = 3" 
-                                    :class="{ 'relative text-zinc-900 after:absolute after:left-0 after:bottom-0 after:h-0.5 after:w-full after:bg-zinc-900': activeTab === 3 }" 
-                                    class="inline-flex cursor-pointer items-center gap-2 px-1.5 py-3 hover:text-zinc-900" 
-                                    role="tab" 
-                                    :aria-selected="activeTab === 0" 
-                                    tabindex="0">
+                                <a @click="activeTab = 3" :class="{ 'relative text-zinc-900 after:absolute after:left-0 after:bottom-0 after:h-0.5 after:w-full after:bg-zinc-900': activeTab === 3 }" class="inline-flex cursor-pointer items-center gap-2 px-1.5 py-3 hover:text-zinc-900" role="tab" :aria-selected="activeTab === 0" tabindex="0">
                                     <%= icon "apps", variant: "filled" %>
-                                    <span>Applications</span>
+                                    <span>Apps</span>
                                 </a>
                             </li>
-                            <li>
-                                <a @click="activeTab = 4" 
-                                    :class="{ 'relative text-zinc-900 after:absolute after:left-0 after:bottom-0 after:h-0.5 after:w-full after:bg-zinc-900': activeTab === 4 }" 
-                                    class="inline-flex cursor-pointer items-center gap-2 px-1.5 py-3 hover:text-zinc-900" 
-                                    role="tab" 
-                                    :aria-selected="activeTab === 0" 
-                                    tabindex="0">
-                                    <%= icon "cube" %>
-                                    <span>API</span>
-                                </a>
+                            <li class="relative">
+                                <button @click="moreOpen = !moreOpen" :class="{ 'relative text-zinc-900 after:absolute after:left-0 after:bottom-0 after:h-0.5 after:w-full after:bg-zinc-900': activeTab === 4 || activeTab === 5 || activeTab === 6 }" class="inline-flex cursor-pointer items-center gap-2 px-1.5 py-3 hover:text-zinc-900" role="tab" tabindex="0">
+                                    <%= icon "settings", variant: "filled" %>
+                                    <span>Settings</span>
+                                    <%= icon "chevron-down", class: "w-4 h-4" %>
+                                </button>
+                                <!-- Dropdown -->
+                                <div x-show="moreOpen" x-transition.origin.top.left @click.outside="moreOpen = false" class="absolute left-0 flex flex-col gap-1.5 min-w-48 rounded-lg shadow-sm mt-2 z-10 origin-top-left bg-white p-1.5 outline-none border border-zinc-200 text-sm">
+                                    <a @click="activeTab = 4; moreOpen = false" :class="{ 'bg-zinc-100': activeTab === 4 }" class="px-2 py-1.5 w-full flex items-center rounded-md transition-colors text-left text-zinc-800 hover:bg-zinc-100 focus-visible:bg-zinc-100 cursor-pointer">
+                                        Roles
+                                    </a>
+                                    <a @click="activeTab = 5; moreOpen = false" :class="{ 'bg-zinc-100': activeTab === 5 }" class="px-2 py-1.5 w-full flex items-center rounded-md transition-colors text-left text-zinc-800 hover:bg-zinc-100 focus-visible:bg-zinc-100 cursor-pointer">
+                                        Integrations
+                                    </a>
+                                    <a @click="activeTab = 6; moreOpen = false" :class="{ 'bg-zinc-100': activeTab === 6 }" class="px-2 py-1.5 w-full flex items-center rounded-md transition-colors text-left text-zinc-800 hover:bg-zinc-100 focus-visible:bg-zinc-100 cursor-pointer">
+                                        Billing
+                                    </a>
+                                </div>
                             </li>
                         </ul>
                     </div>
                     <div class="py-3">
-                        <div :class="{ '!block': activeTab === 0 }" 
-                         x-show.transition.in.opacity.duration.600="activeTab === 0" 
-                         class="hidden" 
-                         role="tabpanel" 
-                         aria-labelledby="tab-content">
-                        Profile tab content
-                    </div>
-                                    <div :class="{ '!block': activeTab === 1 }" 
-                         x-show.transition.in.opacity.duration.600="activeTab === 1" 
-                         class="hidden" 
-                         role="tabpanel" 
-                         aria-labelledby="tab-content">
-                        Preferences tab content
-                    </div>
-                                    <div :class="{ '!block': activeTab === 2 }" 
-                         x-show.transition.in.opacity.duration.600="activeTab === 2" 
-                         class="hidden" 
-                         role="tabpanel" 
-                         aria-labelledby="tab-content">
-                        Notifications tab content
-                    </div>
-                                    <div :class="{ '!block': activeTab === 3 }" 
-                         x-show.transition.in.opacity.duration.600="activeTab === 3" 
-                         class="hidden" 
-                         role="tabpanel" 
-                         aria-labelledby="tab-content">
-                        Applications tab content
-                    </div>
-                                    <div :class="{ '!block': activeTab === 4 }" 
-                         x-show.transition.in.opacity.duration.600="activeTab === 4" 
-                         class="hidden" 
-                         role="tabpanel" 
-                         aria-labelledby="tab-content">
-                        API tab content
-                    </div>
+                        <div :class="{ '!block': activeTab === 0 }" x-show.transition.in.opacity.duration.600="activeTab === 0" class="hidden" role="tabpanel" aria-labelledby="tab-content">
+                            Profile tab content
+                        </div>
+                        <div :class="{ '!block': activeTab === 1 }" x-show.transition.in.opacity.duration.600="activeTab === 1" class="hidden" role="tabpanel" aria-labelledby="tab-content">
+                            Preferences tab content
+                        </div>
+                        <div :class="{ '!block': activeTab === 2 }" x-show.transition.in.opacity.duration.600="activeTab === 2" class="hidden" role="tabpanel" aria-labelledby="tab-content">
+                            Notifications tab content
+                        </div>
+                        <div :class="{ '!block': activeTab === 3 }" x-show.transition.in.opacity.duration.600="activeTab === 3" class="hidden" role="tabpanel" aria-labelledby="tab-content">
+                            Apps tab content
+                        </div>
+                        <div :class="{ '!block': activeTab === 4 }" x-show.transition.in.opacity.duration.600="activeTab === 4" class="hidden" role="tabpanel" aria-labelledby="tab-content">
+                            Roles tab content
+                        </div>
+                        <div :class="{ '!block': activeTab === 5 }" x-show.transition.in.opacity.duration.600="activeTab === 5" class="hidden" role="tabpanel" aria-labelledby="tab-content">
+                            Integrations tab content
+                        </div>
+                        <div :class="{ '!block': activeTab === 6 }" x-show.transition.in.opacity.duration.600="activeTab === 6" class="hidden" role="tabpanel" aria-labelledby="tab-content">
+                            Billing tab content
+                        </div>
                     </div>
                 </div>
             </div>
@@ -386,103 +308,77 @@
     <!-- Line Vertical -->
     <div class="mt-16 pb-16">
         <div class="w-full mx-auto max-w-lg">
-            <div x-data="{ activeTab: 0 }" class="flex gap-6">
+            <div x-data="{ activeTab: 0, moreOpen: false }" class="flex gap-6">
                 <div class="flex flex-col w-56 gap-4 mb-7">
                     <h3 class="text-zinc-500 font-medium text-sm">Interface</h3>
-                    <ul class="text-zinc-500 flex flex-col gap-3 md:gap-2 border-l-2 border-zinc-200" role="tablist" aria-label="Tab navigation" @keydown.arrow-up="activeTab = activeTab > 0 ? activeTab - 1 : 4" @keydown.arrow-down="activeTab = activeTab < 4 ? activeTab + 1 : 0" @keydown.home="activeTab = 0" @keydown.end="activeTab = 4">
+                    <ul class="text-zinc-500 flex flex-col gap-3 md:gap-2 border-l-2 border-zinc-200" role="tablist" aria-label="Tab navigation" @keydown.arrow-up="activeTab = activeTab > 0 ? activeTab - 1 : 6" @keydown.arrow-down="activeTab = activeTab < 6 ? activeTab + 1 : 0" @keydown.home="activeTab = 0" @keydown.end="activeTab = 6">
                         <li class="-ml-[2px]">
-                            <a @click="activeTab = 0" 
-                               :class="{ 'text-zinc-900 border-zinc-800': activeTab === 0, 'text-zinc-500': activeTab !== 0 }" 
-                               class="inline-flex cursor-pointer items-center gap-2 w-full border-l-2 border-transparent pl-5 pr-4 font-medium text-sm hover:text-zinc-900" 
-                               role="tab" 
-                               :aria-selected="activeTab === 0" 
-                               tabindex="0">
+                            <a @click="activeTab = 0" :class="{ 'text-zinc-900 border-zinc-800': activeTab === 0, 'text-zinc-500': activeTab !== 0 }" class="inline-flex cursor-pointer items-center gap-2 w-full border-l-2 border-transparent pl-5 pr-4 font-medium text-sm hover:text-zinc-900" role="tab" :aria-selected="activeTab === 0" tabindex="0">
                                 <%= icon "user", variant: "filled" %>
                                 <span>Profile</span>
                             </a>
                         </li>
                         <li class="-ml-[2px]">
-                            <a @click="activeTab = 1" 
-                               :class="{ 'text-zinc-900 border-zinc-800': activeTab === 1, 'text-zinc-500': activeTab !== 1 }" 
-                               class="inline-flex cursor-pointer items-center gap-2 w-full border-l-2 border-transparent pl-5 pr-4 font-medium text-sm hover:text-zinc-900" 
-                               role="tab" 
-                               :aria-selected="activeTab === 0" 
-                               tabindex="0">
+                            <a @click="activeTab = 1" :class="{ 'text-zinc-900 border-zinc-800': activeTab === 1, 'text-zinc-500': activeTab !== 1 }" class="inline-flex cursor-pointer items-center gap-2 w-full border-l-2 border-transparent pl-5 pr-4 font-medium text-sm hover:text-zinc-900" role="tab" :aria-selected="activeTab === 0" tabindex="0">
                                 <%= icon "adjustments", variant: "filled" %>
                                 <span>Preferences</span>
                             </a>
                         </li>
                         <li class="-ml-[2px]">
-                            <a @click="activeTab = 2" 
-                               :class="{ 'text-zinc-900 border-zinc-800': activeTab === 2, 'text-zinc-500': activeTab !== 2 }" 
-                               class="inline-flex cursor-pointer items-center gap-2 w-full border-l-2 border-transparent pl-5 pr-4 font-medium text-sm hover:text-zinc-900" 
-                               role="tab" 
-                               :aria-selected="activeTab === 0" 
-                               tabindex="0">
+                            <a @click="activeTab = 2" :class="{ 'text-zinc-900 border-zinc-800': activeTab === 2, 'text-zinc-500': activeTab !== 2 }" class="inline-flex cursor-pointer items-center gap-2 w-full border-l-2 border-transparent pl-5 pr-4 font-medium text-sm hover:text-zinc-900" role="tab" :aria-selected="activeTab === 0" tabindex="0">
                                 <%= icon "bell", variant: "filled" %>
                                 <span>Notifications</span>
                                 <span class="rounded-full bg-zinc-200 px-2 py-0.5 text-xs font-semibold text-zinc-500">8</span>
                             </a>
                         </li>
                         <li class="-ml-[2px]">
-                            <a @click="activeTab = 3" 
-                               :class="{ 'text-zinc-900 border-zinc-800': activeTab === 3, 'text-zinc-500': activeTab !== 3 }" 
-                               class="inline-flex cursor-pointer items-center gap-2 w-full border-l-2 border-transparent pl-5 pr-4 font-medium text-sm hover:text-zinc-900" 
-                               role="tab" 
-                               :aria-selected="activeTab === 0" 
-                               tabindex="0">
+                            <a @click="activeTab = 3" :class="{ 'text-zinc-900 border-zinc-800': activeTab === 3, 'text-zinc-500': activeTab !== 3 }" class="inline-flex cursor-pointer items-center gap-2 w-full border-l-2 border-transparent pl-5 pr-4 font-medium text-sm hover:text-zinc-900" role="tab" :aria-selected="activeTab === 0" tabindex="0">
                                 <%= icon "apps", variant: "filled" %>
-                                <span>Applications</span>
+                                <span>Apps</span>
                             </a>
                         </li>
                         <li class="-ml-[2px]">
-                            <a @click="activeTab = 4" 
-                               :class="{ 'text-zinc-900 border-zinc-800': activeTab === 4, 'text-zinc-500': activeTab !== 4 }" 
-                               class="inline-flex cursor-pointer items-center gap-2 w-full border-l-2 border-transparent pl-5 pr-4 font-medium text-sm hover:text-zinc-900" 
-                               role="tab" 
-                               :aria-selected="activeTab === 0" 
-                               tabindex="0">
-                                <%= icon "cube" %>
-                                <span>API</span>
-                            </a>
+                            <button @click="moreOpen = !moreOpen" class="inline-flex cursor-pointer items-center gap-2 w-full border-l-2 border-transparent pl-5 pr-4 font-medium text-sm hover:text-zinc-900 text-zinc-500" role="tab" tabindex="0">
+                                <%= icon "settings", variant: "filled" %>
+                                <span>Settings</span>
+                                <%= icon "chevron-right", class: "w-4 h-4 ml-auto transition-transform", ":class" => "{ 'rotate-90': moreOpen }" %>
+                            </button>
+                            <!-- Collapsible sub-items -->
+                            <div x-show="moreOpen" x-transition class="space-y-2 mt-1">
+                                <a @click="activeTab = 4" :class="{ 'text-zinc-900 border-zinc-800': activeTab === 4, 'text-zinc-500': activeTab !== 4 }" class="inline-flex cursor-pointer items-center gap-2 w-full border-l-2 border-transparent pl-11 pr-4 font-medium text-sm hover:text-zinc-900" role="tab" tabindex="0">
+                                    Roles
+                                </a>
+                                <a @click="activeTab = 5" :class="{ 'text-zinc-900 border-zinc-800': activeTab === 5, 'text-zinc-500': activeTab !== 5 }" class="inline-flex cursor-pointer items-center gap-2 w-full border-l-2 border-transparent pl-11 pr-4 font-medium text-sm hover:text-zinc-900" role="tab" tabindex="0">
+                                    Integrations
+                                </a>
+                                <a @click="activeTab = 6" :class="{ 'text-zinc-900 border-zinc-800': activeTab === 6, 'text-zinc-500': activeTab !== 6 }" class="inline-flex cursor-pointer items-center gap-2 w-full border-l-2 border-transparent pl-11 pr-4 font-medium text-sm hover:text-zinc-900" role="tab" tabindex="0">
+                                    Billing
+                                </a>
+                            </div>
                         </li>
                     </ul>
                 </div>
                 <div class="pt-3 flex-1 border border-zinc-200 rounded-lg p-4">
-                    <div :class="{ '!block': activeTab === 0 }" 
-                         x-show.transition.in.opacity.duration.600="activeTab === 0" 
-                         class="hidden" 
-                         role="tabpanel" 
-                         aria-labelledby="tab-content">
+                    <div :class="{ '!block': activeTab === 0 }" x-show.transition.in.opacity.duration.600="activeTab === 0" class="hidden" role="tabpanel" aria-labelledby="tab-content">
                         Profile content
                     </div>
-                    <div :class="{ '!block': activeTab === 1 }" 
-                         x-show.transition.in.opacity.duration.600="activeTab === 1" 
-                         class="hidden" 
-                         role="tabpanel" 
-                         aria-labelledby="tab-content">
+                    <div :class="{ '!block': activeTab === 1 }" x-show.transition.in.opacity.duration.600="activeTab === 1" class="hidden" role="tabpanel" aria-labelledby="tab-content">
                         Preferences content
                     </div>
-                    <div :class="{ '!block': activeTab === 2 }" 
-                         x-show.transition.in.opacity.duration.600="activeTab === 2" 
-                         class="hidden" 
-                         role="tabpanel" 
-                         aria-labelledby="tab-content">
+                    <div :class="{ '!block': activeTab === 2 }" x-show.transition.in.opacity.duration.600="activeTab === 2" class="hidden" role="tabpanel" aria-labelledby="tab-content">
                         Notifications content
                     </div>
-                    <div :class="{ '!block': activeTab === 3 }" 
-                         x-show.transition.in.opacity.duration.600="activeTab === 3" 
-                         class="hidden" 
-                         role="tabpanel" 
-                         aria-labelledby="tab-content">
-                        Applications content
+                    <div :class="{ '!block': activeTab === 3 }" x-show.transition.in.opacity.duration.600="activeTab === 3" class="hidden" role="tabpanel" aria-labelledby="tab-content">
+                        Apps content
                     </div>
-                    <div :class="{ '!block': activeTab === 4 }" 
-                         x-show.transition.in.opacity.duration.600="activeTab === 4" 
-                         class="hidden" 
-                         role="tabpanel" 
-                         aria-labelledby="tab-content">
-                        API content
+                    <div :class="{ '!block': activeTab === 4 }" x-show.transition.in.opacity.duration.600="activeTab === 4" class="hidden" role="tabpanel" aria-labelledby="tab-content">
+                        Roles content
+                    </div>
+                    <div :class="{ '!block': activeTab === 5 }" x-show.transition.in.opacity.duration.600="activeTab === 5" class="hidden" role="tabpanel" aria-labelledby="tab-content">
+                        Integrations content
+                    </div>
+                    <div :class="{ '!block': activeTab === 6 }" x-show.transition.in.opacity.duration.600="activeTab === 6" class="hidden" role="tabpanel" aria-labelledby="tab-content">
+                        Billing content
                     </div>
                 </div>
             </div>
@@ -494,103 +390,77 @@
     <!-- Pill Horizontal -->
     <div class="mt-16 pb-16">
         <div class="flex flex-wrap items-center justify-center gap-3 mb-8">
-            <div class="overflow-x-auto w-full flex justify-center">
-                <div x-data="{ activeTab: 0 }">
-                    <ul class="flex items-center gap-2 text-sm font-medium" role="tablist" aria-label="Tab navigation" @keydown.arrow-left="activeTab = activeTab > 0 ? activeTab - 1 : 4" @keydown.arrow-right="activeTab = activeTab < 4 ? activeTab + 1 : 0" @keydown.home="activeTab = 0" @keydown.end="activeTab = 4">
-                    <li>
-                        <a @click="activeTab = 0" 
-                           :class="{ 'bg-zinc-100 border-zinc-100 text-zinc-900 hover:bg-zinc-100': activeTab === 0 }" 
-                           class="inline-flex cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 border border-transparent text-zinc-500 hover:text-zinc-900" 
-                           role="tab" 
-                           :aria-selected="activeTab === 0" 
-                           tabindex="0">
-                            <%= icon "user", variant: "filled" %>
-                            <span>Profile</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a @click="activeTab = 1" 
-                           :class="{ 'bg-zinc-100 border-zinc-100 text-zinc-900 hover:bg-zinc-100': activeTab === 1 }" 
-                           class="inline-flex cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 border border-transparent text-zinc-500 hover:text-zinc-900" 
-                           role="tab" 
-                           :aria-selected="activeTab === 0" 
-                           tabindex="0">
-                            <%= icon "adjustments", variant: "filled" %>
-                            <span>Preferences</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a @click="activeTab = 2" 
-                           :class="{ 'bg-zinc-100 border-zinc-100 text-zinc-900 hover:bg-zinc-100': activeTab === 2 }" 
-                           class="inline-flex cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 border border-transparent text-zinc-500 hover:text-zinc-900" 
-                           role="tab" 
-                           :aria-selected="activeTab === 0" 
-                           tabindex="0">
-                            <%= icon "bell", variant: "filled" %>
-                            <span>Notifications</span>
-                            <span class="rounded-full bg-zinc-200 px-2 py-0.5 text-xs font-semibold text-zinc-500">8</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a @click="activeTab = 3" 
-                           :class="{ 'bg-zinc-100 border-zinc-100 text-zinc-900 hover:bg-zinc-100': activeTab === 3 }" 
-                           class="inline-flex cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 border border-transparent text-zinc-500 hover:text-zinc-900" 
-                           role="tab" 
-                           :aria-selected="activeTab === 0" 
-                           tabindex="0">
-                            <%= icon "apps", variant: "filled" %>
-                            <span>Applications</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a @click="activeTab = 4" 
-                           :class="{ 'bg-zinc-100 text-zinc-900 hover:bg-zinc-100': activeTab === 4 }" 
-                           class="inline-flex cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 border border-transparent text-zinc-500 hover:text-zinc-900" 
-                           role="tab" 
-                           :aria-selected="activeTab === 0" 
-                           tabindex="0">
-                            <%= icon "cube" %>
-                            <span>API</span>
-                        </a>
-                    </li>
-                </ul>
-                <div class="pt-4">
-                    <div :class="{ '!block': activeTab === 0 }" 
-                         x-show.transition.in.opacity.duration.600="activeTab === 0" 
-                         class="hidden" 
-                         role="tabpanel" 
-                         aria-labelledby="tab-content">
-                        Profile content
+            <div class="w-full flex justify-center">
+                <div x-data="{ activeTab: 0, moreOpen: false }">
+                    <ul class="flex items-center gap-2 text-sm font-medium" role="tablist" aria-label="Tab navigation" @keydown.arrow-left="activeTab = activeTab > 0 ? activeTab - 1 : 6" @keydown.arrow-right="activeTab = activeTab < 6 ? activeTab + 1 : 0" @keydown.home="activeTab = 0" @keydown.end="activeTab = 6">
+                        <li>
+                            <a @click="activeTab = 0" :class="{ 'bg-zinc-100 border-zinc-100 text-zinc-900 hover:bg-zinc-100': activeTab === 0 }" class="inline-flex cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 border border-transparent text-zinc-500 hover:text-zinc-900" role="tab" :aria-selected="activeTab === 0" tabindex="0">
+                                <%= icon "user", variant: "filled" %>
+                                <span>Profile</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a @click="activeTab = 1" :class="{ 'bg-zinc-100 border-zinc-100 text-zinc-900 hover:bg-zinc-100': activeTab === 1 }" class="inline-flex cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 border border-transparent text-zinc-500 hover:text-zinc-900" role="tab" :aria-selected="activeTab === 0" tabindex="0">
+                                <%= icon "adjustments", variant: "filled" %>
+                                <span>Preferences</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a @click="activeTab = 2" :class="{ 'bg-zinc-100 border-zinc-100 text-zinc-900 hover:bg-zinc-100': activeTab === 2 }" class="inline-flex cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 border border-transparent text-zinc-500 hover:text-zinc-900" role="tab" :aria-selected="activeTab === 0" tabindex="0">
+                                <%= icon "bell", variant: "filled" %>
+                                <span>Notifications</span>
+                                <span class="rounded-full bg-zinc-200 px-2 py-0.5 text-xs font-semibold text-zinc-500">8</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a @click="activeTab = 3" :class="{ 'bg-zinc-100 border-zinc-100 text-zinc-900 hover:bg-zinc-100': activeTab === 3 }" class="inline-flex cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 border border-transparent text-zinc-500 hover:text-zinc-900" role="tab" :aria-selected="activeTab === 0" tabindex="0">
+                                <%= icon "apps", variant: "filled" %>
+                                <span>Apps</span>
+                            </a>
+                        </li>
+                        <li class="relative">
+                            <button @click="moreOpen = !moreOpen" :class="{ 'bg-zinc-100 border-zinc-100 text-zinc-900 hover:bg-zinc-100': activeTab === 4 || activeTab === 5 || activeTab === 6 }" class="inline-flex cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 border border-transparent text-zinc-500 hover:text-zinc-900" role="tab" tabindex="0">
+                                <%= icon "settings", variant: "filled" %>
+                                <span>Settings</span>
+                                <%= icon "chevron-down", class: "w-4 h-4" %>
+                            </button>
+                            <!-- Dropdown -->
+                            <div x-show="moreOpen" x-transition.origin.top.left @click.outside="moreOpen = false" class="absolute left-0 flex flex-col gap-1.5 min-w-48 rounded-lg shadow-sm mt-2 z-10 origin-top-left bg-white p-1.5 outline-none border border-zinc-200 text-sm">
+                                <a @click="activeTab = 4; moreOpen = false" :class="{ 'bg-zinc-100': activeTab === 4 }" class="px-2 py-1.5 w-full flex items-center rounded-md transition-colors text-left text-zinc-800 hover:bg-zinc-100 focus-visible:bg-zinc-100 cursor-pointer">
+                                    Roles
+                                </a>
+                                <a @click="activeTab = 5; moreOpen = false" :class="{ 'bg-zinc-100': activeTab === 5 }" class="px-2 py-1.5 w-full flex items-center rounded-md transition-colors text-left text-zinc-800 hover:bg-zinc-100 focus-visible:bg-zinc-100 cursor-pointer">
+                                    Integrations
+                                </a>
+                                <a @click="activeTab = 6; moreOpen = false" :class="{ 'bg-zinc-100': activeTab === 6 }" class="px-2 py-1.5 w-full flex items-center rounded-md transition-colors text-left text-zinc-800 hover:bg-zinc-100 focus-visible:bg-zinc-100 cursor-pointer">
+                                    Billing
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="pt-4">
+                        <div :class="{ '!block': activeTab === 0 }" x-show.transition.in.opacity.duration.600="activeTab === 0" class="hidden" role="tabpanel" aria-labelledby="tab-content">
+                            Profile content
+                        </div>
+                        <div :class="{ '!block': activeTab === 1 }" x-show.transition.in.opacity.duration.600="activeTab === 1" class="hidden" role="tabpanel" aria-labelledby="tab-content">
+                            Preferences content
+                        </div>
+                        <div :class="{ '!block': activeTab === 2 }" x-show.transition.in.opacity.duration.600="activeTab === 2" class="hidden" role="tabpanel" aria-labelledby="tab-content">
+                            Notifications content
+                        </div>
+                        <div :class="{ '!block': activeTab === 3 }" x-show.transition.in.opacity.duration.600="activeTab === 3" class="hidden" role="tabpanel" aria-labelledby="tab-content">
+                            Apps content
+                        </div>
+                        <div :class="{ '!block': activeTab === 4 }" x-show.transition.in.opacity.duration.600="activeTab === 4" class="hidden" role="tabpanel" aria-labelledby="tab-content">
+                            Roles content
+                        </div>
+                        <div :class="{ '!block': activeTab === 5 }" x-show.transition.in.opacity.duration.600="activeTab === 5" class="hidden" role="tabpanel" aria-labelledby="tab-content">
+                            Integrations content
+                        </div>
+                        <div :class="{ '!block': activeTab === 6 }" x-show.transition.in.opacity.duration.600="activeTab === 6" class="hidden" role="tabpanel" aria-labelledby="tab-content">
+                            Billing content
+                        </div>
                     </div>
-                    <div :class="{ '!block': activeTab === 1 }" 
-                         x-show.transition.in.opacity.duration.600="activeTab === 1" 
-                         class="hidden" 
-                         role="tabpanel" 
-                         aria-labelledby="tab-content">
-                        Preferences content
-                    </div>
-                    <div :class="{ '!block': activeTab === 2 }" 
-                         x-show.transition.in.opacity.duration.600="activeTab === 2" 
-                         class="hidden" 
-                         role="tabpanel" 
-                         aria-labelledby="tab-content">
-                        Notifications content
-                    </div>
-                    <div :class="{ '!block': activeTab === 3 }" 
-                         x-show.transition.in.opacity.duration.600="activeTab === 3" 
-                         class="hidden" 
-                         role="tabpanel" 
-                         aria-labelledby="tab-content">
-                        Applications content
-                    </div>
-                    <div :class="{ '!block': activeTab === 4 }" 
-                         x-show.transition.in.opacity.duration.600="activeTab === 4" 
-                         class="hidden" 
-                         role="tabpanel" 
-                         aria-labelledby="tab-content">
-                        API content
-                    </div>
-                </div>
                 </div>
             </div>
         </div>
@@ -599,100 +469,74 @@
     <!-- Pill Vertical -->
     <div class="mt-16 pb-16">
         <div class="w-full mx-auto max-w-lg">
-            <div x-data="{ activeTab: 0 }" class="flex gap-6">
-                <ul class="flex flex-col gap-1 w-56 text-sm font-medium" role="tablist" aria-label="Tab navigation" @keydown.arrow-up="activeTab = activeTab > 0 ? activeTab - 1 : 4" @keydown.arrow-down="activeTab = activeTab < 4 ? activeTab + 1 : 0" @keydown.home="activeTab = 0" @keydown.end="activeTab = 4">
+            <div x-data="{ activeTab: 0, moreOpen: false }" class="flex gap-6">
+                <ul class="flex flex-col gap-1 w-56 text-sm font-medium" role="tablist" aria-label="Tab navigation" @keydown.arrow-up="activeTab = activeTab > 0 ? activeTab - 1 : 6" @keydown.arrow-down="activeTab = activeTab < 6 ? activeTab + 1 : 0" @keydown.home="activeTab = 0" @keydown.end="activeTab = 6">
                     <li>
-                        <a @click="activeTab = 0" 
-                           :class="{ 'bg-zinc-100 border-zinc-100 text-zinc-900 hover:bg-zinc-100': activeTab === 0 }" 
-                           class="inline-flex w-full cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 border border-transparent text-zinc-500 hover:text-zinc-900" 
-                           role="tab" 
-                           :aria-selected="activeTab === 0" 
-                           tabindex="0">
+                        <a @click="activeTab = 0" :class="{ 'bg-zinc-100 border-zinc-100 text-zinc-900 hover:bg-zinc-100': activeTab === 0 }" class="inline-flex w-full cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 border border-transparent text-zinc-500 hover:text-zinc-900" role="tab" :aria-selected="activeTab === 0" tabindex="0">
                             <%= icon "user", variant: "filled" %>
                             <span>Profile</span>
                         </a>
                     </li>
                     <li>
-                        <a @click="activeTab = 1" 
-                           :class="{ 'bg-zinc-100 border-zinc-100 text-zinc-900 hover:bg-zinc-100': activeTab === 1 }" 
-                           class="inline-flex w-full cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 border border-transparent text-zinc-500 hover:text-zinc-900" 
-                           role="tab" 
-                           :aria-selected="activeTab === 0" 
-                           tabindex="0">
+                        <a @click="activeTab = 1" :class="{ 'bg-zinc-100 border-zinc-100 text-zinc-900 hover:bg-zinc-100': activeTab === 1 }" class="inline-flex w-full cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 border border-transparent text-zinc-500 hover:text-zinc-900" role="tab" :aria-selected="activeTab === 0" tabindex="0">
                             <%= icon "adjustments", variant: "filled" %>
                             <span>Preferences</span>
                         </a>
                     </li>
                     <li>
-                        <a @click="activeTab = 2" 
-                           :class="{ 'bg-zinc-100 border-zinc-100 text-zinc-900 hover:bg-zinc-100': activeTab === 2 }" 
-                           class="inline-flex w-full cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 border border-transparent text-zinc-500 hover:text-zinc-900" 
-                           role="tab" 
-                           :aria-selected="activeTab === 0" 
-                           tabindex="0">
+                        <a @click="activeTab = 2" :class="{ 'bg-zinc-100 border-zinc-100 text-zinc-900 hover:bg-zinc-100': activeTab === 2 }" class="inline-flex w-full cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 border border-transparent text-zinc-500 hover:text-zinc-900" role="tab" :aria-selected="activeTab === 0" tabindex="0">
                             <%= icon "bell", variant: "filled" %>
                             <span>Notifications</span>
                             <span class="rounded-full bg-zinc-200 px-2 py-0.5 text-xs font-semibold text-zinc-500">8</span>
                         </a>
                     </li>
                     <li>
-                        <a @click="activeTab = 3" 
-                           :class="{ 'bg-zinc-100 border-zinc-100 text-zinc-900 hover:bg-zinc-100': activeTab === 3 }" 
-                           class="inline-flex w-full cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 border border-transparent text-zinc-500 hover:text-zinc-900" 
-                           role="tab" 
-                           :aria-selected="activeTab === 0" 
-                           tabindex="0">
+                        <a @click="activeTab = 3" :class="{ 'bg-zinc-100 border-zinc-100 text-zinc-900 hover:bg-zinc-100': activeTab === 3 }" class="inline-flex w-full cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 border border-transparent text-zinc-500 hover:text-zinc-900" role="tab" :aria-selected="activeTab === 0" tabindex="0">
                             <%= icon "apps", variant: "filled" %>
-                            <span>Applications</span>
+                            <span>Apps</span>
                         </a>
                     </li>
                     <li>
-                        <a @click="activeTab = 4" 
-                           :class="{ 'bg-zinc-100 text-zinc-900 hover:bg-zinc-100': activeTab === 4 }" 
-                           class="inline-flex w-full cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 border border-transparent text-zinc-500 hover:text-zinc-900" 
-                           role="tab" 
-                           :aria-selected="activeTab === 0" 
-                           tabindex="0">
-                            <%= icon "cube" %>
-                            <span>API</span>
-                        </a>
+                        <button @click="moreOpen = !moreOpen" class="inline-flex w-full cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 border border-transparent text-zinc-500 hover:text-zinc-900" role="tab" tabindex="0">
+                            <%= icon "settings", variant: "filled" %>
+                            <span>Settings</span>
+                            <%= icon "chevron-right", class: "w-4 h-4 ml-auto transition-transform", ":class" => "{ 'rotate-90': moreOpen }" %>
+                        </button>
+                        <!-- Collapsible sub-items -->
+                        <div x-show="moreOpen" x-transition class="ml-6 mt-1 space-y-1">
+                            <a @click="activeTab = 4" :class="{ 'bg-zinc-100 border-zinc-100 text-zinc-900 hover:bg-zinc-100': activeTab === 4 }" class="inline-flex w-full cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 border border-transparent text-zinc-500 hover:text-zinc-900 text-sm">
+                                Roles
+                            </a>
+                            <a @click="activeTab = 5" :class="{ 'bg-zinc-100 border-zinc-100 text-zinc-900 hover:bg-zinc-100': activeTab === 5 }" class="inline-flex w-full cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 border border-transparent text-zinc-500 hover:text-zinc-900 text-sm">
+                                Integrations
+                            </a>
+                            <a @click="activeTab = 6" :class="{ 'bg-zinc-100 border-zinc-100 text-zinc-900 hover:bg-zinc-100': activeTab === 6 }" class="inline-flex w-full cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 border border-transparent text-zinc-500 hover:text-zinc-900 text-sm">
+                                Billing
+                            </a>
+                        </div>
                     </li>
                 </ul>
                 <div class="pt-3 flex-1 border border-zinc-200 rounded-lg p-4">
-                    <div :class="{ '!block': activeTab === 0 }" 
-                         x-show.transition.in.opacity.duration.600="activeTab === 0" 
-                         class="hidden" 
-                         role="tabpanel" 
-                         aria-labelledby="tab-content">
+                    <div :class="{ '!block': activeTab === 0 }" x-show.transition.in.opacity.duration.600="activeTab === 0" class="hidden" role="tabpanel" aria-labelledby="tab-content">
                         Profile content
                     </div>
-                    <div :class="{ '!block': activeTab === 1 }" 
-                         x-show.transition.in.opacity.duration.600="activeTab === 1" 
-                         class="hidden" 
-                         role="tabpanel" 
-                         aria-labelledby="tab-content">
+                    <div :class="{ '!block': activeTab === 1 }" x-show.transition.in.opacity.duration.600="activeTab === 1" class="hidden" role="tabpanel" aria-labelledby="tab-content">
                         Preferences content
                     </div>
-                    <div :class="{ '!block': activeTab === 2 }" 
-                         x-show.transition.in.opacity.duration.600="activeTab === 2" 
-                         class="hidden" 
-                         role="tabpanel" 
-                         aria-labelledby="tab-content">
+                    <div :class="{ '!block': activeTab === 2 }" x-show.transition.in.opacity.duration.600="activeTab === 2" class="hidden" role="tabpanel" aria-labelledby="tab-content">
                         Notifications content
                     </div>
-                    <div :class="{ '!block': activeTab === 3 }" 
-                         x-show.transition.in.opacity.duration.600="activeTab === 3" 
-                         class="hidden" 
-                         role="tabpanel" 
-                         aria-labelledby="tab-content">
-                        Applications content
+                    <div :class="{ '!block': activeTab === 3 }" x-show.transition.in.opacity.duration.600="activeTab === 3" class="hidden" role="tabpanel" aria-labelledby="tab-content">
+                        Apps content
                     </div>
-                    <div :class="{ '!block': activeTab === 4 }" 
-                         x-show.transition.in.opacity.duration.600="activeTab === 4" 
-                         class="hidden" 
-                         role="tabpanel" 
-                         aria-labelledby="tab-content">
-                        API content
+                    <div :class="{ '!block': activeTab === 4 }" x-show.transition.in.opacity.duration.600="activeTab === 4" class="hidden" role="tabpanel" aria-labelledby="tab-content">
+                        Roles content
+                    </div>
+                    <div :class="{ '!block': activeTab === 5 }" x-show.transition.in.opacity.duration.600="activeTab === 5" class="hidden" role="tabpanel" aria-labelledby="tab-content">
+                        Integrations content
+                    </div>
+                    <div :class="{ '!block': activeTab === 6 }" x-show.transition.in.opacity.duration.600="activeTab === 6" class="hidden" role="tabpanel" aria-labelledby="tab-content">
+                        Billing content
                     </div>
                 </div>
             </div>
@@ -713,7 +557,7 @@
                         <%= render 'shared/copyicon' %>
                     </button>
                 </div>
-                <pre><code class="language-ruby block border border-zinc-200 rounded-xl py-4 px-6 leading-[1.7] bg-zinc-50 text-zinc-700 text-sm font-mono overflow-scroll">thing</code></pre>
+                <pre><code class="language-ruby block border border-zinc-200 rounded-xl py-4 px-6 leading-[1.7] bg-zinc-100 text-zinc-700 text-sm font-mono overflow-scroll">thing</code></pre>
             </div>
         </div>
     </section>
