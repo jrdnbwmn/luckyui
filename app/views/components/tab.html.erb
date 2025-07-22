@@ -4,6 +4,8 @@
         <span class="text-sm mb-2 text-zinc-500">Sections</span>
         <h1 class="text-4xl font-bold mb-4 text-zinc-900">Tabs</h1>
         <p>Tabs organize and allow navigation between groups of content that are related and at the same level of hierarchy. These tabs can be navigated with the keyboard using Left/Right or Up/Down, Home, and End.</p>
+        <p>Supports sections, tabbed content, and navigation. Three variants: line (default), pill, and segmented. Horizontal and vertical orientations.</p>
+        <p><strong>Content Flexibility:</strong> Tab content is written as clean HTML/ERB blocks. Four content panel variants (bordered, minimal, none, full) provide different levels of styling structure.</p>
     </div>
 
     <h3 class="mt-16 inline-block text-xl font-semibold text-zinc-900">Line</h3>
@@ -11,161 +13,367 @@
     <!-- Line Horizontal -->
     <section class="mt-16 pb-16">
         <div class="flex flex-wrap items-center justify-center gap-3 mb-8">
-            <div class="w-full flex justify-center">
-                <div x-data="{ activeTab: 0, moreOpen: false }">
-                    <div class="border-b border-b-zinc-200">
-                        <ul class="-mb-px flex items-center gap-4 text-sm font-medium text-zinc-500" role="tablist" aria-label="Tab navigation" @keydown.arrow-left="activeTab = activeTab > 0 ? activeTab - 1 : 6" @keydown.arrow-right="activeTab = activeTab < 6 ? activeTab + 1 : 0" @keydown.home="activeTab = 0" @keydown.end="activeTab = 6">
-                            <li>
-                                <a @click="activeTab = 0" :class="{ 'relative text-zinc-900 after:absolute after:left-0 after:bottom-0 after:h-0.5 after:w-full after:bg-zinc-900': activeTab === 0 }" class="inline-flex cursor-pointer items-center gap-2 px-1.5 py-3 hover:text-zinc-900" role="tab" :aria-selected="activeTab === 0" tabindex="0">
-                                    <%= icon "user", variant: "filled" %>
-                                    <span>Profile</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a @click="activeTab = 1" :class="{ 'relative text-zinc-900 after:absolute after:left-0 after:bottom-0 after:h-0.5 after:w-full after:bg-zinc-900': activeTab === 1 }" class="inline-flex cursor-pointer items-center gap-2 px-1.5 py-3 hover:text-zinc-900" role="tab" :aria-selected="activeTab === 0" tabindex="0">
-                                    <%= icon "adjustments", variant: "filled" %>
-                                    <span>Preferences</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a @click="activeTab = 2" :class="{ 'relative text-zinc-900 after:absolute after:left-0 after:bottom-0 after:h-0.5 after:w-full after:bg-zinc-900': activeTab === 2 }" class="inline-flex cursor-pointer items-center gap-2 px-1.5 py-3 hover:text-zinc-900" role="tab" :aria-selected="activeTab === 0" tabindex="0">
-                                    <%= icon "bell", variant: "filled" %>
-                                    <span>Notifications</span>
-                                    <span class="rounded-full bg-zinc-200 px-2 py-0.5 text-xs font-semibold text-zinc-500">8</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a @click="activeTab = 3" :class="{ 'relative text-zinc-900 after:absolute after:left-0 after:bottom-0 after:h-0.5 after:w-full after:bg-zinc-900': activeTab === 3 }" class="inline-flex cursor-pointer items-center gap-2 px-1.5 py-3 hover:text-zinc-900" role="tab" :aria-selected="activeTab === 0" tabindex="0">
-                                    <%= icon "apps", variant: "filled" %>
-                                    <span>Apps</span>
-                                </a>
-                            </li>
-                            <li class="relative">
-                                <button @click="moreOpen = !moreOpen" :class="{ 'relative text-zinc-900 after:absolute after:left-0 after:bottom-0 after:h-0.5 after:w-full after:bg-zinc-900': activeTab === 4 || activeTab === 5 || activeTab === 6 }" class="inline-flex cursor-pointer items-center gap-2 px-1.5 py-3 hover:text-zinc-900" role="tab" tabindex="0">
-                                    <%= icon "settings", variant: "filled" %>
-                                    <span>Settings</span>
-                                    <%= icon "chevron-down", class: "w-4 h-4" %>
-                                </button>
-                                <!-- Dropdown -->
-                                <div x-show="moreOpen" x-transition.origin.top.left @click.outside="moreOpen = false" class="absolute left-0 flex flex-col gap-1.5 min-w-48 rounded-lg shadow-sm mt-2 z-10 origin-top-left bg-white p-1.5 outline-none border border-zinc-200 text-sm">
-                                    <a @click="activeTab = 4; moreOpen = false" :class="{ 'bg-zinc-100': activeTab === 4 }" class="px-2 py-1.5 w-full flex items-center rounded-md transition-colors text-left text-zinc-800 hover:bg-zinc-100 focus-visible:bg-zinc-100 cursor-pointer">
-                                        Roles
-                                    </a>
-                                    <a @click="activeTab = 5; moreOpen = false" :class="{ 'bg-zinc-100': activeTab === 5 }" class="px-2 py-1.5 w-full flex items-center rounded-md transition-colors text-left text-zinc-800 hover:bg-zinc-100 focus-visible:bg-zinc-100 cursor-pointer">
-                                        Integrations
-                                    </a>
-                                    <a @click="activeTab = 6; moreOpen = false" :class="{ 'bg-zinc-100': activeTab === 6 }" class="px-2 py-1.5 w-full flex items-center rounded-md transition-colors text-left text-zinc-800 hover:bg-zinc-100 focus-visible:bg-zinc-100 cursor-pointer">
-                                        Billing
-                                    </a>
-                                </div>
-                            </li>
-                        </ul>
+            <%= render TabComponent.new(
+                variant: :line,
+                orientation: :horizontal,
+                tabs: [
+                    { text: "Profile", icon: "user" },
+                    { text: "Preferences", icon: "adjustments" },
+                    { text: "Notifications", icon: "bell", badge: 8 },
+                    { text: "Apps", icon: "apps" },
+                    { 
+                        text: "Settings", 
+                        icon: "settings", 
+                        dropdown: [
+                            { text: "Roles" },
+                            { text: "Integrations" },
+                            { text: "Billing" }
+                        ]
+                    }
+                ]
+            ) do |tab| %>
+                <% tab.with_tab_content(name: "Profile") do %>
+                    <div class="p-4">
+                        <h3 class="font-semibold mb-2">Profile Settings</h3>
+                        <p>Manage your profile information and preferences.</p>
                     </div>
-                    <div class="py-3">
-                        <div :class="{ '!block': activeTab === 0 }" x-show.transition.in.opacity.duration.600="activeTab === 0" class="hidden" role="tabpanel" aria-labelledby="tab-content">
-                            Profile tab content
-                        </div>
-                        <div :class="{ '!block': activeTab === 1 }" x-show.transition.in.opacity.duration.600="activeTab === 1" class="hidden" role="tabpanel" aria-labelledby="tab-content">
-                            Preferences tab content
-                        </div>
-                        <div :class="{ '!block': activeTab === 2 }" x-show.transition.in.opacity.duration.600="activeTab === 2" class="hidden" role="tabpanel" aria-labelledby="tab-content">
-                            Notifications tab content
-                        </div>
-                        <div :class="{ '!block': activeTab === 3 }" x-show.transition.in.opacity.duration.600="activeTab === 3" class="hidden" role="tabpanel" aria-labelledby="tab-content">
-                            Apps tab content
-                        </div>
-                        <div :class="{ '!block': activeTab === 4 }" x-show.transition.in.opacity.duration.600="activeTab === 4" class="hidden" role="tabpanel" aria-labelledby="tab-content">
-                            Roles tab content
-                        </div>
-                        <div :class="{ '!block': activeTab === 5 }" x-show.transition.in.opacity.duration.600="activeTab === 5" class="hidden" role="tabpanel" aria-labelledby="tab-content">
-                            Integrations tab content
-                        </div>
-                        <div :class="{ '!block': activeTab === 6 }" x-show.transition.in.opacity.duration.600="activeTab === 6" class="hidden" role="tabpanel" aria-labelledby="tab-content">
-                            Billing tab content
+                <% end %>
+                
+                <% tab.with_tab_content(name: "Preferences") do %>
+                    <div class="p-4">
+                        <h3 class="font-semibold mb-2">User Preferences</h3>
+                        <p>Customize your application experience.</p>
+                    </div>
+                <% end %>
+                
+                <% tab.with_tab_content(name: "Notifications") do %>
+                    <div class="p-4">
+                        <h3 class="font-semibold mb-2">Notification Settings</h3>
+                        <p>Control how and when you receive notifications.</p>
+                        <div class="mt-3 flex items-center gap-2">
+                            <span class="bg-red-100 text-red-800 text-xs px-2 py-1 rounded-full">8 unread</span>
                         </div>
                     </div>
-                </div>
-            </div>
+                <% end %>
+                
+                <% tab.with_tab_content(name: "Apps") do %>
+                    <div class="p-4">
+                        <h3 class="font-semibold mb-2">Connected Apps</h3>
+                        <p>Manage your connected applications and integrations.</p>
+                    </div>
+                <% end %>
+                
+                <% tab.with_tab_content(name: "Roles") do %>
+                    <div class="p-4">
+                        <h3 class="font-semibold mb-2">User Roles</h3>
+                        <p>Configure user roles and permissions.</p>
+                    </div>
+                <% end %>
+                
+                <% tab.with_tab_content(name: "Integrations") do %>
+                    <div class="p-4">
+                        <h3 class="font-semibold mb-2">Third-party Integrations</h3>
+                        <p>Set up integrations with external services.</p>
+                    </div>
+                <% end %>
+                
+                <% tab.with_tab_content(name: "Billing") do %>
+                    <div class="p-4">
+                        <h3 class="font-semibold mb-2">Billing & Payments</h3>
+                        <p>Manage your subscription and payment methods.</p>
+                    </div>
+                <% end %>
+            <% end %>
         </div>
     </section>
 
-    <!-- Line Vertical -->
+    <!-- Line Vertical (with different content panel variants) -->
     <div class="mt-16 pb-16">
-        <div class="w-full mx-auto max-w-lg">
-            <div x-data="{ activeTab: 0, moreOpen: false }" class="flex gap-6">
-                <div class="flex flex-col w-56 gap-4 mb-7">
-                    <h3 class="text-zinc-400 font-medium text-xs">Configuration</h3>
-                    <ul class="text-zinc-500 flex flex-col gap-3 md:gap-2 border-l-2 border-zinc-200" role="tablist" aria-label="Tab navigation" @keydown.arrow-up="activeTab = activeTab > 0 ? activeTab - 1 : 6" @keydown.arrow-down="activeTab = activeTab < 6 ? activeTab + 1 : 0" @keydown.home="activeTab = 0" @keydown.end="activeTab = 6">
-                        <li class="-ml-[2px]">
-                            <a @click="activeTab = 0" :class="{ 'text-zinc-900 border-zinc-800': activeTab === 0, 'text-zinc-500': activeTab !== 0 }" class="inline-flex cursor-pointer items-center gap-2 w-full border-l-2 border-transparent px-4 font-medium text-sm hover:text-zinc-900" role="tab" :aria-selected="activeTab === 0" tabindex="0">
-                                <%= icon "user", variant: "filled" %>
-                                <span>Profile</span>
-                            </a>
-                        </li>
-                        <li class="-ml-[2px]">
-                            <a @click="activeTab = 1" :class="{ 'text-zinc-900 border-zinc-800': activeTab === 1, 'text-zinc-500': activeTab !== 1 }" class="inline-flex cursor-pointer items-center gap-2 w-full border-l-2 border-transparent px-4 font-medium text-sm hover:text-zinc-900" role="tab" :aria-selected="activeTab === 0" tabindex="0">
-                                <%= icon "adjustments", variant: "filled" %>
-                                <span>Preferences</span>
-                            </a>
-                        </li>
-                        <li class="-ml-[2px]">
-                            <a @click="activeTab = 2" :class="{ 'text-zinc-900 border-zinc-800': activeTab === 2, 'text-zinc-500': activeTab !== 2 }" class="inline-flex cursor-pointer items-center gap-2 w-full border-l-2 border-transparent px-4 font-medium text-sm hover:text-zinc-900" role="tab" :aria-selected="activeTab === 0" tabindex="0">
-                                <%= icon "bell", variant: "filled" %>
-                                <span>Notifications</span>
-                                <span class="rounded-full bg-zinc-200 px-2 py-0.5 text-xs font-semibold text-zinc-500">8</span>
-                            </a>
-                        </li>
-                        <li class="-ml-[2px]">
-                            <a @click="activeTab = 3" :class="{ 'text-zinc-900 border-zinc-800': activeTab === 3, 'text-zinc-500': activeTab !== 3 }" class="inline-flex cursor-pointer items-center gap-2 w-full border-l-2 border-transparent px-4 font-medium text-sm hover:text-zinc-900" role="tab" :aria-selected="activeTab === 0" tabindex="0">
-                                <%= icon "apps", variant: "filled" %>
-                                <span>Apps</span>
-                            </a>
-                        </li>
-                        <li class="-ml-[2px]">
-                            <button @click="moreOpen = !moreOpen" class="inline-flex cursor-pointer items-center gap-2 w-full border-l-2 border-transparent px-4 font-medium text-sm hover:text-zinc-900 text-zinc-500" role="tab" tabindex="0">
-                                <%= icon "settings", variant: "filled" %>
-                                <span>Settings</span>
-                                <%= icon "chevron-right", class: "w-4 h-4 ml-auto transition-transform", ":class" => "{ 'rotate-90': moreOpen }" %>
-                            </button>
-                            <!-- Collapsible sub-items -->
-                            <div x-show="moreOpen" x-transition class="space-y-2 mt-1">
-                                <a @click="activeTab = 4" :class="{ 'text-zinc-900 border-zinc-800': activeTab === 4, 'text-zinc-500': activeTab !== 4 }" class="inline-flex cursor-pointer items-center gap-2 w-full border-l-2 border-transparent pl-11 pr-4 font-medium text-sm hover:text-zinc-900" role="tab" tabindex="0">
-                                    Roles
-                                </a>
-                                <a @click="activeTab = 5" :class="{ 'text-zinc-900 border-zinc-800': activeTab === 5, 'text-zinc-500': activeTab !== 5 }" class="inline-flex cursor-pointer items-center gap-2 w-full border-l-2 border-transparent pl-11 pr-4 font-medium text-sm hover:text-zinc-900" role="tab" tabindex="0">
-                                    Integrations
-                                </a>
-                                <a @click="activeTab = 6" :class="{ 'text-zinc-900 border-zinc-800': activeTab === 6, 'text-zinc-500': activeTab !== 6 }" class="inline-flex cursor-pointer items-center gap-2 w-full border-l-2 border-transparent pl-11 pr-4 font-medium text-sm hover:text-zinc-900" role="tab" tabindex="0">
-                                    Billing
-                                </a>
+        <h4 class="text-lg font-medium mb-4">Content Panel Variants</h4>
+        
+        <!-- Content Panel Variants with HTML Blocks -->
+        <div class="mb-8">
+            <h5 class="text-sm font-medium text-zinc-600 mb-2">Bordered Content Panel</h5>
+            <%= render TabComponent.new(
+                variant: :line,
+                orientation: :vertical,
+                heading: "User Settings",
+                content_panel_variant: :bordered,
+                tabs: [
+                    { text: "Profile", icon: "user" },
+                    { text: "Preferences", icon: "adjustments" }
+                ]
+            ) do |tab| %>
+                <% tab.with_tab_content(name: "Profile") do %>
+                    <h3 class="font-semibold mb-3">User Profile</h3>
+                    <p>This content has a border and padding, perfect for forms or structured content.</p>
+                <% end %>
+                
+                <% tab.with_tab_content(name: "Preferences") do %>
+                    <h3 class="font-semibold mb-3">User Preferences</h3>
+                    <p>Each tab content is contained within a bordered area.</p>
+                <% end %>
+            <% end %>
+        </div>
+        
+        <!-- Minimal content panel -->
+        <div class="mb-8">
+            <h5 class="text-sm font-medium text-zinc-600 mb-2">Minimal Content Panel (default)</h5>
+            <%= render TabComponent.new(
+                variant: :line,
+                orientation: :vertical,
+                heading: "Configuration",
+                content_panel_variant: :minimal,
+                tabs: [
+                    { text: "Custom Content", icon: "apps" },
+                    { text: "Form Example", icon: "user" }
+                ]
+            ) do |tab| %>
+                <% tab.with_tab_content(name: "Custom Content") do %>
+                    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                        <h3 class="font-semibold text-blue-900 mb-2">Custom Styled Content</h3>
+                        <p class="text-blue-800">You can apply any classes you want to style your content exactly how you need it.</p>
+                    </div>
+                <% end %>
+                
+                <% tab.with_tab_content(name: "Form Example") do %>
+                    <div class="space-y-4">
+                        <h3 class="font-semibold mb-3">Contact Form</h3>
+                        <div class="flex gap-2">
+                            <label class="font-medium">Name:</label>
+                            <input type="text" class="border rounded px-2 py-1 flex-1" placeholder="Your name">
+                        </div>
+                        <div class="flex gap-2">
+                            <label class="font-medium">Email:</label>
+                            <input type="email" class="border rounded px-2 py-1 flex-1" placeholder="your@email.com">
+                        </div>
+                        <button class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Save</button>
+                    </div>
+                <% end %>
+            <% end %>
+        </div>
+        
+        <!-- Full width content panel -->
+        <div class="mb-8">
+            <h5 class="text-sm font-medium text-zinc-600 mb-2">Full Width Content Panel</h5>
+            <%= render TabComponent.new(
+                variant: :line,
+                orientation: :vertical,
+                heading: "Analytics",
+                content_panel_variant: :full,
+                tabs: [
+                    { text: "Chart", icon: "apps" },
+                    { text: "Table", icon: "apps" }
+                ]
+            ) do |tab| %>
+                <% tab.with_tab_content(name: "Chart") do %>
+                    <div class="bg-gradient-to-r from-purple-400 to-pink-400 h-32 rounded-lg flex items-center justify-center text-white font-semibold">
+                        Full Width Chart Area
+                    </div>
+                <% end %>
+                
+                <% tab.with_tab_content(name: "Table") do %>
+                    <div class="border border-zinc-200 rounded-lg overflow-hidden">
+                        <table class="w-full">
+                            <thead class="bg-zinc-50">
+                                <tr>
+                                    <th class="px-4 py-2 text-left font-medium">Name</th>
+                                    <th class="px-4 py-2 text-left font-medium">Status</th>
+                                    <th class="px-4 py-2 text-left font-medium">Value</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="px-4 py-2">Item 1</td>
+                                    <td class="px-4 py-2">Active</td>
+                                    <td class="px-4 py-2">$100</td>
+                                </tr>
+                                <tr class="bg-zinc-50">
+                                    <td class="px-4 py-2">Item 2</td>
+                                    <td class="px-4 py-2">Inactive</td>
+                                    <td class="px-4 py-2">$200</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                <% end %>
+            <% end %>
+        </div>
+        
+        <!-- None content panel -->
+        <div class="mb-8">
+            <h5 class="text-sm font-medium text-zinc-600 mb-2">No Content Panel Styling</h5>
+            <%= render TabComponent.new(
+                variant: :line,
+                orientation: :vertical,
+                heading: "Custom Layout",
+                content_panel_variant: :none,
+                tabs: [
+                    { text: "Dashboard", icon: "apps" },
+                    { text: "Settings", icon: "settings" }
+                ]
+            ) do |tab| %>
+                <% tab.with_tab_content(name: "Dashboard") do %>
+                    <div class="bg-zinc-900 text-white p-8 rounded-xl">
+                        <h3 class="text-xl font-bold mb-4">Dark Dashboard</h3>
+                        <p>Complete control over styling with no wrapper constraints.</p>
+                    </div>
+                <% end %>
+                
+                <% tab.with_tab_content(name: "Settings") do %>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-green-100 p-4 rounded">
+                            <h4 class="font-semibold text-green-900">Left Column</h4>
+                            <p class="text-green-800">Custom grid layout</p>
+                        </div>
+                        <div class="bg-blue-100 p-4 rounded">
+                            <h4 class="font-semibold text-blue-900">Right Column</h4>
+                            <p class="text-blue-800">Any layout you want</p>
+                        </div>
+                    </div>
+                <% end %>
+            <% end %>
+        </div>
+        
+        <!-- Advanced Content Examples -->
+        <div class="mb-8">
+            <h5 class="text-sm font-medium text-zinc-600 mb-2">Advanced Content Examples</h5>
+            <%= render TabComponent.new(
+                variant: :line,
+                orientation: :vertical,
+                heading: "Real-World Examples",
+                content_panel_variant: :minimal,
+                tabs: [
+                    { text: "User Management", icon: "user" },
+                    { text: "Analytics", icon: "apps" },
+                    { text: "Settings", icon: "settings" }
+                ]
+            ) do |tab| %>
+                <% tab.with_tab_content(name: "User Management") do %>
+                    <div class="space-y-6">
+                        <h3 class="text-lg font-semibold text-zinc-900">User Management</h3>
+                        <div class="bg-white border border-zinc-200 rounded-lg p-6">
+                            <form class="space-y-4">
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div>
+                                        <label class="block text-sm font-medium text-zinc-700 mb-1">First Name</label>
+                                        <input type="text" class="w-full border border-zinc-300 rounded-lg px-3 py-2" placeholder="John">
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-zinc-700 mb-1">Last Name</label>
+                                        <input type="text" class="w-full border border-zinc-300 rounded-lg px-3 py-2" placeholder="Doe">
+                                    </div>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-zinc-700 mb-1">Email</label>
+                                    <input type="email" class="w-full border border-zinc-300 rounded-lg px-3 py-2" placeholder="john@example.com">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-zinc-700 mb-1">Role</label>
+                                    <select class="w-full border border-zinc-300 rounded-lg px-3 py-2">
+                                        <option>Admin</option>
+                                        <option>Editor</option>
+                                        <option>Viewer</option>
+                                    </select>
+                                </div>
+                                <div class="flex gap-2">
+                                    <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">
+                                        Save User
+                                    </button>
+                                    <button type="button" class="bg-zinc-100 text-zinc-700 px-4 py-2 rounded-lg hover:bg-zinc-200">
+                                        Cancel
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                <% end %>
+                
+                <% tab.with_tab_content(name: "Analytics") do %>
+                    <div class="space-y-6">
+                        <h3 class="text-lg font-semibold text-zinc-900">Usage Analytics</h3>
+                        
+                        <!-- Stats Cards -->
+                        <div class="grid grid-cols-3 gap-4">
+                            <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                                <div class="text-2xl font-bold text-blue-900">2,543</div>
+                                <div class="text-sm text-blue-700">Total Users</div>
                             </div>
-                        </li>
-                    </ul>
-                </div>
-                <div class="pt-3 flex-1 border border-zinc-200 rounded-lg p-4">
-                    <div :class="{ '!block': activeTab === 0 }" x-show.transition.in.opacity.duration.600="activeTab === 0" class="hidden" role="tabpanel" aria-labelledby="tab-content">
-                        Profile content
+                            <div class="bg-green-50 border border-green-200 rounded-lg p-4">
+                                <div class="text-2xl font-bold text-green-900">89.2%</div>
+                                <div class="text-sm text-green-700">Uptime</div>
+                            </div>
+                            <div class="bg-purple-50 border border-purple-200 rounded-lg p-4">
+                                <div class="text-2xl font-bold text-purple-900">156</div>
+                                <div class="text-sm text-purple-700">Active Sessions</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Chart Placeholder -->
+                        <div class="bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg p-6 text-white">
+                            <h4 class="text-lg font-semibold mb-4">Monthly Growth</h4>
+                            <div class="h-40 bg-white bg-opacity-20 rounded flex items-center justify-center">
+                                <span class="text-white font-medium">Chart visualization would go here</span>
+                            </div>
+                        </div>
                     </div>
-                    <div :class="{ '!block': activeTab === 1 }" x-show.transition.in.opacity.duration.600="activeTab === 1" class="hidden" role="tabpanel" aria-labelledby="tab-content">
-                        Preferences content
+                <% end %>
+                
+                <% tab.with_tab_content(name: "Settings") do %>
+                    <div class="space-y-6">
+                        <h3 class="text-lg font-semibold text-zinc-900">Application Settings</h3>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <!-- General Settings -->
+                            <div class="bg-white border border-zinc-200 rounded-lg p-4">
+                                <h4 class="font-medium text-zinc-900 mb-3">General</h4>
+                                <div class="space-y-3">
+                                    <label class="flex items-center">
+                                        <input type="checkbox" class="rounded border-zinc-300 text-blue-600" checked>
+                                        <span class="ml-2 text-sm text-zinc-700">Enable notifications</span>
+                                    </label>
+                                    <label class="flex items-center">
+                                        <input type="checkbox" class="rounded border-zinc-300 text-blue-600">
+                                        <span class="ml-2 text-sm text-zinc-700">Auto-save drafts</span>
+                                    </label>
+                                    <label class="flex items-center">
+                                        <input type="checkbox" class="rounded border-zinc-300 text-blue-600" checked>
+                                        <span class="ml-2 text-sm text-zinc-700">Dark mode</span>
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <!-- Security Settings -->
+                            <div class="bg-white border border-zinc-200 rounded-lg p-4">
+                                <h4 class="font-medium text-zinc-900 mb-3">Security</h4>
+                                <div class="space-y-3">
+                                    <label class="flex items-center">
+                                        <input type="checkbox" class="rounded border-zinc-300 text-blue-600" checked>
+                                        <span class="ml-2 text-sm text-zinc-700">Two-factor authentication</span>
+                                    </label>
+                                    <label class="flex items-center">
+                                        <input type="checkbox" class="rounded border-zinc-300 text-blue-600">
+                                        <span class="ml-2 text-sm text-zinc-700">Session timeout</span>
+                                    </label>
+                                    <label class="flex items-center">
+                                        <input type="checkbox" class="rounded border-zinc-300 text-blue-600" checked>
+                                        <span class="ml-2 text-sm text-zinc-700">Login alerts</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex gap-2">
+                            <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">
+                                Save Changes
+                            </button>
+                            <button class="bg-zinc-100 text-zinc-700 px-4 py-2 rounded-lg hover:bg-zinc-200">
+                                Reset to Defaults
+                            </button>
+                        </div>
                     </div>
-                    <div :class="{ '!block': activeTab === 2 }" x-show.transition.in.opacity.duration.600="activeTab === 2" class="hidden" role="tabpanel" aria-labelledby="tab-content">
-                        Notifications content
-                    </div>
-                    <div :class="{ '!block': activeTab === 3 }" x-show.transition.in.opacity.duration.600="activeTab === 3" class="hidden" role="tabpanel" aria-labelledby="tab-content">
-                        Apps content
-                    </div>
-                    <div :class="{ '!block': activeTab === 4 }" x-show.transition.in.opacity.duration.600="activeTab === 4" class="hidden" role="tabpanel" aria-labelledby="tab-content">
-                        Roles content
-                    </div>
-                    <div :class="{ '!block': activeTab === 5 }" x-show.transition.in.opacity.duration.600="activeTab === 5" class="hidden" role="tabpanel" aria-labelledby="tab-content">
-                        Integrations content
-                    </div>
-                    <div :class="{ '!block': activeTab === 6 }" x-show.transition.in.opacity.duration.600="activeTab === 6" class="hidden" role="tabpanel" aria-labelledby="tab-content">
-                        Billing content
-                    </div>
-                </div>
-            </div>
+                <% end %>
+            <% end %>
         </div>
     </div>
 
@@ -174,160 +382,238 @@
     <!-- Pill Horizontal -->
     <div class="mt-16 pb-16">
         <div class="flex flex-wrap items-center justify-center gap-3 mb-8">
-            <div class="w-full flex justify-center">
-                <div x-data="{ activeTab: 0, moreOpen: false }">
-                    <ul class="flex items-center gap-2 text-sm font-medium" role="tablist" aria-label="Tab navigation" @keydown.arrow-left="activeTab = activeTab > 0 ? activeTab - 1 : 6" @keydown.arrow-right="activeTab = activeTab < 6 ? activeTab + 1 : 0" @keydown.home="activeTab = 0" @keydown.end="activeTab = 6">
-                        <li>
-                            <a @click="activeTab = 0" :class="{ 'bg-zinc-100 border-zinc-100 text-zinc-900 hover:bg-zinc-100': activeTab === 0 }" class="inline-flex cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 border border-transparent text-zinc-500 hover:text-zinc-900" role="tab" :aria-selected="activeTab === 0" tabindex="0">
-                                <%= icon "user", variant: "filled" %>
-                                <span>Profile</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a @click="activeTab = 1" :class="{ 'bg-zinc-100 border-zinc-100 text-zinc-900 hover:bg-zinc-100': activeTab === 1 }" class="inline-flex cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 border border-transparent text-zinc-500 hover:text-zinc-900" role="tab" :aria-selected="activeTab === 0" tabindex="0">
-                                <%= icon "adjustments", variant: "filled" %>
-                                <span>Preferences</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a @click="activeTab = 2" :class="{ 'bg-zinc-100 border-zinc-100 text-zinc-900 hover:bg-zinc-100': activeTab === 2 }" class="inline-flex cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 border border-transparent text-zinc-500 hover:text-zinc-900" role="tab" :aria-selected="activeTab === 0" tabindex="0">
-                                <%= icon "bell", variant: "filled" %>
-                                <span>Notifications</span>
-                                <span class="rounded-full bg-zinc-200 px-2 py-0.5 text-xs font-semibold text-zinc-500">8</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a @click="activeTab = 3" :class="{ 'bg-zinc-100 border-zinc-100 text-zinc-900 hover:bg-zinc-100': activeTab === 3 }" class="inline-flex cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 border border-transparent text-zinc-500 hover:text-zinc-900" role="tab" :aria-selected="activeTab === 0" tabindex="0">
-                                <%= icon "apps", variant: "filled" %>
-                                <span>Apps</span>
-                            </a>
-                        </li>
-                        <li class="relative">
-                            <button @click="moreOpen = !moreOpen" :class="{ 'bg-zinc-100 border-zinc-100 text-zinc-900 hover:bg-zinc-100': activeTab === 4 || activeTab === 5 || activeTab === 6 }" class="inline-flex cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 border border-transparent text-zinc-500 hover:text-zinc-900" role="tab" tabindex="0">
-                                <%= icon "settings", variant: "filled" %>
-                                <span>Settings</span>
-                                <%= icon "chevron-down", class: "w-4 h-4" %>
-                            </button>
-                            <!-- Dropdown -->
-                            <div x-show="moreOpen" x-transition.origin.top.left @click.outside="moreOpen = false" class="absolute left-0 flex flex-col gap-1.5 min-w-48 rounded-lg shadow-sm mt-2 z-10 origin-top-left bg-white p-1.5 outline-none border border-zinc-200 text-sm">
-                                <a @click="activeTab = 4; moreOpen = false" :class="{ 'bg-zinc-100': activeTab === 4 }" class="px-2 py-1.5 w-full flex items-center rounded-md transition-colors text-left text-zinc-800 hover:bg-zinc-100 focus-visible:bg-zinc-100 cursor-pointer">
-                                    Roles
-                                </a>
-                                <a @click="activeTab = 5; moreOpen = false" :class="{ 'bg-zinc-100': activeTab === 5 }" class="px-2 py-1.5 w-full flex items-center rounded-md transition-colors text-left text-zinc-800 hover:bg-zinc-100 focus-visible:bg-zinc-100 cursor-pointer">
-                                    Integrations
-                                </a>
-                                <a @click="activeTab = 6; moreOpen = false" :class="{ 'bg-zinc-100': activeTab === 6 }" class="px-2 py-1.5 w-full flex items-center rounded-md transition-colors text-left text-zinc-800 hover:bg-zinc-100 focus-visible:bg-zinc-100 cursor-pointer">
-                                    Billing
-                                </a>
-                            </div>
-                        </li>
-                    </ul>
-                    <div class="pt-4">
-                        <div :class="{ '!block': activeTab === 0 }" x-show.transition.in.opacity.duration.600="activeTab === 0" class="hidden" role="tabpanel" aria-labelledby="tab-content">
-                            Profile content
-                        </div>
-                        <div :class="{ '!block': activeTab === 1 }" x-show.transition.in.opacity.duration.600="activeTab === 1" class="hidden" role="tabpanel" aria-labelledby="tab-content">
-                            Preferences content
-                        </div>
-                        <div :class="{ '!block': activeTab === 2 }" x-show.transition.in.opacity.duration.600="activeTab === 2" class="hidden" role="tabpanel" aria-labelledby="tab-content">
-                            Notifications content
-                        </div>
-                        <div :class="{ '!block': activeTab === 3 }" x-show.transition.in.opacity.duration.600="activeTab === 3" class="hidden" role="tabpanel" aria-labelledby="tab-content">
-                            Apps content
-                        </div>
-                        <div :class="{ '!block': activeTab === 4 }" x-show.transition.in.opacity.duration.600="activeTab === 4" class="hidden" role="tabpanel" aria-labelledby="tab-content">
-                            Roles content
-                        </div>
-                        <div :class="{ '!block': activeTab === 5 }" x-show.transition.in.opacity.duration.600="activeTab === 5" class="hidden" role="tabpanel" aria-labelledby="tab-content">
-                            Integrations content
-                        </div>
-                        <div :class="{ '!block': activeTab === 6 }" x-show.transition.in.opacity.duration.600="activeTab === 6" class="hidden" role="tabpanel" aria-labelledby="tab-content">
-                            Billing content
-                        </div>
+            <%= render TabComponent.new(
+                variant: :pill,
+                orientation: :horizontal,
+                tabs: [
+                    { text: "Profile", icon: "user" },
+                    { text: "Preferences", icon: "adjustments" },
+                    { text: "Notifications", icon: "bell", badge: 8 },
+                    { text: "Apps", icon: "apps" },
+                    { 
+                        text: "Settings", 
+                        icon: "settings", 
+                        dropdown: [
+                            { text: "Roles" },
+                            { text: "Integrations" },
+                            { text: "Billing" }
+                        ]
+                    }
+                ]
+            ) do |tab| %>
+                <% tab.with_tab_content(name: "Profile") do %>
+                    <div class="p-4">
+                        <h3 class="font-semibold mb-2">Profile Information</h3>
+                        <p>Update your personal information and profile settings.</p>
                     </div>
-                </div>
-            </div>
+                <% end %>
+                
+                <% tab.with_tab_content(name: "Preferences") do %>
+                    <div class="p-4">
+                        <h3 class="font-semibold mb-2">Application Preferences</h3>
+                        <p>Customize how the application works for you.</p>
+                    </div>
+                <% end %>
+                
+                <% tab.with_tab_content(name: "Notifications") do %>
+                    <div class="p-4">
+                        <h3 class="font-semibold mb-2">Notification Center</h3>
+                        <p>Manage your notification preferences and settings.</p>
+                    </div>
+                <% end %>
+                
+                <% tab.with_tab_content(name: "Apps") do %>
+                    <div class="p-4">
+                        <h3 class="font-semibold mb-2">Application Management</h3>
+                        <p>Control your installed applications and permissions.</p>
+                    </div>
+                <% end %>
+                
+                <% tab.with_tab_content(name: "Roles") do %>
+                    <div class="p-4">
+                        <h3 class="font-semibold mb-2">Role Management</h3>
+                        <p>Configure user roles and access permissions.</p>
+                    </div>
+                <% end %>
+                
+                <% tab.with_tab_content(name: "Integrations") do %>
+                    <div class="p-4">
+                        <h3 class="font-semibold mb-2">System Integrations</h3>
+                        <p>Connect with external systems and services.</p>
+                    </div>
+                <% end %>
+                
+                <% tab.with_tab_content(name: "Billing") do %>
+                    <div class="p-4">
+                        <h3 class="font-semibold mb-2">Billing Information</h3>
+                        <p>View and manage your billing details and invoices.</p>
+                    </div>
+                <% end %>
+            <% end %>
         </div>
     </div>
 
-    <!-- Pill Vertical -->
+    <!-- Pill Vertical (with multiple sections) -->
     <div class="mt-16 pb-16">
-        <div class="w-full mx-auto max-w-lg">
-            <div x-data="{ activeTab: 0, moreOpen: false }" class="flex gap-6">
-                <div class="flex flex-col gap-3">
-                    <h3 class="text-zinc-400 font-medium text-xs pl-3">Configuration</h3>
-                    <ul class="flex flex-col gap-1 w-56 text-sm font-medium" role="tablist" aria-label="Tab navigation" @keydown.arrow-up="activeTab = activeTab > 0 ? activeTab - 1 : 6" @keydown.arrow-down="activeTab = activeTab < 6 ? activeTab + 1 : 0" @keydown.home="activeTab = 0" @keydown.end="activeTab = 6">
-                        <li>
-                            <a @click="activeTab = 0" :class="{ 'bg-zinc-100 border-zinc-100 text-zinc-900 hover:bg-zinc-100': activeTab === 0 }" class="inline-flex w-full cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 border border-transparent text-zinc-500 hover:text-zinc-900" role="tab" :aria-selected="activeTab === 0" tabindex="0">
-                                <%= icon "user", variant: "filled" %>
-                                <span>Profile</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a @click="activeTab = 1" :class="{ 'bg-zinc-100 border-zinc-100 text-zinc-900 hover:bg-zinc-100': activeTab === 1 }" class="inline-flex w-full cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 border border-transparent text-zinc-500 hover:text-zinc-900" role="tab" :aria-selected="activeTab === 0" tabindex="0">
-                                <%= icon "adjustments", variant: "filled" %>
-                                <span>Preferences</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a @click="activeTab = 2" :class="{ 'bg-zinc-100 border-zinc-100 text-zinc-900 hover:bg-zinc-100': activeTab === 2 }" class="inline-flex w-full cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 border border-transparent text-zinc-500 hover:text-zinc-900" role="tab" :aria-selected="activeTab === 0" tabindex="0">
-                                <%= icon "bell", variant: "filled" %>
-                                <span>Notifications</span>
-                                <span class="rounded-full bg-zinc-200 px-2 py-0.5 text-xs font-semibold text-zinc-500">8</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a @click="activeTab = 3" :class="{ 'bg-zinc-100 border-zinc-100 text-zinc-900 hover:bg-zinc-100': activeTab === 3 }" class="inline-flex w-full cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 border border-transparent text-zinc-500 hover:text-zinc-900" role="tab" :aria-selected="activeTab === 0" tabindex="0">
-                                <%= icon "apps", variant: "filled" %>
-                                <span>Apps</span>
-                            </a>
-                        </li>
-                        <li>
-                            <button @click="moreOpen = !moreOpen" class="inline-flex w-full cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 border border-transparent text-zinc-500 hover:text-zinc-900" role="tab" tabindex="0">
-                                <%= icon "settings", variant: "filled" %>
-                                <span>Settings</span>
-                                <%= icon "chevron-right", class: "w-4 h-4 ml-auto transition-transform", ":class" => "{ 'rotate-90': moreOpen }" %>
-                            </button>
-                            <!-- Collapsible sub-items -->
-                            <div x-show="moreOpen" x-transition class="ml-6 mt-1 space-y-1">
-                                <a @click="activeTab = 4" :class="{ 'bg-zinc-100 border-zinc-100 text-zinc-900 hover:bg-zinc-100': activeTab === 4 }" class="inline-flex w-full cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 border border-transparent text-zinc-500 hover:text-zinc-900 text-sm">
-                                    Roles
-                                </a>
-                                <a @click="activeTab = 5" :class="{ 'bg-zinc-100 border-zinc-100 text-zinc-900 hover:bg-zinc-100': activeTab === 5 }" class="inline-flex w-full cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 border border-transparent text-zinc-500 hover:text-zinc-900 text-sm">
-                                    Integrations
-                                </a>
-                                <a @click="activeTab = 6" :class="{ 'bg-zinc-100 border-zinc-100 text-zinc-900 hover:bg-zinc-100': activeTab === 6 }" class="inline-flex w-full cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 border border-transparent text-zinc-500 hover:text-zinc-900 text-sm">
-                                    Billing
-                                </a>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-                <div class="pt-3 flex-1 border border-zinc-200 rounded-lg p-4">
-                    <div :class="{ '!block': activeTab === 0 }" x-show.transition.in.opacity.duration.600="activeTab === 0" class="hidden" role="tabpanel" aria-labelledby="tab-content">
-                        Profile content
-                    </div>
-                    <div :class="{ '!block': activeTab === 1 }" x-show.transition.in.opacity.duration.600="activeTab === 1" class="hidden" role="tabpanel" aria-labelledby="tab-content">
-                        Preferences content
-                    </div>
-                    <div :class="{ '!block': activeTab === 2 }" x-show.transition.in.opacity.duration.600="activeTab === 2" class="hidden" role="tabpanel" aria-labelledby="tab-content">
-                        Notifications content
-                    </div>
-                    <div :class="{ '!block': activeTab === 3 }" x-show.transition.in.opacity.duration.600="activeTab === 3" class="hidden" role="tabpanel" aria-labelledby="tab-content">
-                        Apps content
-                    </div>
-                    <div :class="{ '!block': activeTab === 4 }" x-show.transition.in.opacity.duration.600="activeTab === 4" class="hidden" role="tabpanel" aria-labelledby="tab-content">
-                        Roles content
-                    </div>
-                    <div :class="{ '!block': activeTab === 5 }" x-show.transition.in.opacity.duration.600="activeTab === 5" class="hidden" role="tabpanel" aria-labelledby="tab-content">
-                        Integrations content
-                    </div>
-                    <div :class="{ '!block': activeTab === 6 }" x-show.transition.in.opacity.duration.600="activeTab === 6" class="hidden" role="tabpanel" aria-labelledby="tab-content">
-                        Billing content
+        <%= render TabComponent.new(
+            variant: :pill,
+            orientation: :vertical,
+            sections: [
+                {
+                    heading: "User Settings",
+                    tabs: [
+                        { text: "Profile", icon: "user" },
+                        { text: "Preferences", icon: "adjustments" },
+                        { text: "Notifications", icon: "bell", badge: 8 }
+                    ]
+                },
+                {
+                    heading: "System",
+                    tabs: [
+                        { text: "Apps", icon: "apps" },
+                        { 
+                            text: "Settings", 
+                            icon: "settings", 
+                            dropdown: [
+                                { text: "Roles", badge: 8 },
+                                { text: "Integrations" },
+                                { text: "Billing" }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        ) do |tab| %>
+            <% tab.with_tab_content(name: "Profile") do %>
+                <div class="space-y-4">
+                    <h3 class="text-lg font-semibold">Profile Settings</h3>
+                    <div class="bg-blue-50 p-4 rounded-lg">
+                        <h4 class="font-medium text-blue-900 mb-2">Personal Information</h4>
+                        <p class="text-blue-800 text-sm">Update your name, email, and other personal details.</p>
                     </div>
                 </div>
-            </div>
-        </div>
+            <% end %>
+            
+            <% tab.with_tab_content(name: "Preferences") do %>
+                <div class="space-y-4">
+                    <h3 class="text-lg font-semibold">User Preferences</h3>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-green-50 p-4 rounded-lg">
+                            <h4 class="font-medium text-green-900">Theme</h4>
+                            <p class="text-green-800 text-sm">Light/Dark mode</p>
+                        </div>
+                        <div class="bg-purple-50 p-4 rounded-lg">
+                            <h4 class="font-medium text-purple-900">Language</h4>
+                            <p class="text-purple-800 text-sm">Interface language</p>
+                        </div>
+                    </div>
+                </div>
+            <% end %>
+            
+            <% tab.with_tab_content(name: "Notifications") do %>
+                <div class="space-y-4">
+                    <h3 class="text-lg font-semibold">Notification Settings</h3>
+                    <div class="bg-yellow-50 border border-yellow-200 p-4 rounded-lg">
+                        <div class="flex items-center gap-2 mb-2">
+                            <h4 class="font-medium text-yellow-900">Active Notifications</h4>
+                            <span class="bg-yellow-200 text-yellow-800 text-xs px-2 py-1 rounded-full">8 unread</span>
+                        </div>
+                        <p class="text-yellow-800 text-sm">Configure how you receive notifications.</p>
+                    </div>
+                </div>
+            <% end %>
+            
+            <% tab.with_tab_content(name: "Apps") do %>
+                <div class="space-y-4">
+                    <h3 class="text-lg font-semibold">Connected Applications</h3>
+                    <div class="bg-zinc-50 p-4 rounded-lg">
+                        <h4 class="font-medium text-zinc-900 mb-2">Installed Apps</h4>
+                        <p class="text-zinc-700 text-sm">Manage your connected applications and their permissions.</p>
+                    </div>
+                </div>
+            <% end %>
+            
+            <% tab.with_tab_content(name: "Roles") do %>
+                <div class="space-y-4">
+                    <h3 class="text-lg font-semibold">User Roles</h3>
+                    <div class="bg-red-50 border border-red-200 p-4 rounded-lg">
+                        <div class="flex items-center gap-2 mb-2">
+                            <h4 class="font-medium text-red-900">Role Management</h4>
+                            <span class="bg-red-200 text-red-800 text-xs px-2 py-1 rounded-full">8 pending</span>
+                        </div>
+                        <p class="text-red-800 text-sm">Configure user roles and permissions.</p>
+                    </div>
+                </div>
+            <% end %>
+            
+            <% tab.with_tab_content(name: "Integrations") do %>
+                <div class="space-y-4">
+                    <h3 class="text-lg font-semibold">System Integrations</h3>
+                    <div class="bg-indigo-50 p-4 rounded-lg">
+                        <h4 class="font-medium text-indigo-900 mb-2">External Services</h4>
+                        <p class="text-indigo-800 text-sm">Connect with third-party services and APIs.</p>
+                    </div>
+                </div>
+            <% end %>
+            
+            <% tab.with_tab_content(name: "Billing") do %>
+                <div class="space-y-4">
+                    <h3 class="text-lg font-semibold">Billing & Payments</h3>
+                    <div class="bg-emerald-50 p-4 rounded-lg">
+                        <h4 class="font-medium text-emerald-900 mb-2">Payment Information</h4>
+                        <p class="text-emerald-800 text-sm">Manage your subscription and payment methods.</p>
+                    </div>
+                </div>
+            <% end %>
+        <% end %>
+    </div>
+
+    <!-- Navigation Example (Mixed tabs and navigation) -->
+    <div class="mt-16 pb-16">
+        <h4 class="text-lg font-medium mb-4">Navigation Example (Mixed Navigation & Tabs)</h4>
+        <%= render TabComponent.new(
+            variant: :line,
+            orientation: :vertical,
+            heading: "Main Navigation",
+            tabs: [
+                { 
+                    text: "Dashboard", 
+                    icon: "home", 
+                    path: "/dashboard",
+                    active: request.path == "/dashboard"
+                },
+                { 
+                    text: "Components", 
+                    icon: "apps", 
+                    path: "/components", 
+                    active: request.path.start_with?("/components")
+                },
+                { text: "Local Tab", icon: "file" },
+                { 
+                    text: "Admin", 
+                    icon: "settings", 
+                    dropdown: [
+                        { text: "Users", path: "/admin/users", active: request.path == "/admin/users" },
+                        { text: "Settings Tab" },
+                        { text: "Reports", path: "/admin/reports", active: request.path == "/admin/reports" }
+                    ]
+                }
+            ]
+        ) do |tab| %>
+            <% tab.with_tab_content(name: "Local Tab") do %>
+                <div class="p-4">
+                    <h3 class="font-semibold mb-2">Local Tab Content</h3>
+                    <p>This is a regular tab with content mixed in with navigation links.</p>
+                </div>
+            <% end %>
+            
+            <% tab.with_tab_content(name: "Settings Tab") do %>
+                <div class="p-4">
+                    <h3 class="font-semibold mb-2">Settings Panel</h3>
+                    <p>This dropdown item is a regular tab with content, not a navigation link.</p>
+                </div>
+            <% end %>
+        <% end %>
     </div>
 
     <!-- Segmented Horizontal -->
@@ -341,81 +627,77 @@
         <div class="rounded-2xl border border-zinc-200 bg-white">
             <!-- Preview -->
             <div class="px-6 py-16">
-                <div class="w-full flex justify-center">
-                    <div x-data="{ activeTab: 0, moreOpen: false }">
-                        <div class="rounded-xl bg-zinc-100 p-1.5">
-                            <ul class="flex items-center gap-1.5 text-sm font-medium" role="tablist" aria-label="Tab navigation" @keydown.arrow-left="activeTab = activeTab > 0 ? activeTab - 1 : 6" @keydown.arrow-right="activeTab = activeTab < 6 ? activeTab + 1 : 0" @keydown.home="activeTab = 0" @keydown.end="activeTab = 6">
-                                <li>
-                                    <a @click="activeTab = 0" :class="{ 'bg-white shadow text-zinc-900': activeTab === 0 }" :aria-selected="activeTab === 0" class="inline-flex cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 border border-transparent text-zinc-600 hover:bg-white hover:text-zinc-900 hover:shadow" role="tab" tabindex="0">
-                                        <%= icon "user", variant: "filled" %>
-                                        <span>Profile</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a @click="activeTab = 1" :class="{ 'bg-white shadow text-zinc-900': activeTab === 1 }" :aria-selected="activeTab === 1" class="inline-flex cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 border border-transparent text-zinc-600 hover:bg-white hover:text-zinc-900 hover:shadow" role="tab" tabindex="0">
-                                        <%= icon "adjustments", variant: "filled" %>
-                                        <span>Preferences</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a @click="activeTab = 2" :class="{ 'bg-white shadow text-zinc-900': activeTab === 2 }" :aria-selected="activeTab === 2" class="inline-flex cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 border border-transparent text-zinc-600 hover:bg-white hover:text-zinc-900 hover:shadow" role="tab" tabindex="0">
-                                        <%= icon "bell", variant: "filled" %>
-                                        <span>Notifications</span>
-                                        <span class="rounded-full bg-zinc-200 px-2 py-0.5 text-xs font-semibold text-zinc-500">8</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a @click="activeTab = 3" :class="{ 'bg-white shadow text-zinc-900': activeTab === 3 }" :aria-selected="activeTab === 3" class="inline-flex cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 border border-transparent text-zinc-600 hover:bg-white hover:text-zinc-900 hover:shadow" role="tab" tabindex="0">
-                                        <%= icon "apps", variant: "filled" %>
-                                        <span>Apps</span>
-                                    </a>
-                                </li>
-                                <li class="relative">
-                                    <button @click="moreOpen = !moreOpen" :class="{ 'bg-white shadow text-zinc-900': activeTab === 4 || activeTab === 5 || activeTab === 6 }" class="inline-flex cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 border border-transparent text-zinc-600 hover:bg-white hover:text-zinc-900 hover:shadow" role="tab" tabindex="0">
-                                        <%= icon "settings", variant: "filled" %>
-                                        <span>Settings</span>
-                                        <%= icon "chevron-down", class: "w-4 h-4" %>
-                                    </button>
-                                    <!-- Dropdown -->
-                                    <div x-show="moreOpen" x-transition.origin.top.left @click.outside="moreOpen = false" class="absolute left-0 flex flex-col gap-1.5 min-w-48 rounded-lg shadow mt-2 z-10 origin-top-left bg-white p-1.5 outline-none border border-zinc-200 text-sm">
-                                        <a @click="activeTab = 4; moreOpen = false" :class="{ 'bg-zinc-100': activeTab === 4 }" class="px-2 py-1.5 w-full flex items-center rounded-md transition-colors text-left text-zinc-800 hover:bg-zinc-100 focus-visible:bg-zinc-100 cursor-pointer">
-                                            Roles
-                                        </a>
-                                        <a @click="activeTab = 5; moreOpen = false" :class="{ 'bg-zinc-100': activeTab === 5 }" class="px-2 py-1.5 w-full flex items-center rounded-md transition-colors text-left text-zinc-800 hover:bg-zinc-100 focus-visible:bg-zinc-100 cursor-pointer">
-                                            Integrations
-                                        </a>
-                                        <a @click="activeTab = 6; moreOpen = false" :class="{ 'bg-zinc-100': activeTab === 6 }" class="px-2 py-1.5 w-full flex items-center rounded-md transition-colors text-left text-zinc-800 hover:bg-zinc-100 focus-visible:bg-zinc-100 cursor-pointer">
-                                            Billing
-                                        </a>
-                                    </div>
-                                </li>
-                            </ul>
+                <%= render TabComponent.new(
+                    variant: :segmented,
+                    orientation: :horizontal,
+                    tabs: [
+                        { text: "Profile", icon: "user" },
+                        { text: "Preferences", icon: "adjustments" },
+                        { text: "Notifications", icon: "bell", badge: 8 },
+                        { text: "Apps", icon: "apps" },
+                        { 
+                            text: "Settings", 
+                            icon: "settings", 
+                            dropdown: [
+                                { text: "Roles" },
+                                { text: "Integrations" },
+                                { text: "Billing" }
+                            ]
+                        }
+                    ]
+                ) do |tab| %>
+                    <% tab.with_tab_content(name: "Profile") do %>
+                        <div class="p-6 bg-white rounded-lg border">
+                            <h3 class="text-lg font-semibold mb-3">Profile Settings</h3>
+                            <p class="text-zinc-600">Manage your personal profile and account information.</p>
                         </div>
-                        <div class="py-3">
-                            <div :class="{ '!block': activeTab === 0 }" x-show.transition.in.opacity.duration.600="activeTab === 0" class="hidden" role="tabpanel" aria-labelledby="tab-content">
-                                Profile tab content
-                            </div>
-                            <div :class="{ '!block': activeTab === 1 }" x-show.transition.in.opacity.duration.600="activeTab === 1" class="hidden" role="tabpanel" aria-labelledby="tab-content">
-                                Preferences tab content
-                            </div>
-                            <div :class="{ '!block': activeTab === 2 }" x-show.transition.in.opacity.duration.600="activeTab === 2" class="hidden" role="tabpanel" aria-labelledby="tab-content">
-                                Notifications tab content
-                            </div>
-                            <div :class="{ '!block': activeTab === 3 }" x-show.transition.in.opacity.duration.600="activeTab === 3" class="hidden" role="tabpanel" aria-labelledby="tab-content">
-                                Apps tab content
-                            </div>
-                            <div :class="{ '!block': activeTab === 4 }" x-show.transition.in.opacity.duration.600="activeTab === 4" class="hidden" role="tabpanel" aria-labelledby="tab-content">
-                                Roles tab content
-                            </div>
-                            <div :class="{ '!block': activeTab === 5 }" x-show.transition.in.opacity.duration.600="activeTab === 5" class="hidden" role="tabpanel" aria-labelledby="tab-content">
-                                Integrations tab content
-                            </div>
-                            <div :class="{ '!block': activeTab === 6 }" x-show.transition.in.opacity.duration.600="activeTab === 6" class="hidden" role="tabpanel" aria-labelledby="tab-content">
-                                Billing tab content
+                    <% end %>
+                    
+                    <% tab.with_tab_content(name: "Preferences") do %>
+                        <div class="p-6 bg-white rounded-lg border">
+                            <h3 class="text-lg font-semibold mb-3">User Preferences</h3>
+                            <p class="text-zinc-600">Customize your application experience and settings.</p>
+                        </div>
+                    <% end %>
+                    
+                    <% tab.with_tab_content(name: "Notifications") do %>
+                        <div class="p-6 bg-white rounded-lg border">
+                            <h3 class="text-lg font-semibold mb-3">Notification Settings</h3>
+                            <p class="text-zinc-600">Control how and when you receive notifications.</p>
+                            <div class="mt-3">
+                                <span class="bg-red-100 text-red-800 text-xs px-2 py-1 rounded-full">8 unread notifications</span>
                             </div>
                         </div>
-                    </div>
-                </div>
+                    <% end %>
+                    
+                    <% tab.with_tab_content(name: "Apps") do %>
+                        <div class="p-6 bg-white rounded-lg border">
+                            <h3 class="text-lg font-semibold mb-3">Connected Applications</h3>
+                            <p class="text-zinc-600">Manage your installed applications and integrations.</p>
+                        </div>
+                    <% end %>
+                    
+                    <% tab.with_tab_content(name: "Roles") do %>
+                        <div class="p-6 bg-white rounded-lg border">
+                            <h3 class="text-lg font-semibold mb-3">User Roles</h3>
+                            <p class="text-zinc-600">Configure user roles and access permissions.</p>
+                        </div>
+                    <% end %>
+                    
+                    <% tab.with_tab_content(name: "Integrations") do %>
+                        <div class="p-6 bg-white rounded-lg border">
+                            <h3 class="text-lg font-semibold mb-3">System Integrations</h3>
+                            <p class="text-zinc-600">Connect with external services and APIs.</p>
+                        </div>
+                    <% end %>
+                    
+                    <% tab.with_tab_content(name: "Billing") do %>
+                        <div class="p-6 bg-white rounded-lg border">
+                            <h3 class="text-lg font-semibold mb-3">Billing & Payments</h3>
+                            <p class="text-zinc-600">Manage your subscription and payment information.</p>
+                        </div>
+                    <% end %>
+                <% end %>
             </div>
             <!-- Code section -->
             <div class="relative rounded-b-2xl overflow-hidden flex max-h-80 bg-zinc-100 border-t border-zinc-200">
@@ -469,84 +751,98 @@
 
     <!-- Segmented Vertical -->
     <div class="mt-16 pb-16">
-        <div class="w-full mx-auto max-w-lg">
-            <div x-data="{ activeTab: 0, moreOpen: false }" class="flex gap-6">
-                <div class="flex flex-col gap-2">
-                    <h3 class="text-zinc-400 font-medium text-xs">Configuration</h3>
-                    <div class="rounded-xl bg-zinc-100 p-1.5">
-                        <ul class="flex flex-col gap-1.5 w-56 text-sm font-medium" role="tablist" aria-label="Tab navigation" @keydown.arrow-up="activeTab = activeTab > 0 ? activeTab - 1 : 6" @keydown.arrow-down="activeTab = activeTab < 6 ? activeTab + 1 : 0" @keydown.home="activeTab = 0" @keydown.end="activeTab = 6">
-                            <li>
-                                <a @click="activeTab = 0" :class="{ 'bg-white shadow text-zinc-900': activeTab === 0 }" class="inline-flex w-full cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 border border-transparent text-zinc-600 hover:bg-white hover:text-zinc-900 hover:shadow" role="tab" :aria-selected="activeTab === 0" tabindex="0">
-                                    <%= icon "user", variant: "filled" %>
-                                    <span>Profile</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a @click="activeTab = 1" :class="{ 'bg-white shadow text-zinc-900': activeTab === 1 }" class="inline-flex w-full cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 border border-transparent text-zinc-600 hover:bg-white hover:text-zinc-900 hover:shadow" role="tab" :aria-selected="activeTab === 0" tabindex="0">
-                                    <%= icon "adjustments", variant: "filled" %>
-                                    <span>Preferences</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a @click="activeTab = 2" :class="{ 'bg-white shadow text-zinc-900': activeTab === 2 }" class="inline-flex w-full cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 border border-transparent text-zinc-600 hover:bg-white hover:text-zinc-900 hover:shadow" role="tab" :aria-selected="activeTab === 0" tabindex="0">
-                                    <%= icon "bell", variant: "filled" %>
-                                    <span>Notifications</span>
-                                    <span class="rounded-full bg-zinc-200 px-2 py-0.5 text-xs font-semibold text-zinc-500">8</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a @click="activeTab = 3" :class="{ 'bg-white shadow text-zinc-900': activeTab === 3 }" class="inline-flex w-full cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 border border-transparent text-zinc-600 hover:bg-white hover:text-zinc-900 hover:shadow" role="tab" :aria-selected="activeTab === 0" tabindex="0">
-                                    <%= icon "apps", variant: "filled" %>
-                                    <span>Apps</span>
-                                </a>
-                            </li>
-                            <li>
-                                <button @click="moreOpen = !moreOpen" class="inline-flex w-full cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 border border-transparent text-zinc-600 hover:bg-white hover:text-zinc-900 hover:shadow" role="tab" tabindex="0">
-                                    <%= icon "settings", variant: "filled" %>
-                                    <span>Settings</span>
-                                    <%= icon "chevron-right", class: "w-4 h-4 ml-auto transition-transform", ":class" => "{ 'rotate-90': moreOpen }" %>
-                                </button>
-                                <!-- Collapsible sub-items -->
-                                <div x-show="moreOpen" x-transition class="ml-6 mt-1 space-y-1">
-                                    <a @click="activeTab = 4" :class="{ 'bg-white shadow text-zinc-900': activeTab === 4 }" class="inline-flex w-full cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 border border-transparent text-zinc-600 hover:bg-white hover:text-zinc-900 hover:shadow text-sm">
-                                        Roles
-                                    </a>
-                                    <a @click="activeTab = 5" :class="{ 'bg-white shadow text-zinc-900': activeTab === 5 }" class="inline-flex w-full cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 border border-transparent text-zinc-600 hover:bg-white hover:text-zinc-900 hover:shadow text-sm">
-                                        Integrations
-                                    </a>
-                                    <a @click="activeTab = 6" :class="{ 'bg-white shadow text-zinc-900': activeTab === 6 }" class="inline-flex w-full cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 border border-transparent text-zinc-600 hover:bg-white hover:text-zinc-900 hover:shadow text-sm">
-                                        Billing
-                                    </a>
-                                </div>
-                            </li>
-                        </ul>
+        <%= render TabComponent.new(
+            variant: :segmented,
+            orientation: :vertical,
+            tabs: [
+                { text: "Profile", icon: "user" },
+                { text: "Preferences", icon: "adjustments" },
+                { text: "Notifications", icon: "bell", badge: 8 },
+                { text: "Apps", icon: "apps" },
+                { 
+                    text: "Settings", 
+                    icon: "settings", 
+                    dropdown: [
+                        { text: "Roles" },
+                        { text: "Integrations" },
+                        { text: "Billing" }
+                    ]
+                }
+            ]
+        ) do |tab| %>
+            <% tab.with_tab_content(name: "Profile") do %>
+                <div class="space-y-4">
+                    <h3 class="text-xl font-bold text-zinc-900">Profile Management</h3>
+                    <div class="bg-gradient-to-br from-blue-50 to-indigo-100 p-6 rounded-xl border border-blue-200">
+                        <h4 class="font-semibold text-blue-900 mb-2">Personal Information</h4>
+                        <p class="text-blue-800">Update your profile details, avatar, and personal preferences.</p>
                     </div>
                 </div>
-                <div class="pt-3 flex-1 border border-zinc-200 rounded-lg p-4">
-                    <div :class="{ '!block': activeTab === 0 }" x-show.transition.in.opacity.duration.600="activeTab === 0" class="hidden" role="tabpanel" aria-labelledby="tab-content">
-                        Profile content
-                    </div>
-                    <div :class="{ '!block': activeTab === 1 }" x-show.transition.in.opacity.duration.600="activeTab === 1" class="hidden" role="tabpanel" aria-labelledby="tab-content">
-                        Preferences content
-                    </div>
-                    <div :class="{ '!block': activeTab === 2 }" x-show.transition.in.opacity.duration.600="activeTab === 2" class="hidden" role="tabpanel" aria-labelledby="tab-content">
-                        Notifications content
-                    </div>
-                    <div :class="{ '!block': activeTab === 3 }" x-show.transition.in.opacity.duration.600="activeTab === 3" class="hidden" role="tabpanel" aria-labelledby="tab-content">
-                        Apps content
-                    </div>
-                    <div :class="{ '!block': activeTab === 4 }" x-show.transition.in.opacity.duration.600="activeTab === 4" class="hidden" role="tabpanel" aria-labelledby="tab-content">
-                        Roles content
-                    </div>
-                    <div :class="{ '!block': activeTab === 5 }" x-show.transition.in.opacity.duration.600="activeTab === 5" class="hidden" role="tabpanel" aria-labelledby="tab-content">
-                        Integrations content
-                    </div>
-                    <div :class="{ '!block': activeTab === 6 }" x-show.transition.in.opacity.duration.600="activeTab === 6" class="hidden" role="tabpanel" aria-labelledby="tab-content">
-                        Billing content
+            <% end %>
+            
+            <% tab.with_tab_content(name: "Preferences") do %>
+                <div class="space-y-4">
+                    <h3 class="text-xl font-bold text-zinc-900">Application Preferences</h3>
+                    <div class="bg-gradient-to-br from-green-50 to-emerald-100 p-6 rounded-xl border border-green-200">
+                        <h4 class="font-semibold text-green-900 mb-2">Interface Settings</h4>
+                        <p class="text-green-800">Customize the look and feel of your application interface.</p>
                     </div>
                 </div>
-            </div>
-        </div>
+            <% end %>
+            
+            <% tab.with_tab_content(name: "Notifications") do %>
+                <div class="space-y-4">
+                    <h3 class="text-xl font-bold text-zinc-900">Notification Center</h3>
+                    <div class="bg-gradient-to-br from-amber-50 to-orange-100 p-6 rounded-xl border border-amber-200">
+                        <div class="flex items-center gap-2 mb-2">
+                            <h4 class="font-semibold text-amber-900">Alert Management</h4>
+                            <span class="bg-amber-200 text-amber-800 text-xs px-2 py-1 rounded-full font-medium">8 active</span>
+                        </div>
+                        <p class="text-amber-800">Configure how you receive notifications and alerts.</p>
+                    </div>
+                </div>
+            <% end %>
+            
+            <% tab.with_tab_content(name: "Apps") do %>
+                <div class="space-y-4">
+                    <h3 class="text-xl font-bold text-zinc-900">App Management</h3>
+                    <div class="bg-gradient-to-br from-purple-50 to-violet-100 p-6 rounded-xl border border-purple-200">
+                        <h4 class="font-semibold text-purple-900 mb-2">Connected Applications</h4>
+                        <p class="text-purple-800">Manage your installed apps, permissions, and integrations.</p>
+                    </div>
+                </div>
+            <% end %>
+            
+            <% tab.with_tab_content(name: "Roles") do %>
+                <div class="space-y-4">
+                    <h3 class="text-xl font-bold text-zinc-900">Role Configuration</h3>
+                    <div class="bg-gradient-to-br from-red-50 to-pink-100 p-6 rounded-xl border border-red-200">
+                        <h4 class="font-semibold text-red-900 mb-2">Access Control</h4>
+                        <p class="text-red-800">Define user roles and manage access permissions.</p>
+                    </div>
+                </div>
+            <% end %>
+            
+            <% tab.with_tab_content(name: "Integrations") do %>
+                <div class="space-y-4">
+                    <h3 class="text-xl font-bold text-zinc-900">System Integrations</h3>
+                    <div class="bg-gradient-to-br from-teal-50 to-cyan-100 p-6 rounded-xl border border-teal-200">
+                        <h4 class="font-semibold text-teal-900 mb-2">External Services</h4>
+                        <p class="text-teal-800">Connect with third-party services, APIs, and external systems.</p>
+                    </div>
+                </div>
+            <% end %>
+            
+            <% tab.with_tab_content(name: "Billing") do %>
+                <div class="space-y-4">
+                    <h3 class="text-xl font-bold text-zinc-900">Billing & Subscriptions</h3>
+                    <div class="bg-gradient-to-br from-emerald-50 to-green-100 p-6 rounded-xl border border-emerald-200">
+                        <h4 class="font-semibold text-emerald-900 mb-2">Payment Management</h4>
+                        <p class="text-emerald-800">Handle billing, subscriptions, and payment methods.</p>
+                    </div>
+                </div>
+            <% end %>
+        <% end %>
     </div>
 
 </div>
