@@ -41,3 +41,9 @@
 .cursorrules
 CLAUDE.md
 DEVELOPMENT_GUIDELINES.md
+.fleet/settings.json
+.idea/codeStyles/codeStyleConfig.xml
+.idea/vcs.xml
+.idea/modules.xml
+.idea/misc.xml
+.idea/luckyui.iml
