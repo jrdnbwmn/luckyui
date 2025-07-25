@@ -1,13 +1,46 @@
 # frozen_string_literal: true
 
+require 'set'
+
+# TabComponent provides a flexible tabbed interface with URL hash integration.
+# 
+# Features:
+# - Bookmarkable tabs via URL hash (e.g., #profile-tab)
+# - Browser back/forward button support
+# - Three variants: line, pill, segmented
+# - Horizontal and vertical orientations
+# - Sections for grouping tabs
+# - Dropdown support within tabs
+# - Navigation links mixed with content tabs
+# - Keyboard navigation (arrow keys, home, end)
+# - Full ARIA implementation for screen readers and assistive technology
+#
+# URL Hash Integration:
+# - Tab names are automatically converted to URL-friendly hashes (e.g., #profile)
+# - Users can bookmark specific tabs and share direct links  
+# - Browser history is preserved for back/forward navigation
+# - First occurrence of any tab name gets clean URL (#profile), duplicates get numbered (#profile-2, #profile-3)
+# - Use scoped_hash: true for component-scoped hashes if preferred
 class TabComponent < ViewComponent::Base
   VARIANTS = %i[line pill segmented].freeze
   ORIENTATIONS = %i[horizontal vertical].freeze
-  CONTENT_PANEL_VARIANTS = %i[bordered minimal none full].freeze
+
+  # Global registry to track used hashes across all component instances
+  # This prevents conflicts when multiple components have tabs with same names
+  @@used_hashes = Set.new
+  @@component_hashes = {}
+  @@base_name_counts = Hash.new(0)
 
   renders_many :tab_contents, TabContentComponent
 
-  attr_reader :variant, :orientation, :tabs, :component_id, :heading, :sections, :content_panel_variant, :content_panel_classes
+  attr_reader :variant, :orientation, :tabs, :component_id, :heading, :sections, :scoped_hash
+
+  # Class method to clear the global hash registry (useful for tests and development)
+  def self.reset_hash_registry!
+    @@used_hashes.clear
+    @@component_hashes.clear
+    @@base_name_counts.clear
+  end
 
   def initialize(
     variant: :line,
@@ -16,8 +49,7 @@ class TabComponent < ViewComponent::Base
     component_id: nil,
     heading: nil,
     sections: nil,
-    content_panel_variant: :minimal,
-    content_panel_classes: nil
+    scoped_hash: false
   )
     @variant = VARIANTS.include?(variant.to_sym) ? variant.to_sym : :line
     @orientation = ORIENTATIONS.include?(orientation.to_sym) ? orientation.to_sym : :horizontal
@@ -25,14 +57,12 @@ class TabComponent < ViewComponent::Base
     @sections = sections
     @component_id = component_id || "tabs-#{SecureRandom.hex(4)}"
     @heading = heading
-    @content_panel_variant = CONTENT_PANEL_VARIANTS.include?(content_panel_variant.to_sym) ? content_panel_variant.to_sym : :minimal
-    @content_panel_classes = content_panel_classes
+    @scoped_hash = scoped_hash
 
     # Development warnings for accessibility and invalid parameters
     if Rails.env.development?
       warn "[TabComponent] Invalid variant '#{variant}'. Valid options: #{VARIANTS.join(', ')}" unless VARIANTS.include?(variant.to_sym)
       warn "[TabComponent] Invalid orientation '#{orientation}'. Valid options: #{ORIENTATIONS.join(', ')}" unless ORIENTATIONS.include?(orientation.to_sym)
-      warn "[TabComponent] Invalid content_panel_variant '#{content_panel_variant}'. Valid options: #{CONTENT_PANEL_VARIANTS.join(', ')}" unless CONTENT_PANEL_VARIANTS.include?(content_panel_variant.to_sym)
       warn "[TabComponent] No tabs or sections provided" if tabs.empty? && (sections.nil? || sections.empty?)
     end
   end
@@ -181,36 +211,20 @@ class TabComponent < ViewComponent::Base
   end
 
   def content_panel_classes
-    # Return custom classes if provided
-    return @content_panel_classes if @content_panel_classes.present?
-
-    # Return no classes for 'none' variant
-    return "" if content_panel_variant == :none
-
     base = []
 
     # Base layout classes
     if orientation == :vertical
-      base << "flex-1"
-
-      # Add spacing based on content panel variant
-      case content_panel_variant
-      when :bordered
-        base << "pt-3 border border-zinc-200 rounded-lg p-4"
-      when :minimal
-        base << "pt-3 pl-6"
-      when :full
-        base << "pt-3"
-      end
+      base << "flex-1 pt-3 pl-6"
     else
       # Horizontal orientation spacing
       case variant
       when :line
-        base << (content_panel_variant == :none ? "" : "py-3")
+        base << "py-3"
       when :pill
-        base << (content_panel_variant == :none ? "" : "pt-4")
+        base << "pt-4"
       when :segmented
-        base << (content_panel_variant == :none ? "" : "py-3")
+        base << "py-3"
       end
     end
 
@@ -289,5 +303,102 @@ class TabComponent < ViewComponent::Base
 
   def has_block_content?
     tab_contents.any?
+  end
+
+  def tab_id_from_name(name)
+    clean_name = name.to_s.downcase.gsub(/[^a-z0-9]+/, '-').gsub(/-+/, '-').gsub(/^-+|-+$/, '')
+    
+    if scoped_hash
+      return "#{component_id}-#{clean_name}"
+    end
+    
+    # Check if this component already has a hash for this tab name
+    component_key = "#{component_id}-#{clean_name}"
+    return @@component_hashes[component_key] if @@component_hashes[component_key]
+    
+    # Increment count for this base name
+    @@base_name_counts[clean_name] += 1
+    current_count = @@base_name_counts[clean_name]
+    
+    # First occurrence gets clean name, subsequent get suffixes
+    unique_hash = current_count == 1 ? clean_name : "#{clean_name}-#{current_count}"
+    
+    # Register the hash
+    @@used_hashes.add(unique_hash)
+    @@component_hashes[component_key] = unique_hash
+    
+    unique_hash
+  end
+
+  # Generate unique tab ID for ARIA attributes
+  def tab_element_id(name, index = nil)
+    suffix = index ? "-#{index}" : ""
+    clean_name = name.to_s.downcase.gsub(/[^a-z0-9]+/, '-').gsub(/-+/, '-').gsub(/^-+|-+$/, '')
+    "#{component_id}-tab-#{clean_name}#{suffix}"
+  end
+
+  # Generate unique panel ID for ARIA attributes  
+  def panel_element_id(name, index = nil)
+    suffix = index ? "-#{index}" : ""
+    clean_name = name.to_s.downcase.gsub(/[^a-z0-9]+/, '-').gsub(/-+/, '-').gsub(/^-+|-+$/, '')
+    "#{component_id}-panel-#{clean_name}#{suffix}"
+  end
+
+  def tab_names_for_hash_map
+    tab_names = []
+    
+    if using_sections?
+      sections.each_with_index do |section, section_index|
+        (section[:tabs] || []).each_with_index do |tab, tab_index|
+          current_tab_index = section_index * 10 + tab_index
+          if tab[:dropdown]
+            (tab[:dropdown] || []).each_with_index do |dropdown_item, dropdown_index|
+              dropdown_tab_index = current_tab_index + dropdown_index + 100
+              unless is_navigation_dropdown_item?(dropdown_item)
+                tab_names << { index: dropdown_tab_index, name: dropdown_item[:text] }
+              end
+            end
+          else
+            unless is_navigation_tab?(tab)
+              tab_names << { index: current_tab_index, name: tab[:text] }
+            end
+          end
+        end
+      end
+    else
+      tab_index = 0
+      tabs.each do |tab|
+        if tab[:dropdown]
+          tab[:dropdown].each do |dropdown_item|
+            tab_index += 1
+            unless is_navigation_dropdown_item?(dropdown_item)
+              tab_names << { index: tab_index, name: dropdown_item[:text] }
+            end
+          end
+        else
+          unless is_navigation_tab?(tab)
+            tab_names << { index: tab_index, name: tab[:text] }
+          end
+          tab_index += 1
+        end
+      end
+    end
+    
+    tab_names
+  end
+
+  def initial_active_tab_js
+    tab_names = tab_names_for_hash_map
+    hash_map = tab_names.map { |tab| "        '#{tab_id_from_name(tab[:name])}': #{tab[:index]}" }.join(",\n")
+    
+    <<~JS
+      // Initialize active tab from URL hash or default to 0
+      const hashToIndexMap = {
+#{hash_map}
+      };
+      const hash = window.location.hash.slice(1);
+      const initialIndex = hashToIndexMap[hash] !== undefined ? hashToIndexMap[hash] : 0;
+      return initialIndex;
+    JS
   end
 end
